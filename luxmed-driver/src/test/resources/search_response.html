@@ -1,0 +1,3545 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title>Patient Portal LUX MED</title>
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="-1">
+
+  <!--begin new theme-->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/PatientPortal/Content/css/theme/css?v=Jpm7h260GjeWHEAsnlwQtPdsD05GrXf-vyDujdDipG01" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="/PatientPortal/Content/css/theme/jquery-ui-1.10.4.min.css" />
+    <link href="/PatientPortal/Content/css/css?v=TvTJ7RDVFfrBDQoKDJktZkM66BmKr8xsc0otKGRTp0w1" rel="stylesheet"/>
+
+
+  <link rel="stylesheet" href="/PatientPortal/Content/css/daterangepicker.css" />
+  <link rel="stylesheet" href="/PatientPortal/Content/css/dateRangePickerCustom.css" />
+  <link rel="stylesheet" href="/PatientPortal/Content/css/bootstrap.css" />
+    
+  <!--[if IE 8]>
+    <link rel="stylesheet" href="/PatientPortal/Content/css/theme/ie8-and-down.css"/>
+  <![endif]-->
+  <!-- end new theme-->
+    <script src="/PatientPortal/bundles/jquery?v=VOvoseWI3KJom0zUA3-bmh67-fqY0w9yxbE2aNjnmKc1"></script>
+<script src="/PatientPortal/bundles/jqueryui?v=mm3v2PpGUkDUriE6bzJuTlqb_tVjmWEGj4i4gSJ7ipU1"></script>
+<script src="/PatientPortal/bundles/jqueryval?v=JdhQrW9chtoxI7Ch2CG_gRGCV0r6Sm-pGQ6JywlVQWs1"></script>
+
+    <script src="/PatientPortal/bundles/moment?v=huwbLRU4oIWhyHs6F54suekiwaBQ7riZr2ynxjSDptI1"></script>
+
+    <script src="/PatientPortal/bundles/lodash?v=o_9FZOfXTdMo8t7Gv2vw_KB6D9ZHLUbKT_c6bA42OlQ1"></script>
+
+    <script src="/PatientPortal/bundles/daterangepicker?v=oINx0UmM0Hu_jvWB1elQD__FpqrFVWe1cmWx8En1D1M1"></script>
+
+    
+    <script src="/PatientPortal/bundles/interface?v=rYsLfdbfX34MXprtozhKLvrSljun_-YgdI8U_wKKgcg1"></script>
+
+
+  <script type="text/javascript" src="/PatientPortal/Scripts/MicrosoftAjax.js"></script>
+  <script type="text/javascript" src="/PatientPortal/Scripts/MicrosoftMvcValidation.js"></script>
+  <script type="text/javascript" src="/PatientPortal/Scripts/jquery.maxlength.js"></script>
+  <script type="text/javascript" src="/PatientPortal/Scripts/jquery.bind-first-0.2.3.min.js"></script>
+  <script type="text/javascript" src="/PatientPortal/Scripts/attrChange.js"></script>
+  <script type="text/javascript" src="/PatientPortal/Scripts/Global.js"></script>
+  <script src="/PatientPortal/bundles/chat/chat?v=ErNubpvGqINnpaYSBAaGWFwZ09v2zZTL0FQl9BdHpdQ1"></script>
+
+  <script src="/PatientPortal/bundles/showPassword?v=9X74LR3EtdJaXR-pnKZSz8zj6B1BL20dcuGuUAJMwqo1"></script>
+
+  <script src="/PatientPortal/bundles/kpis?v=3yBOJ3KhKx7hJdCN0C-lu_q63Kj1duZwX0j1jCqPTRs1"></script>
+
+  <script type="text/javascript">
+
+      var baseUrl = "/PatientPortal";
+      kpis.init('/PatientPortal/Reservations/Coordination/SaveKpis');
+
+      if (window.name === "reloader") {
+          window.name = "no";
+          isMyLink = true;
+          window.location = '/PatientPortal/Account/LogOut';
+      }
+  </script>
+
+  
+<script type="text/javascript">
+  var
+      _registerFillCityValidationText = "Please select city",
+        _registerFillClinicValidationText = "Please select center",
+        _registerFillServiceValidationText = "Please select service",
+        _realWidgetChosen4Text = "selected",
+        _realWidgetChosenDefaultText = "selected";
+
+</script>
+
+
+  <link type="image/x-icon" href="/PatientPortal/Content/img/favicon.ico" rel="shortcut icon">
+
+      <script type="text/javascript">
+        $.datepicker.setDefaults($.datepicker.regional['']);
+        $.datepicker.setDefaults({
+            changeMonth: false,
+            changeYear: false
+        });
+    </script>
+<script type="text/javascript">
+    $.dateRangePickerConfig = {
+        locals: {
+            format: "DD-MM-YYYY",
+            separator: "  |  ",
+            applyLabel: 'Apply',
+            cancelLabel: 'Cancel',
+            fromLabel: 'From',
+            toLabel: 'To',
+            customRangeLabel: 'Custom range',
+            weekLabel: 'Week',
+            daysOfWeek: [
+                'Su',
+                'Mo',
+                'Tu',
+                'We',
+                'Th',
+                'Fr',
+                'Sa'],
+            monthNames: [
+                'January',
+                'February',
+                'March',
+                'April',
+                'May',
+                'June',
+                'July',
+                'August',
+                'September',
+                'October',
+                'November',
+                'December'
+            ],
+            firstDay: 1
+        },
+        rangesLocals: {
+            'Today': [
+                '10-01-2018',
+                '10-01-2018'
+            ],
+            'Yesterday': [
+                '09-01-2018',
+                '09-01-2018'
+            ],
+            'Next 30 days': [
+                '10-01-2018',
+                '09-02-2018'
+            ],
+            'Last 30 days': [
+                '11-12-2017',
+                '10-01-2018'
+            ],
+            'Next year': [
+                '10-01-2018',
+                '10-01-2019'
+            ],
+            'Last year': [
+                '10-01-2017',
+                '10-01-2018'
+            ]
+        }
+    };
+</script>
+<script src="/PatientPortal/bundles/_dateFilter?v=EVudEAGN70le9lOrxz0--J7Y5rPNlv--bhOIyHEwn8k1"></script>
+
+    
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WL728ZB');</script>
+    <!-- End Google Tag Manager -->
+</head>
+
+<body onkeypress=" return preventBackRefresh(event); " onkeydown=" return preventBackRefresh(event); ">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WL728ZB"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<script type="text/javascript">
+  HideL1Wrapper = function () {
+      $(".top-info.l1").hide();
+    var ulr = '/PatientPortal/Home/HideWrapperL1';
+      fixSpinner = true;
+      $.post(ulr, function() {
+        fixSpinner = false;
+      });
+  }
+</script>
+
+
+<script type="text/javascript">
+  HideCookieWrapper = function () {
+      $(".top-info.cookie").hide();
+    var ulr = '/PatientPortal/Home/HideCookieWrapper';
+      fixSpinner = true;
+      $.post(ulr, function() {
+        fixSpinner = false;
+      });
+  }
+</script>
+
+
+
+<div id="full">
+    <div id="total">
+        <div class="wrapper">
+            
+
+<div id="top">
+  <a class="logo lang-en" href='/PatientPortal/'>
+    <span class="name">Patient Portal</span>
+  </a>
+
+
+  <div class="actions _tablet _smartphone">
+        <a class="button tabletNavigation _toggleMobileNavigation">Menu</a>
+  </div>
+  <div class="actions _desktop">
+    <ul class="menu">
+        <li><a href="https://emarket.luxmed.pl/eMarket" target="_blank">e-Market LUX MED</a></li>
+    </ul>
+
+
+      <div class="currentUser dropdown">
+        <span class="name">Evgenii Subbotin</span>
+        <span class="email">buzzband@gmail.com</span>
+        <div class="dropMenu">
+          <ul>
+            <li><a href="/PatientPortal/Users/User/Details?tab=Profile">Your personal data</a></li>
+              <li><a href="/PatientPortal/Users/User/Details?tab=ECard">Your Patient Card</a></li>
+            <li><a href="/PatientPortal/Users/User/Details?tab=Settings">Settings</a></li>
+            <li><a href="/PatientPortal/Users/User/Details?tab=Settings">Change language</a></li>
+            <li><a href="/PatientPortal/Users/User/Details?tab=Password">Change password</a></li>
+               <li><a onclick="checkChatStatus(this);">Log out</a></li>
+          </ul>
+        </div>
+      </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    checkChatStatus = function (e) {
+        if (kpis && typeof kpis === 'object' && kpis.save !== undefined && typeof kpis.save === "function") { kpis.save() }
+    $.get(baseUrl + '/Account/LogOutWithChat', function (data) {
+      if (data.showConfirm === 1) {
+        $.get(baseUrl + '/Account/ConfirmLogout', function (dialogHtml) {
+          showPoupManually(dialogHtml);
+        });
+      } else {
+        window.location = '/PatientPortal/Account/LogOut';
+      }
+    });
+  };
+
+</script>
+
+                <div id="mainNavigation">
+                    <ul class="menu">
+    <li class="_tablet _smartphone"><a href="#" class="_toggleMobileNavigation"><< Hide menu</a></li>
+      <li class="">
+            <a href="/PatientPortal/" target="_parent">Start</a>
+      </li>
+      <li class="">
+            <a href="/PatientPortal/Reservations/Visits" target="_parent">Visits</a>
+      </li>
+      <li class="">
+            <a href="/PatientPortal/Reservations/MedicalExaminations" target="_parent">Lab results</a>
+      </li>
+      <li class="">
+            <a href="/PatientPortal/Reservations/Referrals" target="_parent">Referrals</a>
+      </li>
+      <li class="">
+            <a href="/PatientPortal/Reservations/PrescriptionsOrdering/History" target="_parent">Drugs</a>
+      </li>
+      <li class="">
+            <a href="/PatientPortal/Reservations/EQuestions" target="_parent">Ask Your Doctor</a>
+      </li>
+      <li class="">
+            <a href="/PatientPortal/Reservations/Doctors/Schedule" target="_parent">Doctors&#39; schedule</a>
+      </li>
+      <li class="">
+            <a href="/PatientPortal/Reservations/Clinics/Duty" target="_parent">Duty</a>
+      </li>
+      <li class="">
+            <a href="/PatientPortal/Reservations/Clinics/List" target="_parent">Clinics</a>
+      </li>
+      <li class="">
+            <a href="/PatientPortal/Home/Documents" target="_parent">Document templates</a>
+      </li>
+</ul>
+                </div>
+
+            <div id="content" style="min-height: 100px;">
+                <div class="header">
+                    <h1>Booking</h1>
+                        <div class="buttons">
+                            
+                            
+
+
+        <a class="button disabled calendar" href="">I want to book a visit or diagnostic test</a>
+
+                        </div>
+                </div>
+                
+<script src="https://maps.google.com/maps/api/js?key=?sensor=false" type="text/javascript"></script>
+<script src="/PatientPortal/bundles/google.maps?v=jISvs3liPxl_rfjF9zNyLftu9sLz6WyyeDQ4q4Z8G5M1"></script>
+
+<script src="/PatientPortal/bundles/reservation?v=0gc1V9HJRZ83Qgh61Jzc1vF5AK03sRm8XSdzLjzBxYI1"></script>
+
+
+<div class="headerExtend">
+    <div class="pickLatestField">
+        <div class="selectAction">
+                <select id="currentFilter" class="select _fetchFormData" data-class="latestSearch selectLatest adjustWidth" data-form="advancedResevation" onchange="reservation.events.loadFilter()">
+                    <option class="invisibleOnList">Choose from your recent bookings</option>
+                        <option data-display="&lt;strong&gt;Konsultacja neurologa&lt;/strong&gt; &lt;p&gt;&lt;/p&gt; Krak&#243;w Any medical center &lt;br/&gt; Any doctor">8903703</option>
+                        <option data-display="&lt;strong&gt;Konsultacja neurologa&lt;/strong&gt; &lt;p&gt;&lt;/p&gt; Krak&#243;w Any medical center &lt;br/&gt; Any doctor">11664568</option>
+                        <option data-display="&lt;strong&gt;Konsultacja laryngologa&lt;/strong&gt; &lt;p&gt;&lt;/p&gt; Krak&#243;w Any medical center &lt;br/&gt; Any doctor">11649997</option>
+                </select>
+                <span>or use the search option</span>
+        </div>
+        <div class="backAction">
+            <a class="_clearFormData" data-form="advancedResevation" href="/PatientPortal/Reservations/Reservation/FirstFind">&lt; Back</a>
+            <span>Your search criteria have been set as follows:</span>
+        </div>
+    </div>
+</div>
+
+<div id="filtersDiv" data-show-visits-not-found-popup="False" data-visits-not-found-popup-url="/PatientPortal/Reservations/Reservation/VisitsNotFoundPopup" data-load-url="/PatientPortal/Reservations/Reservation/LoadFilter">
+    <div id="validationsSummaryByMvc">
+    
+</div>
+
+<div id="validationsSummaryDynamicByJS" class="validation-summary-errors">
+  <ul></ul>
+</div>
+
+<div id="dynamicFilterContainer" style="display:none;" data-get-url="/PatientPortal/Reservations/Reservation/GetFilter">
+  
+
+<div class="_smartphone _tablet _advancedReservationTrigger">
+    Search for visits
+</div>
+<div class="advancedReservationBox">
+
+    <form id="advancedResevation" method="post" name="filterForm" action="Find">
+        <input id="ReferralId" name="ReferralId" type="hidden" value="" />
+        <input id="DateOption" name="DateOption" type="hidden" value="SelectedDate" />
+        <input id="PayersCount" type="hidden" value="1" name="PayersCount">
+
+        <div class="column column1">
+            <span class="groupName">Choose your city and medical center:</span>
+            <div class="field required">
+                
+<select id="CityId" name="CityId" class="select"  selectedname="City"   data-click-event="reservation.events.removeAllValidations"          data-autocomplete="true"        data-autocomplete-prompt="Search..."   >
+            <option class="invisibleOnList" value="">Select city</option>
+                <option data-favourite="False"
+                        value="70"
+                        >
+                    Białystok
+                </option>
+                <option data-favourite="False"
+                        value="12"
+                        >
+                    Bielsk Podlaski
+                </option>
+                <option data-favourite="False"
+                        value="83"
+                        >
+                    Brzesko
+                </option>
+                <option data-favourite="False"
+                        value="10"
+                        >
+                    Bydgoszcz
+                </option>
+                <option data-favourite="False"
+                        value="84"
+                        >
+                    Częstochowa
+                </option>
+                <option data-favourite="False"
+                        value="6"
+                        >
+                    Dębica - Goodyear
+                </option>
+                <option data-favourite="False"
+                        value="63"
+                        >
+                    Elbląg
+                </option>
+                <option data-favourite="False"
+                        value="60"
+                        >
+                    Gorz&#243;w Wielkopolski
+                </option>
+                <option data-favourite="False"
+                        value="17"
+                        >
+                    Katowice
+                </option>
+                <option data-favourite="True"
+                        value="3"
+                          selected="selected"
+>
+                    Krak&#243;w
+                </option>
+                <option data-favourite="False"
+                        value="49"
+                        >
+                    Lublin
+                </option>
+                <option data-favourite="False"
+                        value="89"
+                        >
+                    Łomża
+                </option>
+                <option data-favourite="False"
+                        value="4"
+                        >
+                    Ł&#243;dź
+                </option>
+                <option data-favourite="False"
+                        value="80"
+                        >
+                    Mielec
+                </option>
+                <option data-favourite="False"
+                        value="20"
+                        >
+                    Olsztyn
+                </option>
+                <option data-favourite="False"
+                        value="21"
+                        >
+                    Opole
+                </option>
+                <option data-favourite="False"
+                        value="8"
+                        >
+                    Poznań
+                </option>
+                <option data-favourite="False"
+                        value="74"
+                        >
+                    Rzesz&#243;w
+                </option>
+                <option data-favourite="False"
+                        value="24"
+                        >
+                    Szczecin
+                </option>
+                <option data-favourite="False"
+                        value="73"
+                        >
+                    Toruń
+                </option>
+                <option data-favourite="False"
+                        value="45"
+                        >
+                    Tr&#243;jmiasto
+                </option>
+                <option data-favourite="False"
+                        value="25"
+                        >
+                    Tychy
+                </option>
+                <option data-favourite="False"
+                        value="81"
+                        >
+                    Wałbrzych
+                </option>
+                <option data-favourite="False"
+                        value="1"
+                        >
+                    Warszawa
+                </option>
+                <option data-favourite="False"
+                        value="76"
+                        >
+                    Wołomin
+                </option>
+                <option data-favourite="False"
+                        value="5"
+                        >
+                    Wrocław
+                </option>
+
+</select>
+                <span class="tooltip" title="This is your default city. To change it, please visit your Account Settings."></span>
+            </div>
+            <div class="field">
+                
+<select id="ClinicId" name="ClinicId" class="select"   multiple="multiple"       selectedname="Center"   data-click-event="reservation.events.clinicClicked"          data-autocomplete="true"        data-autocomplete-prompt="Search..."   >
+        <optgroup label="invisible" class="hideLabel" data-selection-limit="2">
+                <option class="invisibleOnList" value="">Any medical center</option>
+                                <option data-favourite="False"
+                            value="1377"
+                            >
+                        LX Krak&#243;w - Al. Jana Pawła II 190 ( dla PM )
+                    </option>
+                    <option data-favourite="False"
+                            value="1760"
+                            >
+                        LX Krak&#243;w - Al. Pokoju 5
+                    </option>
+                    <option data-favourite="False"
+                            value="1879"
+                            >
+                        LX Krak&#243;w - Czerwone Maki 87
+                    </option>
+                    <option data-favourite="False"
+                            value="1877"
+                            >
+                        LX Krak&#243;w - Jasnog&#243;rska 11
+                    </option>
+                    <option data-favourite="False"
+                            value="10"
+                            >
+                        LX Krak&#243;w - Lublańska 38
+                    </option>
+                    <option data-favourite="False"
+                            value="1336"
+                            >
+                        LX Krak&#243;w - Pediatria Puszkarska 7H
+                    </option>
+                    <option data-favourite="False"
+                            value="1866"
+                            >
+                        LX Krak&#243;w - Pilot&#243;w 2
+                    </option>
+                    <option data-favourite="False"
+                            value="1335"
+                            >
+                        LX Krak&#243;w - Puszkarska 7H
+                    </option>
+                    <option data-favourite="False"
+                            value="3"
+                            >
+                        LX Krak&#243;w - Słowackiego 64
+                    </option>
+                    <option data-favourite="False"
+                            value="37"
+                            >
+                        LX Krak&#243;w - Wadowicka 6
+                    </option>
+                    <option data-favourite="False"
+                            value="1846"
+                            >
+                        LXD Krak&#243;w - Pilot&#243;w 2
+                    </option>
+                    <option data-favourite="False"
+                            value="64"
+                            >
+                        MR Krak&#243;w - Frycza Modrzewskiego 2
+                    </option>
+                    <option data-favourite="False"
+                            value="86"
+                            >
+                        MR Krak&#243;w - Lubelska 29
+                    </option>
+                    <option data-favourite="False"
+                            value="87"
+                            >
+                        MR Krak&#243;w - Wadowicka 8W
+                    </option>
+                    <option data-favourite="False"
+                            value="1752"
+                            >
+                        PF Dental Krak&#243;w - Al. Pokoju 5
+                    </option>
+                    <option data-favourite="False"
+                            value="1743"
+                            >
+                        PF Krak&#243;w - Al. Pokoju 5
+                    </option>
+                    <option data-favourite="False"
+                            value="1556"
+                            >
+                        PF Krak&#243;w - Frycza Modrzewskiego 2
+                    </option>
+                    <option data-favourite="False"
+                            value="1667"
+                            >
+                        PF Krak&#243;w - Lubelska 29
+                    </option>
+                    <option data-favourite="False"
+                            value="1567"
+                            >
+                        PF Krak&#243;w - Lublańska 38
+                    </option>
+                    <option data-favourite="False"
+                            value="1558"
+                            >
+                        PF Krak&#243;w - Puszkarska 7H
+                    </option>
+                    <option data-favourite="False"
+                            value="1651"
+                            >
+                        PF Krak&#243;w - Wadowicka 6
+                    </option>
+                    <option data-favourite="False"
+                            value="1766"
+                            >
+                        PF Krak&#243;w – Wadowicka 8W
+                    </option>
+        </optgroup>
+
+</select>
+              <span class="tooltip" title="You can set your favourite medical center as preferred. These facilities will be shown on the top of this list."></span>
+            </div>
+
+            <div class="field withButton" id="ClinicLocalize" data-get-url="/PatientPortal/Reservations/Reservation/ClinicLocalizeAjax">
+                
+                <a class="button localize" onclick="reservation.events.showClinicLocalize();">Show on map</a>
+            </div>
+        </div>
+        <div class="column column2">
+            <span class="groupName">Choose your service and your doctor:</span>
+            <div class="field required">
+                
+<select id="ServiceId" name="ServiceId" class="select"   multiple="multiple"       selectedname="Service"   data-click-event="reservation.events.serviceClicked"          data-autocomplete="true"        data-autocomplete-prompt="Search..."   >
+        <optgroup label="invisible" class="hideLabel" data-selection-limit="2">
+                <option class="invisibleOnList" value="">Select service</option>
+                                <option data-favourite="False"
+                            value="5857"
+                            >
+                        Audiometr standardowy
+                    </option>
+                    <option data-favourite="False"
+                            value="4786"
+                            >
+                        Audiometria impedancyjna - z tympanometrią i oceną odruch&#243;w z mięśnia strzemiączkowego (AI)
+                    </option>
+                    <option data-favourite="False"
+                            value="6597"
+                            >
+                        Badanie EEG
+                    </option>
+                    <option data-favourite="False"
+                            value="6301"
+                            >
+                        Badanie EEG - (dzieci)
+                    </option>
+                    <option data-favourite="False"
+                            value="4695"
+                            >
+                        Badanie EKG - spoczynkowe
+                    </option>
+                    <option data-favourite="False"
+                            value="8937"
+                            >
+                        Badanie EKG - spoczynkowe - dziecka
+                    </option>
+                    <option data-favourite="False"
+                            value="4359"
+                            >
+                        Echokardiografia - USG serca
+                    </option>
+                    <option data-favourite="False"
+                            value="7955"
+                            >
+                        Echokardiografia - USG serca - dzieci
+                    </option>
+                    <option data-favourite="False"
+                            value="3808"
+                            >
+                        Gastroskopia
+                    </option>
+                    <option data-favourite="False"
+                            value="4780"
+                            >
+                        Komputerowe pole widzenia
+                    </option>
+                    <option data-favourite="False"
+                            value="4387"
+                            >
+                        Konsultacja alergologa
+                    </option>
+                    <option data-favourite="False"
+                            value="5788"
+                            >
+                        Konsultacja alergologa - dzieci
+                    </option>
+                    <option data-favourite="False"
+                            value="8423"
+                            >
+                        Konsultacja angiologa
+                    </option>
+                    <option data-favourite="False"
+                            value="4394"
+                            >
+                        Konsultacja chirurga dzieci
+                    </option>
+                    <option data-favourite="False"
+                            value="4406"
+                            >
+                        Konsultacja chirurga naczyniowego
+                    </option>
+                    <option data-favourite="False"
+                            value="4412"
+                            >
+                        Konsultacja chirurga og&#243;lnego
+                    </option>
+                    <option data-favourite="False"
+                            value="4418"
+                            >
+                        Konsultacja chirurga onkologa
+                    </option>
+                    <option data-favourite="False"
+                            value="4424"
+                            >
+                        Konsultacja chirurga plastyka
+                    </option>
+                    <option data-favourite="False"
+                            value="4448"
+                            >
+                        Konsultacja dermatologa
+                    </option>
+                    <option data-favourite="False"
+                            value="4453"
+                            >
+                        Konsultacja diabetologa
+                    </option>
+                    <option data-favourite="False"
+                            value="8277"
+                            >
+                        Konsultacja diabetologa - dzieci
+                    </option>
+                    <option data-favourite="False"
+                            value="5844"
+                            >
+                        Konsultacja dietetyka
+                    </option>
+                    <option data-favourite="False"
+                            value="8273"
+                            >
+                        Konsultacja dietetyka - dzieci
+                    </option>
+                    <option data-favourite="False"
+                            value="11881"
+                            >
+                        Konsultacja dietetyka - wizyta pierwszorazowa
+                    </option>
+                    <option data-favourite="False"
+                            value="7669"
+                            >
+                        Konsultacja endokrynologa - dzieci
+                    </option>
+                    <option data-favourite="False"
+                            value="6748"
+                            >
+                        Konsultacja flebologiczna
+                    </option>
+                    <option data-favourite="False"
+                            value="4468"
+                            >
+                        Konsultacja gastroenterologa
+                    </option>
+                    <option data-favourite="False"
+                            value="7675"
+                            >
+                        Konsultacja gastroenterologa - dzieci
+                    </option>
+                    <option data-favourite="False"
+                            value="8286"
+                            >
+                        Konsultacja geriatry
+                    </option>
+                    <option data-favourite="False"
+                            value="7676"
+                            >
+                        Konsultacja ginekologa - dzieci
+                    </option>
+                    <option data-favourite="False"
+                            value="4473"
+                            >
+                        Konsultacja ginekologa - endokrynologa
+                    </option>
+                    <option data-favourite="False"
+                            value="9500"
+                            >
+                        Konsultacja ginekologa-onkologa
+                    </option>
+                    <option data-favourite="False"
+                            value="4486"
+                            >
+                        Konsultacja hematologa
+                    </option>
+                    <option data-favourite="False"
+                            value="7223"
+                            >
+                        Konsultacja hematologa - dzieci
+                    </option>
+                    <option data-favourite="False"
+                            value="4491"
+                            >
+                        Konsultacja hepatologiczna
+                    </option>
+                    <option data-favourite="False"
+                            value="7138"
+                            >
+                        Konsultacja immunologa
+                    </option>
+                    <option data-favourite="False"
+                            value="4510"
+                            >
+                        Konsultacja kardiologa
+                    </option>
+                    <option data-favourite="False"
+                            value="7318"
+                            >
+                        Konsultacja kardiologa - dzieci
+                    </option>
+                    <option data-favourite="False"
+                            value="4522"
+                            >
+                        Konsultacja laryngologa
+                    </option>
+                    <option data-favourite="False"
+                            value="8343"
+                            >
+                        Konsultacja lekarza dyżurnego - Pediatra
+                    </option>
+                    <option data-favourite="False"
+                            value="4528"
+                            >
+                        Konsultacja lekarza rodzinnego
+                    </option>
+                    <option data-favourite="False"
+                            value="4534"
+                            >
+                        Konsultacja nefrologa
+                    </option>
+                    <option data-favourite="False"
+                            value="8008"
+                            >
+                        Konsultacja nefrologa - dzieci
+                    </option>
+                    <option data-favourite="False"
+                            value="4540"
+                            >
+                        Konsultacja neurochirurga
+                    </option>
+                    <option data-favourite="False"
+                            value="4549"
+                              selected="selected"
+>
+                        Konsultacja neurologa
+                    </option>
+                    <option data-favourite="False"
+                            value="7056"
+                            >
+                        Konsultacja neurologa - dzieci
+                    </option>
+                    <option data-favourite="False"
+                            value="4565"
+                            >
+                        Konsultacja okulisty
+                    </option>
+                    <option data-favourite="False"
+                            value="7756"
+                            >
+                        Konsultacja okulisty - badanie dna oka
+                    </option>
+                    <option data-favourite="False"
+                            value="7681"
+                            >
+                        Konsultacja okulisty - dzieci
+                    </option>
+                    <option data-favourite="False"
+                            value="4572"
+                            >
+                        Konsultacja onkologa
+                    </option>
+                    <option data-favourite="False"
+                            value="4436"
+                            >
+                        Konsultacja ortopedy
+                    </option>
+                    <option data-favourite="False"
+                            value="7678"
+                            >
+                        Konsultacja ortopedy - dzieci
+                    </option>
+                    <option data-favourite="False"
+                            value="9190"
+                            >
+                        Konsultacja pediatry - w gabinecie dzieci zdrowych - bilans
+                    </option>
+                    <option data-favourite="False"
+                            value="4430"
+                            >
+                        Konsultacja proktologa
+                    </option>
+                    <option data-favourite="False"
+                            value="4598"
+                            >
+                        Konsultacja pulmonologa
+                    </option>
+                    <option data-favourite="False"
+                            value="7687"
+                            >
+                        Konsultacja pulmonologa - dzieci
+                    </option>
+                    <option data-favourite="False"
+                            value="4604"
+                            >
+                        Konsultacja reumatologa
+                    </option>
+                    <option data-favourite="False"
+                            value="7688"
+                            >
+                        Konsultacja reumatologa - dzieci
+                    </option>
+                    <option data-favourite="False"
+                            value="4614"
+                            >
+                        Konsultacja urologa
+                    </option>
+                    <option data-favourite="False"
+                            value="6611"
+                            >
+                        Konsultacja urologa - dzieci
+                    </option>
+                    <option data-favourite="False"
+                            value="6100"
+                            >
+                        Kwalifikacja - do szczepienia dorośli
+                    </option>
+                    <option data-favourite="False"
+                            value="7289"
+                            >
+                        Kwalifikacja - do szczepienia p/grypie
+                    </option>
+                    <option data-favourite="False"
+                            value="7679"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy angio głowy
+                    </option>
+                    <option data-favourite="False"
+                            value="7668"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy głowy
+                    </option>
+                    <option data-favourite="False"
+                            value="7680"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy głowy+ angio
+                    </option>
+                    <option data-favourite="False"
+                            value="7396"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy jamy brzusznej
+                    </option>
+                    <option data-favourite="False"
+                            value="7395"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy klatki piersiowej
+                    </option>
+                    <option data-favourite="False"
+                            value="7674"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy kręgosłupa lędźwiowego
+                    </option>
+                    <option data-favourite="False"
+                            value="7393"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy kręgosłupa piersiowego
+                    </option>
+                    <option data-favourite="False"
+                            value="7672"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy kręgosłupa szyjnego
+                    </option>
+                    <option data-favourite="False"
+                            value="7399"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy miednicy mniejszej
+                    </option>
+                    <option data-favourite="False"
+                            value="7402"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy nadgarstka
+                    </option>
+                    <option data-favourite="False"
+                            value="7398"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy nadnerczy
+                    </option>
+                    <option data-favourite="False"
+                            value="7389"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy oczodoł&#243;w
+                    </option>
+                    <option data-favourite="False"
+                            value="7699"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy podudzia
+                    </option>
+                    <option data-favourite="False"
+                            value="9432"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy przedramienia
+                    </option>
+                    <option data-favourite="False"
+                            value="7671"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy przysadki
+                    </option>
+                    <option data-favourite="False"
+                            value="7700"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy ramienia
+                    </option>
+                    <option data-favourite="False"
+                            value="7701"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy ręki
+                    </option>
+                    <option data-favourite="False"
+                            value="7697"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy staw&#243;w krzyżowo- biodrowych
+                    </option>
+                    <option data-favourite="False"
+                            value="7400"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy stawu barkowego
+                    </option>
+                    <option data-favourite="False"
+                            value="7403"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy stawu biodrowego
+                    </option>
+                    <option data-favourite="False"
+                            value="7670"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy stawu kolanowego
+                    </option>
+                    <option data-favourite="False"
+                            value="7401"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy stawu łokciowego
+                    </option>
+                    <option data-favourite="False"
+                            value="7405"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy stawu skokowego
+                    </option>
+                    <option data-favourite="False"
+                            value="7406"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy stopy
+                    </option>
+                    <option data-favourite="False"
+                            value="7390"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy twarzo - czaszki
+                    </option>
+                    <option data-favourite="False"
+                            value="7707"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy uda
+                    </option>
+                    <option data-favourite="False"
+                            value="8320"
+                            >
+                        MR - Rezonans magnetyczny - wysokopolowy zatok
+                    </option>
+                    <option data-favourite="False"
+                            value="6273"
+                            >
+                        Pr&#243;ba wysiłkowa
+                    </option>
+                    <option data-favourite="False"
+                            value="6279"
+                            >
+                        Rektoskopia
+                    </option>
+                    <option data-favourite="False"
+                            value="8672"
+                            >
+                        Rtg barku (przez klatkę)
+                    </option>
+                    <option data-favourite="False"
+                            value="6117"
+                            >
+                        Rtg barku / ramienia - osiowe - lewego
+                    </option>
+                    <option data-favourite="False"
+                            value="6118"
+                            >
+                        Rtg barku / ramienia - osiowe - obu
+                    </option>
+                    <option data-favourite="False"
+                            value="4324"
+                            >
+                        Rtg barku / ramienia - osiowe - prawego
+                    </option>
+                    <option data-favourite="False"
+                            value="8876"
+                            >
+                        Rtg barku / ramienia AP - + bok lewego
+                    </option>
+                    <option data-favourite="False"
+                            value="8877"
+                            >
+                        Rtg barku / ramienia AP - + bok obu - zdjęcie por&#243;wnawcze
+                    </option>
+                    <option data-favourite="False"
+                            value="8875"
+                            >
+                        Rtg barku / ramienia AP - + bok prawego
+                    </option>
+                    <option data-favourite="False"
+                            value="6114"
+                            >
+                        Rtg barku / ramienia AP - lewego
+                    </option>
+                    <option data-favourite="False"
+                            value="8874"
+                            >
+                        Rtg barku / ramienia AP - obu - zdjęcie por&#243;wnawcze
+                    </option>
+                    <option data-favourite="False"
+                            value="4322"
+                            >
+                        Rtg barku / ramienia AP - prawego
+                    </option>
+                    <option data-favourite="False"
+                            value="8673"
+                            >
+                        Rtg barku AP + osiowe
+                    </option>
+                    <option data-favourite="False"
+                            value="8674"
+                            >
+                        Rtg celowane kręgu
+                    </option>
+                    <option data-favourite="False"
+                            value="8233"
+                            >
+                        Rtg czaszki - kanały nerw&#243;w czaszkowych
+                    </option>
+                    <option data-favourite="False"
+                            value="8235"
+                            >
+                        Rtg czaszki - oczodoły
+                    </option>
+                    <option data-favourite="False"
+                            value="4286"
+                            >
+                        Rtg czaszki - PA + bok
+                    </option>
+                    <option data-favourite="False"
+                            value="8229"
+                            >
+                        Rtg czaszki - PA+bok+podstawa
+                    </option>
+                    <option data-favourite="False"
+                            value="8231"
+                            >
+                        Rtg czaszki - podstawa
+                    </option>
+                    <option data-favourite="False"
+                            value="6127"
+                            >
+                        Rtg czaszki - p&#243;łosiowe wg Orleya
+                    </option>
+                    <option data-favourite="False"
+                            value="8236"
+                            >
+                        Rtg czaszki - siodło tureckie
+                    </option>
+                    <option data-favourite="False"
+                            value="6128"
+                            >
+                        Rtg czaszki - styczne
+                    </option>
+                    <option data-favourite="False"
+                            value="4297"
+                            >
+                        Rtg czynnościowe kręgosłupa lędźwiowego
+                    </option>
+                    <option data-favourite="False"
+                            value="4292"
+                            >
+                        Rtg czynnościowe kręgosłupa szyjnego
+                    </option>
+                    <option data-favourite="False"
+                            value="4288"
+                            >
+                        Rtg czynnościowe staw&#243;w skroniowo  żuchwowych
+                    </option>
+                    <option data-favourite="False"
+                            value="4321"
+                            >
+                        Rtg jamy brzusznej - na leżąco
+                    </option>
+                    <option data-favourite="False"
+                            value="6115"
+                            >
+                        Rtg jamy brzusznej - na stojąco
+                    </option>
+                    <option data-favourite="False"
+                            value="4311"
+                            >
+                        Rtg klatki piersiowej
+                    </option>
+                    <option data-favourite="False"
+                            value="8237"
+                            >
+                        Rtg klatki piersiowej - bok z barytem
+                    </option>
+                    <option data-favourite="False"
+                            value="6109"
+                            >
+                        Rtg klatki piersiowej - i bok
+                    </option>
+                    <option data-favourite="False"
+                            value="8668"
+                            >
+                        Rtg klatki piersiowej - PA + bok z barytem
+                    </option>
+                    <option data-favourite="False"
+                            value="6112"
+                            >
+                        Rtg klatki piersiowej - tarczycy, tchawicy
+                    </option>
+                    <option data-favourite="False"
+                            value="4298"
+                            >
+                        Rtg kości krzyżowej i guzicznej
+                    </option>
+                    <option data-favourite="False"
+                            value="6124"
+                            >
+                        Rtg kości ł&#243;deczkowatej - lewej
+                    </option>
+                    <option data-favourite="False"
+                            value="3393"
+                            >
+                        Rtg kości ł&#243;deczkowatej - prawej
+                    </option>
+                    <option data-favourite="False"
+                            value="8300"
+                            >
+                        Rtg kości skroniowych - transorbitalne
+                    </option>
+                    <option data-favourite="False"
+                            value="8299"
+                            >
+                        Rtg kości skroniowych - wg Schullera/ Steversa
+                    </option>
+                    <option data-favourite="False"
+                            value="8677"
+                            >
+                        Rtg kości śr&#243;dstopia
+                    </option>
+                    <option data-favourite="False"
+                            value="6134"
+                            >
+                        Rtg kości udowej AP + bok - lewej
+                    </option>
+                    <option data-favourite="False"
+                            value="4335"
+                            >
+                        Rtg kości udowej AP + bok - prawej
+                    </option>
+                    <option data-favourite="False"
+                            value="4295"
+                            >
+                        Rtg kręgosłupa AP na stojąco - (skolioza)
+                    </option>
+                    <option data-favourite="False"
+                            value="7228"
+                            >
+                        Rtg kręgosłupa AP na stojąco - + bok (skolioza)
+                    </option>
+                    <option data-favourite="False"
+                            value="8682"
+                            >
+                        Rtg kręgosłupa lędźwiowego - AP + bok
+                    </option>
+                    <option data-favourite="False"
+                            value="8686"
+                            >
+                        Rtg kręgosłupa lędźwiowego - AP + bok + skos
+                    </option>
+                    <option data-favourite="False"
+                            value="8689"
+                            >
+                        Rtg kręgosłupa lędźwiowego - bok
+                    </option>
+                    <option data-favourite="False"
+                            value="4296"
+                            >
+                        Rtg kręgosłupa lędźwiowo  krzyżowego  skosy
+                    </option>
+                    <option data-favourite="False"
+                            value="4294"
+                            >
+                        Rtg kręgosłupa lędźwiowo  krzyżowego AP + Bok
+                    </option>
+                    <option data-favourite="False"
+                            value="4299"
+                            >
+                        Rtg kręgosłupa piersiowego
+                    </option>
+                    <option data-favourite="False"
+                            value="8722"
+                            >
+                        Rtg kręgosłupa piersiowego - AP + bok
+                    </option>
+                    <option data-favourite="False"
+                            value="8724"
+                            >
+                        Rtg kręgosłupa piersiowego - AP + bok + skos
+                    </option>
+                    <option data-favourite="False"
+                            value="8726"
+                            >
+                        Rtg kręgosłupa piersiowego - bok
+                    </option>
+                    <option data-favourite="False"
+                            value="8718"
+                            >
+                        Rtg kręgosłupa piersiowego - skosy
+                    </option>
+                    <option data-favourite="False"
+                            value="4290"
+                            >
+                        Rtg kręgosłupa szyjnego
+                    </option>
+                    <option data-favourite="False"
+                            value="9345"
+                            >
+                        Rtg kręgosłupa szyjnego - AP + bok
+                    </option>
+                    <option data-favourite="False"
+                            value="8670"
+                            >
+                        Rtg kręgosłupa szyjnego - bok
+                    </option>
+                    <option data-favourite="False"
+                            value="8671"
+                            >
+                        Rtg kręgosłupa szyjnego - bok + skosy (3 projekcje)
+                    </option>
+                    <option data-favourite="False"
+                            value="6014"
+                            >
+                        Rtg kręgosłupa szyjnego - skosy
+                    </option>
+                    <option data-favourite="False"
+                            value="8878"
+                            >
+                        Rtg krtani
+                    </option>
+                    <option data-favourite="False"
+                            value="6119"
+                            >
+                        Rtg łokcia / przedramienia - lewego AP + bok
+                    </option>
+                    <option data-favourite="False"
+                            value="6120"
+                            >
+                        Rtg łokcia / przedramienia - obu AP + bok
+                    </option>
+                    <option data-favourite="False"
+                            value="4326"
+                            >
+                        Rtg łokcia / przedramienia - prawego AP + bok
+                    </option>
+                    <option data-favourite="False"
+                            value="6111"
+                            >
+                        Rtg łopatki - lewej
+                    </option>
+                    <option data-favourite="False"
+                            value="4307"
+                            >
+                        Rtg łopatki - prawej
+                    </option>
+                    <option data-favourite="False"
+                            value="4332"
+                            >
+                        Rtg miednicy i staw&#243;w biodrowych
+                    </option>
+                    <option data-favourite="False"
+                            value="8730"
+                            >
+                        Rtg mostka AP
+                    </option>
+                    <option data-favourite="False"
+                            value="4305"
+                            >
+                        Rtg mostka/boczne klatki piersiowej
+                    </option>
+                    <option data-favourite="False"
+                            value="11607"
+                            >
+                        RTG nadgarstka - PA + bok obu
+                    </option>
+                    <option data-favourite="False"
+                            value="8736"
+                            >
+                        Rtg nadgarstka boczne - lewego
+                    </option>
+                    <option data-favourite="False"
+                            value="8740"
+                            >
+                        Rtg nadgarstka boczne - obu
+                    </option>
+                    <option data-favourite="False"
+                            value="8738"
+                            >
+                        Rtg nadgarstka boczne - prawego
+                    </option>
+                    <option data-favourite="False"
+                            value="4329"
+                            >
+                        Rtg nadgarstka/dłoni PA + bok/skos - lewego
+                    </option>
+                    <option data-favourite="False"
+                            value="6123"
+                            >
+                        Rtg nadgarstka/dłoni PA + bok/skos - obu
+                    </option>
+                    <option data-favourite="False"
+                            value="6122"
+                            >
+                        Rtg nadgarstka/dłoni PA + bok/skos - prawego
+                    </option>
+                    <option data-favourite="False"
+                            value="4285"
+                            >
+                        Rtg nosa  boczne
+                    </option>
+                    <option data-favourite="False"
+                            value="4279"
+                            >
+                        Rtg noso - gardła
+                    </option>
+                    <option data-favourite="False"
+                            value="6110"
+                            >
+                        Rtg obojczyka - lewego
+                    </option>
+                    <option data-favourite="False"
+                            value="4306"
+                            >
+                        Rtg obojczyka - prawego
+                    </option>
+                    <option data-favourite="False"
+                            value="4330"
+                            >
+                        Rtg obu nadgarstk&#243;w/dłoni PA + bok/skos
+                    </option>
+                    <option data-favourite="False"
+                            value="8804"
+                            >
+                        Rtg oczodoł&#243;w - + boczne (2 projekcje)
+                    </option>
+                    <option data-favourite="False"
+                            value="6147"
+                            >
+                        Rtg palca/palc&#243;w stopy AP + bok/skos - lewej
+                    </option>
+                    <option data-favourite="False"
+                            value="3396"
+                            >
+                        Rtg palca/palc&#243;w stopy AP + bok/skos - prawej
+                    </option>
+                    <option data-favourite="False"
+                            value="6125"
+                            >
+                        Rtg palec/palce PA + bok / skos - lewej ręki
+                    </option>
+                    <option data-favourite="False"
+                            value="6126"
+                            >
+                        Rtg palec/palce PA + bok / skos - obu rąk
+                    </option>
+                    <option data-favourite="False"
+                            value="4331"
+                            >
+                        Rtg palec/palce PA + bok / skos - prawej ręki
+                    </option>
+                    <option data-favourite="False"
+                            value="11541"
+                            >
+                        Rtg pantomogram - zęb&#243;w
+                    </option>
+                    <option data-favourite="False"
+                            value="8805"
+                            >
+                        Rtg pięty + osiowe
+                    </option>
+                    <option data-favourite="False"
+                            value="8807"
+                            >
+                        Rtg pięty boczne
+                    </option>
+                    <option data-favourite="False"
+                            value="6141"
+                            >
+                        Rtg podudzia (goleni) AP + bok - lewego
+                    </option>
+                    <option data-favourite="False"
+                            value="6142"
+                            >
+                        Rtg podudzia (goleni) AP + bok - obu
+                    </option>
+                    <option data-favourite="False"
+                            value="4341"
+                            >
+                        Rtg podudzia (goleni) AP + bok - prawego
+                    </option>
+                    <option data-favourite="False"
+                            value="7298"
+                            >
+                        Rtg przedramienia - lewego AP + bok
+                    </option>
+                    <option data-favourite="False"
+                            value="7299"
+                            >
+                        Rtg przedramienia - obu przedramion AP + bok
+                    </option>
+                    <option data-favourite="False"
+                            value="7297"
+                            >
+                        Rtg przedramienia - prawego AP + bok
+                    </option>
+                    <option data-favourite="False"
+                            value="4281"
+                            >
+                        Rtg punktowe zdjęcie zęba
+                    </option>
+                    <option data-favourite="False"
+                            value="8264"
+                            >
+                        Rtg ręki - bok- lewa
+                    </option>
+                    <option data-favourite="False"
+                            value="8265"
+                            >
+                        Rtg ręki - bok- prawa
+                    </option>
+                    <option data-favourite="False"
+                            value="11602"
+                            >
+                        Rtg ręki - PA + skos lewa
+                    </option>
+                    <option data-favourite="False"
+                            value="11603"
+                            >
+                        Rtg ręki - PA + skos prawa
+                    </option>
+                    <option data-favourite="False"
+                            value="8259"
+                            >
+                        Rtg ręki - PA lewa
+                    </option>
+                    <option data-favourite="False"
+                            value="6121"
+                            >
+                        Rtg ręki - PA obu
+                    </option>
+                    <option data-favourite="False"
+                            value="8262"
+                            >
+                        Rtg ręki - PA prawa
+                    </option>
+                    <option data-favourite="False"
+                            value="4327"
+                            >
+                        Rtg ręki - wiek kostny
+                    </option>
+                    <option data-favourite="False"
+                            value="6137"
+                            >
+                        Rtg rzepki osiowe - lewej
+                    </option>
+                    <option data-favourite="False"
+                            value="6138"
+                            >
+                        Rtg rzepki osiowe - obu
+                    </option>
+                    <option data-favourite="False"
+                            value="6139"
+                            >
+                        Rtg rzepki osiowe - obu w 2 ustawieniach
+                    </option>
+                    <option data-favourite="False"
+                            value="6140"
+                            >
+                        Rtg rzepki osiowe - obu w 3 ustawieniach
+                    </option>
+                    <option data-favourite="False"
+                            value="4339"
+                            >
+                        Rtg rzepki osiowe - prawej
+                    </option>
+                    <option data-favourite="False"
+                            value="8813"
+                            >
+                        Rtg staw&#243;w krzyżowo - biodrowych - PA
+                    </option>
+                    <option data-favourite="False"
+                            value="8810"
+                            >
+                        Rtg staw&#243;w krzyżowo - biodrowych - skosy
+                    </option>
+                    <option data-favourite="False"
+                            value="6132"
+                            >
+                        Rtg stawu biodrowego AP - lewego
+                    </option>
+                    <option data-favourite="False"
+                            value="8660"
+                            >
+                        Rtg stawu biodrowego AP - obu
+                    </option>
+                    <option data-favourite="False"
+                            value="4333"
+                            >
+                        Rtg stawu biodrowego AP - prawego
+                    </option>
+                    <option data-favourite="False"
+                            value="6133"
+                            >
+                        Rtg stawu biodrowego osiowe - lewego
+                    </option>
+                    <option data-favourite="False"
+                            value="4334"
+                            >
+                        Rtg stawu biodrowego osiowe - prawego
+                    </option>
+                    <option data-favourite="False"
+                            value="6135"
+                            >
+                        Rtg stawu kolanowego AP + bok - lewego
+                    </option>
+                    <option data-favourite="False"
+                            value="6136"
+                            >
+                        Rtg stawu kolanowego AP + bok - obu
+                    </option>
+                    <option data-favourite="False"
+                            value="4337"
+                            >
+                        Rtg stawu kolanowego AP + bok - prawego
+                    </option>
+                    <option data-favourite="False"
+                            value="8815"
+                            >
+                        Rtg stawu kolanowego boczne
+                    </option>
+                    <option data-favourite="False"
+                            value="11284"
+                            >
+                        RTG stawu łokciowego
+                    </option>
+                    <option data-favourite="False"
+                            value="6143"
+                            >
+                        Rtg stawu skokowo - goleniowego AP + bok - lewego
+                    </option>
+                    <option data-favourite="False"
+                            value="6144"
+                            >
+                        Rtg stawu skokowo - goleniowego AP + bok - obu
+                    </option>
+                    <option data-favourite="False"
+                            value="4345"
+                            >
+                        Rtg stawu skokowo - goleniowego AP + bok - prawego
+                    </option>
+                    <option data-favourite="False"
+                            value="6145"
+                            >
+                        Rtg stopy AP + bok/skos - lewej
+                    </option>
+                    <option data-favourite="False"
+                            value="6146"
+                            >
+                        Rtg stopy AP + bok/skos - obu
+                    </option>
+                    <option data-favourite="False"
+                            value="4343"
+                            >
+                        Rtg stopy AP + bok/skos - prawej
+                    </option>
+                    <option data-favourite="False"
+                            value="8818"
+                            >
+                        Rtg st&#243;p AP (por&#243;wnawczo)
+                    </option>
+                    <option data-favourite="False"
+                            value="8285"
+                            >
+                        Rtg szyi - bok
+                    </option>
+                    <option data-favourite="False"
+                            value="4282"
+                            >
+                        Rtg teleradiogram - cefalometria cyfrowa
+                    </option>
+                    <option data-favourite="False"
+                            value="8819"
+                            >
+                        Rtg twarzoczaszki
+                    </option>
+                    <option data-favourite="False"
+                            value="8821"
+                            >
+                        Rtg uda + podudzia
+                    </option>
+                    <option data-favourite="False"
+                            value="4284"
+                            >
+                        Rtg zatok przynosowych
+                    </option>
+                    <option data-favourite="False"
+                            value="8822"
+                            >
+                        Rtg ząb obrotnika
+                    </option>
+                    <option data-favourite="False"
+                            value="4304"
+                            >
+                        Rtg żeber (1 strona) w 2 skosach
+                    </option>
+                    <option data-favourite="False"
+                            value="8287"
+                            >
+                        Rtg żuchwy
+                    </option>
+                    <option data-favourite="False"
+                            value="4700"
+                            >
+                        Spirometria
+                    </option>
+                    <option data-favourite="False"
+                            value="4699"
+                            >
+                        Spirometria - pr&#243;ba rozkurczowa
+                    </option>
+                    <option data-favourite="False"
+                            value="7716"
+                            >
+                        TK- Tomografia komputerowa - Angio aorty brzusznej
+                    </option>
+                    <option data-favourite="False"
+                            value="7717"
+                            >
+                        TK- Tomografia komputerowa - Angio aorty piersiowej
+                    </option>
+                    <option data-favourite="False"
+                            value="9433"
+                            >
+                        TK- Tomografia komputerowa - Angio głowy - badanie żył i zatok m&#243;zgu
+                    </option>
+                    <option data-favourite="False"
+                            value="7718"
+                            >
+                        TK- Tomografia komputerowa - Angio głowy - tętnice
+                    </option>
+                    <option data-favourite="False"
+                            value="10114"
+                            >
+                        TK- Tomografia komputerowa - Angio jamy brzusznej i miednicy mniejszej
+                    </option>
+                    <option data-favourite="False"
+                            value="7713"
+                            >
+                        TK- Tomografia komputerowa - Angio klatki piersiowej
+                    </option>
+                    <option data-favourite="False"
+                            value="7712"
+                            >
+                        TK- Tomografia komputerowa - Angio kończyn dolnych
+                    </option>
+                    <option data-favourite="False"
+                            value="9840"
+                            >
+                        TK- Tomografia komputerowa - Angio kończyny g&#243;rnej
+                    </option>
+                    <option data-favourite="False"
+                            value="7714"
+                            >
+                        TK- Tomografia komputerowa - Angio nadbrzusze
+                    </option>
+                    <option data-favourite="False"
+                            value="10115"
+                            >
+                        TK- Tomografia komputerowa - Angio tętnic miednicy mniejszej
+                    </option>
+                    <option data-favourite="False"
+                            value="7715"
+                            >
+                        TK- Tomografia komputerowa - Angio tętnic szyjnych
+                    </option>
+                    <option data-favourite="False"
+                            value="7722"
+                            >
+                        TK- Tomografia komputerowa - głowy
+                    </option>
+                    <option data-favourite="False"
+                            value="10111"
+                            >
+                        TK- Tomografia komputerowa - głowy, klatki piersiowej, jamy brzusznej, miednicy mniejszej
+                    </option>
+                    <option data-favourite="False"
+                            value="7723"
+                            >
+                        TK- Tomografia komputerowa - jamy brzusznej
+                    </option>
+                    <option data-favourite="False"
+                            value="8135"
+                            >
+                        TK- Tomografia komputerowa - jamy brzusznej i miednicy mniejszej
+                    </option>
+                    <option data-favourite="False"
+                            value="7724"
+                            >
+                        TK- Tomografia komputerowa - jamy brzusznej Tr&#243;jfazowa
+                    </option>
+                    <option data-favourite="False"
+                            value="7725"
+                            >
+                        TK- Tomografia komputerowa - klatki piersiowej
+                    </option>
+                    <option data-favourite="False"
+                            value="7726"
+                            >
+                        TK- Tomografia komputerowa - klatki piersiowej i jamy brzusznej
+                    </option>
+                    <option data-favourite="False"
+                            value="7727"
+                            >
+                        TK- Tomografia komputerowa - klatki piersiowej, jamy brzusznej, miednicy mniejszej
+                    </option>
+                    <option data-favourite="False"
+                            value="7730"
+                            >
+                        TK- Tomografia komputerowa - kości skroniowych
+                    </option>
+                    <option data-favourite="False"
+                            value="7739"
+                            >
+                        TK- Tomografia komputerowa - kręgosłupa lędźwiowego
+                    </option>
+                    <option data-favourite="False"
+                            value="9264"
+                            >
+                        TK- Tomografia komputerowa - kręgosłupa lędźwiowego + krzyżowego
+                    </option>
+                    <option data-favourite="False"
+                            value="7740"
+                            >
+                        TK- Tomografia komputerowa - kręgosłupa piersiowego
+                    </option>
+                    <option data-favourite="False"
+                            value="8133"
+                            >
+                        TK- Tomografia komputerowa - kręgosłupa piersiowego + lędźwiowego
+                    </option>
+                    <option data-favourite="False"
+                            value="7738"
+                            >
+                        TK- Tomografia komputerowa - kręgosłupa szyjnego
+                    </option>
+                    <option data-favourite="False"
+                            value="8132"
+                            >
+                        TK- Tomografia komputerowa - kręgosłupa szyjnego + lędźwiowego
+                    </option>
+                    <option data-favourite="False"
+                            value="8131"
+                            >
+                        TK- Tomografia komputerowa - kręgosłupa szyjnego + piersiowego
+                    </option>
+                    <option data-favourite="False"
+                            value="8129"
+                            >
+                        TK- Tomografia komputerowa - kręgosłupa szyjnego + piersiowego + lędźwiowego
+                    </option>
+                    <option data-favourite="False"
+                            value="7731"
+                            >
+                        TK- Tomografia komputerowa - krtani
+                    </option>
+                    <option data-favourite="False"
+                            value="7733"
+                            >
+                        TK- Tomografia komputerowa - miednicy mniejszej
+                    </option>
+                    <option data-favourite="False"
+                            value="7734"
+                            >
+                        TK- Tomografia komputerowa - naczyń wieńcowych-tętnice
+                    </option>
+                    <option data-favourite="False"
+                            value="7735"
+                            >
+                        TK- Tomografia komputerowa - nadgarstka
+                    </option>
+                    <option data-favourite="False"
+                            value="8136"
+                            >
+                        TK- Tomografia komputerowa - oczodoł&#243;w
+                    </option>
+                    <option data-favourite="False"
+                            value="7736"
+                            >
+                        TK- Tomografia komputerowa - podudzia
+                    </option>
+                    <option data-favourite="False"
+                            value="9429"
+                            >
+                        TK- Tomografia komputerowa - przedramienia
+                    </option>
+                    <option data-favourite="False"
+                            value="8139"
+                            >
+                        TK- Tomografia komputerowa - przysadki m&#243;zgowej
+                    </option>
+                    <option data-favourite="False"
+                            value="9428"
+                            >
+                        TK- Tomografia komputerowa - ramienia
+                    </option>
+                    <option data-favourite="False"
+                            value="9430"
+                            >
+                        TK- Tomografia komputerowa - ręki
+                    </option>
+                    <option data-favourite="False"
+                            value="7719"
+                            >
+                        TK- Tomografia komputerowa - stawu barkowego
+                    </option>
+                    <option data-favourite="False"
+                            value="7720"
+                            >
+                        TK- Tomografia komputerowa - stawu biodrowego
+                    </option>
+                    <option data-favourite="False"
+                            value="7728"
+                            >
+                        TK- Tomografia komputerowa - stawu kolanowego
+                    </option>
+                    <option data-favourite="False"
+                            value="7732"
+                            >
+                        TK- Tomografia komputerowa - stawu łokciowego
+                    </option>
+                    <option data-favourite="False"
+                            value="7737"
+                            >
+                        TK- Tomografia komputerowa - stawu skokowego
+                    </option>
+                    <option data-favourite="False"
+                            value="7741"
+                            >
+                        TK- Tomografia komputerowa - stopy
+                    </option>
+                    <option data-favourite="False"
+                            value="7742"
+                            >
+                        TK- Tomografia komputerowa - szczęka, żuchwa - badanie stomatolog. (implantologia)
+                    </option>
+                    <option data-favourite="False"
+                            value="7743"
+                            >
+                        TK- Tomografia komputerowa - szyi
+                    </option>
+                    <option data-favourite="False"
+                            value="7721"
+                            >
+                        TK- Tomografia komputerowa - szyi, klatki piersiowej, jamy brzusznej, miednicy mniejszej
+                    </option>
+                    <option data-favourite="False"
+                            value="7744"
+                            >
+                        TK- Tomografia komputerowa - twarzoczaszki
+                    </option>
+                    <option data-favourite="False"
+                            value="9431"
+                            >
+                        TK- Tomografia komputerowa - uda
+                    </option>
+                    <option data-favourite="False"
+                            value="7745"
+                            >
+                        TK- Tomografia komputerowa - zatok
+                    </option>
+                    <option data-favourite="False"
+                            value="9756"
+                            >
+                        Um&#243;wienie wizyty na scaling (usuwanie złog&#243;w)
+                    </option>
+                    <option data-favourite="False"
+                            value="8904"
+                            >
+                        Um&#243;wienie wizyty u chirurga stomatologa
+                    </option>
+                    <option data-favourite="False"
+                            value="6621"
+                            >
+                        Um&#243;wienie wizyty u stomatologa
+                    </option>
+                    <option data-favourite="False"
+                            value="8914"
+                            >
+                        Um&#243;wienie wizyty u stomatologa dziecięcego
+                    </option>
+                    <option data-favourite="False"
+                            value="7296"
+                            >
+                        USG / doppler - aorty brzusznej i tętnic biodrowych
+                    </option>
+                    <option data-favourite="False"
+                            value="6181"
+                            >
+                        USG / doppler - naczyń wątroby (ocena krążenia wrotnego)
+                    </option>
+                    <option data-favourite="False"
+                            value="6180"
+                            >
+                        USG / doppler - tętnic nerkowych
+                    </option>
+                    <option data-favourite="False"
+                            value="6179"
+                            >
+                        USG / doppler - tętnic szyjnych i kręgowych
+                    </option>
+                    <option data-favourite="False"
+                            value="7962"
+                            >
+                        USG / doppler - tętnic wewnątrzczaszkowych
+                    </option>
+                    <option data-favourite="False"
+                            value="9787"
+                            >
+                        USG / doppler tętnic - kończyn dolnych
+                    </option>
+                    <option data-favourite="False"
+                            value="9788"
+                            >
+                        USG / doppler tętnic - kończyn g&#243;rnych
+                    </option>
+                    <option data-favourite="False"
+                            value="9785"
+                            >
+                        USG / doppler żył - kończyn dolnych
+                    </option>
+                    <option data-favourite="False"
+                            value="9786"
+                            >
+                        USG / doppler żył - kończyn g&#243;rnych
+                    </option>
+                    <option data-favourite="False"
+                            value="13081"
+                            >
+                        USG / doppler żył - szyjnych
+                    </option>
+                    <option data-favourite="False"
+                            value="7633"
+                            >
+                        USG ciąży
+                    </option>
+                    <option data-favourite="False"
+                            value="13083"
+                            >
+                        USG ciąży - 11-13 tydzień (+ 6 dni )
+                    </option>
+                    <option data-favourite="False"
+                            value="13084"
+                            >
+                        USG ciąży - 18-22 tydzień
+                    </option>
+                    <option data-favourite="False"
+                            value="13170"
+                            >
+                        USG ciąży - 28-32 tydzień
+                    </option>
+                    <option data-favourite="False"
+                            value="13169"
+                            >
+                        USG ciąży - przed 10 tygodniem
+                    </option>
+                    <option data-favourite="False"
+                            value="6274"
+                            >
+                        USG ciąży - rozszerzone badanie (4 D)
+                    </option>
+                    <option data-favourite="False"
+                            value="9210"
+                            >
+                        USG ciąży - transvaginalne
+                    </option>
+                    <option data-favourite="False"
+                            value="4781"
+                            >
+                        USG gałek ocznych i oczodoł&#243;w
+                    </option>
+                    <option data-favourite="False"
+                            value="6687"
+                            >
+                        USG ginekologiczne - przez powłoki brzuszne
+                    </option>
+                    <option data-favourite="False"
+                            value="4376"
+                            >
+                        USG ginekologiczne - transvaginalne
+                    </option>
+                    <option data-favourite="False"
+                            value="4367"
+                            >
+                        USG jamy brzusznej
+                    </option>
+                    <option data-favourite="False"
+                            value="7969"
+                            >
+                        USG krtani
+                    </option>
+                    <option data-favourite="False"
+                            value="11019"
+                            >
+                        USG krwiaka pourazowego mięśni
+                    </option>
+                    <option data-favourite="False"
+                            value="7965"
+                            >
+                        USG nadgarstka
+                    </option>
+                    <option data-favourite="False"
+                            value="4363"
+                            >
+                        USG narząd&#243;w moszny (jąder)
+                    </option>
+                    <option data-favourite="False"
+                            value="4361"
+                            >
+                        USG piersi
+                    </option>
+                    <option data-favourite="False"
+                            value="7964"
+                            >
+                        USG prostaty przez powłoki brzuszne
+                    </option>
+                    <option data-favourite="False"
+                            value="6184"
+                            >
+                        USG przezciemiączkowe
+                    </option>
+                    <option data-favourite="False"
+                            value="4353"
+                            >
+                        USG staw&#243;w biodrowych
+                    </option>
+                    <option data-favourite="False"
+                            value="7966"
+                            >
+                        USG staw&#243;w śr&#243;dręcza i palc&#243;w
+                    </option>
+                    <option data-favourite="False"
+                            value="4350"
+                            >
+                        USG stawu barkowego
+                    </option>
+                    <option data-favourite="False"
+                            value="4354"
+                            >
+                        USG stawu kolanowego
+                    </option>
+                    <option data-favourite="False"
+                            value="4351"
+                            >
+                        USG stawu łokciowego
+                    </option>
+                    <option data-favourite="False"
+                            value="4355"
+                            >
+                        USG stawu skokowego
+                    </option>
+                    <option data-favourite="False"
+                            value="7968"
+                            >
+                        USG ścięgna Achillesa
+                    </option>
+                    <option data-favourite="False"
+                            value="4364"
+                            >
+                        USG ślinianek
+                    </option>
+                    <option data-favourite="False"
+                            value="4360"
+                            >
+                        USG tarczycy
+                    </option>
+                    <option data-favourite="False"
+                            value="4357"
+                            >
+                        USG tkanki podsk&#243;rnej (tłuszczaki, wł&#243;kniaki, przepuklina brzuszna etc.)
+                    </option>
+                    <option data-favourite="False"
+                            value="6185"
+                            >
+                        USG transrektalne - prostaty
+                    </option>
+                    <option data-favourite="False"
+                            value="4368"
+                            >
+                        USG układu moczowego
+                    </option>
+                    <option data-favourite="False"
+                            value="6182"
+                            >
+                        USG układu moczowego - i TRUS (transrektalne)
+                    </option>
+                    <option data-favourite="False"
+                            value="9369"
+                            >
+                        USG węzł&#243;w chłonnych
+                    </option>
+                    <option data-favourite="False"
+                            value="4356"
+                            >
+                        USG więzadeł, mięśni, drobnych staw&#243;w
+                    </option>
+                    <option data-favourite="False"
+                            value="4655"
+                            >
+                        Założenie Holtera EKG - w gabinecie
+                    </option>
+                    <option data-favourite="False"
+                            value="4656"
+                            >
+                        Założenie Holtera RR - w gabinecie
+                    </option>
+        </optgroup>
+
+</select>
+              <span class="tooltip" title="You can choose services appearing on top of this list in your Account Settings."></span>
+            </div>
+            
+
+
+<script type="text/javascript">
+  optionsGroupsArray = {
+
+        'Konsultacjaneurologa': 1
+
+  };
+</script>
+
+<div class="field">
+  <select name="DoctorMultiIdentyfier" id="MultiDoctorId" class="select" multiple="multiple" selectedname="Doctors" data-click-event="reservation.events.doctorClicked" data-autocomplete="true" data-autocomplete-prompt="Search...">
+      <option value="" class="invisibleOnList">Any doctor</option>
+
+        <optgroup label="Konsultacja neurologa" class="hideLabel">
+                <option data-optgroup="Konsultacjaneurologa"
+                        value="42676-4549-0"
+                                                data-favourite="False">
+                    BŁASZCZAK ANNA lek. med.
+                    </option>
+                <option data-optgroup="Konsultacjaneurologa"
+                        value="43812-4549-0"
+                                                data-favourite="False">
+                    CHRAŚCIK-ŚLIZOWSKA PAULA lek. med.
+                    </option>
+                <option data-optgroup="Konsultacjaneurologa"
+                        value="15872-4549-0"
+                                                data-favourite="False">
+                    FURGAŁ JOANNA lek. med.
+                    </option>
+                <option data-optgroup="Konsultacjaneurologa"
+                        value="44817-4549-0"
+                                                data-favourite="False">
+                    GOLENIA ALEKSANDRA dr n.med.
+                    </option>
+                <option data-optgroup="Konsultacjaneurologa"
+                        value="18785-4549-0"
+                                                data-favourite="False">
+                    GRYZ-KUREK ELŻBIETA dr n. med.
+                    </option>
+                <option data-optgroup="Konsultacjaneurologa"
+                        value="16017-4549-0"
+                                                data-favourite="False">
+                    ISKRA TOMASZ dr n. med.
+                    </option>
+                <option data-optgroup="Konsultacjaneurologa"
+                        value="41245-4549-0"
+                                                data-favourite="False">
+                    JAKUBOWICZ EWA dr n.med.
+                    </option>
+                <option data-optgroup="Konsultacjaneurologa"
+                        value="33799-4549-0"
+                                                data-favourite="False">
+                    KRYŃSKA ANNA lek. med.
+                    </option>
+                <option data-optgroup="Konsultacjaneurologa"
+                        value="16348-4549-0"
+                                                data-favourite="False">
+                    LECH-SKOPEK MAŁGORZATA lek. med.
+                    </option>
+                <option data-optgroup="Konsultacjaneurologa"
+                        value="1697-4549-0"
+                                                data-favourite="False">
+                    MAJKA JOLANTA dr n. med.
+                    </option>
+                <option data-optgroup="Konsultacjaneurologa"
+                        value="33612-4549-0"
+                                                data-favourite="False">
+                    MOTYL MACIEJ lek. med.
+                    </option>
+                <option data-optgroup="Konsultacjaneurologa"
+                        value="41023-4549-0"
+                                                data-favourite="False">
+                    SZCZYGIEŁ-PILUT ELŻBIETA dr n.med.
+                    </option>
+                <option data-optgroup="Konsultacjaneurologa"
+                        value="40796-4549-0"
+                                                data-favourite="False">
+                    WASIELEWSKA ANNA dr n.med.
+                    </option>
+                <option data-optgroup="Konsultacjaneurologa"
+                        value="18719-4549-0"
+                                                data-favourite="False">
+                    WINDAK EWA lek. med.
+                    </option>
+                <option data-optgroup="Konsultacjaneurologa"
+                        value="22935-4549-0"
+                                                data-favourite="False">
+                    ZAJĄCZKOWSKA ANNA lek. med.
+                    </option>
+                <option data-optgroup="Konsultacjaneurologa"
+                        value="42164-4549-0"
+                                                data-favourite="False">
+                    ZAWIŚLAK DOROTA dr n.med.
+                    </option>
+        </optgroup>
+  </select>
+
+  <span class="tooltip" title="To add doctors to be displayed on top of this list, please visit your Account Settings."></span>
+</div>
+            <div class="field">
+                
+<select id="LanguageId" name="LanguageId" class="select"  selectedname="Language"      data-autocomplete-prompt="Search..."   >
+            <option value="">Any language</option>
+                <option data-favourite="True"
+                        value="11"
+                          selected="selected"
+>
+                    English
+                </option>
+                <option data-favourite="False"
+                        value="7"
+                        >
+                    French
+                </option>
+                <option data-favourite="False"
+                        value="3"
+                        >
+                    German
+                </option>
+                <option data-favourite="False"
+                        value="6"
+                        >
+                    Italian
+                </option>
+                <option data-favourite="False"
+                        value="10"
+                        >
+                    Polish
+                </option>
+                <option data-favourite="False"
+                        value="4"
+                        >
+                    Russian
+                </option>
+                <option data-favourite="False"
+                        value="5"
+                        >
+                    Spanish
+                </option>
+
+</select>
+              <span class="tooltip" title="The language spoken by your doctor is selected by default. To change it, please visit your Account Settings."></span>
+            </div>
+        </div>
+
+        <div class="column column3">
+            <span class="groupName">Choose date:</span>
+            <div class="field">
+                <select class="select" id="SearchFirstFree" name="SearchFirstFree" selectedname="Date">
+                    <option value="true" >First available date</option>
+                    <option value="false"   selected>Specified date range</option>
+                </select>
+                <span id="dynamicDateRangeTooltip" data-tooltip-first-free="We will search for the first available visits in the 90 upcoming days." data-tooltip-range="We will search for available visits between dates specified. Currently, the maximum search range is 365 days." style="float: right;" class="tooltip" title=""></span>
+            </div>
+            <div class="field">
+                <div class="dateRange">
+                        <div class="dateRangePicker">
+        <input id="rangePicker"
+               type="text"
+               class="form-group  "
+               data-min-date="10-01-2018"
+               data-max-date="10-01-2019"
+               data-single-date="False"
+               data-show-Dropdowns="False"
+               data-days-limit="30"
+               autocomplete="off"
+                                data-on-change-callback="reservation.events.onDateChange"    />
+
+        <input class="hide" id="FromDate" name="FromDate" type="text" value="10-01-2018" />
+        <input class="hide" id="ToDate" name="ToDate" type="text" value="09-02-2018" />
+    </div>
+
+
+                </div>
+            </div>
+
+            <div class="field">
+                <select id="TimeOption" name="TimeOption" class="select" selectedname="Time of day">
+
+      <option class="" value="Any" selected="selected">Any time of day</option>
+      <option class="" value="Morning">In the morning (7 - 9 a.m.)</option>
+      <option class="" value="Afternoon">Midday (9 a.m. - 5 p.m.)</option>
+      <option class="" value="Evening">In the evening (5 p.m. - 9 p.m.)</option>
+</select>
+                <span class="tooltip" style="padding-top: 22px;" title="You can set the preferred time of day that will be selected by default in this search, by accessing your Account Settings."></span>
+            </div>
+
+            <div class="field 
+                  required                   ">
+                
+<select id="PayerId" name="PayerId" class="select"  selectedname="Payer"   data-click-event="reservation.events.payerClicked"           data-autocomplete-prompt="Search..."   >
+            <option class="invisibleOnList" value="">Specify medical care plan</option>
+                <option data-favourite="False"
+                        value="45185"
+                          selected="selected"
+>
+                    LUXOFT POLAND SP. Z O.O.
+                </option>
+
+</select>
+                <span class="tooltip" title="Medical care plan represents the company, individual person or insurance company providing medical care. You choose which plan you will use to cover a particular service. &quot;Fee for service&quot; - this option means that you will pay for the service regardless of a medical care plan."></span>
+            </div>
+            <div class="field blank">
+
+            </div>
+            <div class="field withSubmit">
+              <input type="submit" class="button pretty" id="reservationSearchSubmitButton" value="Search" />
+            </div>
+        </div>
+        <input name="__RequestVerificationToken" type="hidden" value="x_oKeSbGmpaq_w5oiC44VPsilwXw5g8w23NavPEHnreFSJNYOf7vYrG6p49OY-dE2dQDCSPMmjhvgZnENMclGevEEs0i4TBHDv31wOzHItQ8bKAc_nMX7aiM03mZe1bCRnvRYdYrzMamlA7Skzp-z-a54cN0t6ixMZNC5_2-ZME1" />
+        <input id="IsDisabled" name="IsDisabled" type="hidden" value="False" />
+    </form>
+
+</div>
+</div>
+
+<input id="MaxSearchPeriodLength" name="MaxSearchPeriodLength" type="hidden" value="30" />
+</div>
+<div class="full" style="display: none;">
+
+                <div class="tableListGroup">
+                <h4>Konsultacja neurologa, Any medical center, Krak&#243;w</h4>
+                    21
+                visits available from 10-01-2018 to 09-02-2018
+
+            </div>
+                    <ul class="tableList">
+                            <li>
+                                <div class="title">Tuesday, 30-01-2018</div>
+                                <div class="content">
+                                    <table class="reserveTable">
+                                        <thead>
+                                            <tr style="border:none" class="_desktop _tablet">
+                                                <td class="hours" style="width: 1%;">
+Visit                                                </td>
+                                                <td>
+Doctor                                                </td>
+                                                <td>
+                                                    Service
+                                                </td>
+                                                <td>
+Medical center                                                </td>
+                                            </tr>
+                                        <tbody>
+                                                    <tr>
+                                                        <td class="hours" style="vertical-align:top;" data-sort="15:40">
+                                                            <div class="reserveButtonDiv" term-id="ebd1b380-c7fa-4d5b-a0d6-95d86c967c28">
+                                                                <form id="ebd1b380-c7fa-4d5b-a0d6-95d86c967c28" data-select-term-url="/PatientPortal/Reservations/Reservation/ReservationConfirmation">
+                                                                    <input type="hidden" value="ebd1b380-c7fa-4d5b-a0d6-95d86c967c28" name="termId">
+                                                                </form>
+                                                                <a class="button strong" href="#" data-term-id="ebd1b380-c7fa-4d5b-a0d6-95d86c967c28">
+                                                                    15:40 Book
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <div data-sort="43812">
+                                                                lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA
+                                                            </div>
+                                                            <div data-sort="4549">
+                                                                Konsultacja neurologa
+                                                            </div>
+                                                            <div data-sort="87">
+                                                                MR Krak&#243;w - Wadowicka 8W
+                                                            </div>
+
+
+                                                        </td>
+                                                        <td class="micro" colspan="3">
+<a class="button strong" href="/PatientPortal/Reservations/Reservation/ReservationConfirmation?City=Krak%C3%B3w&amp;CityId=3&amp;Clinic=MR%20Krak%C3%B3w%20-%20Wadowicka%208W&amp;ClinicId=87&amp;Date=01%2F30%2F2018%2015%3A40%3A00&amp;Doctor=lek.%20med.%20CHRA%C5%9ACIK-%C5%9ALIZOWSKA%20PAULA&amp;DoctorId=43812&amp;IsFree=True&amp;RoomId=4587&amp;Service=Konsultacja%20neurologa&amp;ServiceId=4549&amp;ReferralRequiredBySerivce=False&amp;TermId=ebd1b380-c7fa-4d5b-a0d6-95d86c967c28" target="popup">15:40 Book</a>                                                            <br>
+                                                            <strong>lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA</strong>
+                                                            <br>
+                                                            MR Krak&#243;w - Wadowicka 8W
+                                                        </td>
+
+                                                    </tr>
+                                    </table>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="title">Friday, 02-02-2018</div>
+                                <div class="content">
+                                    <table class="reserveTable">
+                                        <thead>
+                                            <tr style="border:none" class="_desktop _tablet">
+                                                <td class="hours" style="width: 1%;">
+<select class="select" id="hourSort" name="hourSort"><option value="">Visit</option>
+<option value="10:40">10:40</option>
+<option value="12:20">12:20</option>
+<option value="12:40">12:40</option>
+<option value="18:00">18:00</option>
+<option value="18:20">18:20</option>
+</select>                                                </td>
+                                                <td>
+<select class="select" id="doctorSort" name="doctorSort"><option value="">Doctor</option>
+<option value="43812">lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA</option>
+<option value="41023">dr n.med. SZCZYGIEŁ-PILUT ELŻBIETA</option>
+</select>                                                </td>
+                                                <td>
+                                                    Service
+                                                </td>
+                                                <td>
+<select class="select" id="serviceSort" name="serviceSort"><option value="">Medical center</option>
+<option value="87">MR Krak&#243;w - Wadowicka 8W</option>
+<option value="10">LX Krak&#243;w - Lublańska 38</option>
+</select>                                                </td>
+                                            </tr>
+                                        <tbody>
+                                                    <tr>
+                                                        <td class="hours" style="vertical-align:top;" data-sort="10:40">
+                                                            <div class="reserveButtonDiv" term-id="f4b8c3e8-ec72-42d6-9117-3ed0e278c4c9">
+                                                                <form id="f4b8c3e8-ec72-42d6-9117-3ed0e278c4c9" data-select-term-url="/PatientPortal/Reservations/Reservation/ReservationConfirmation">
+                                                                    <input type="hidden" value="f4b8c3e8-ec72-42d6-9117-3ed0e278c4c9" name="termId">
+                                                                </form>
+                                                                <a class="button strong" href="#" data-term-id="f4b8c3e8-ec72-42d6-9117-3ed0e278c4c9">
+                                                                    10:40 Book
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <div data-sort="43812">
+                                                                lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA
+                                                            </div>
+                                                            <div data-sort="4549">
+                                                                Konsultacja neurologa
+                                                            </div>
+                                                            <div data-sort="87">
+                                                                MR Krak&#243;w - Wadowicka 8W
+                                                            </div>
+
+
+                                                        </td>
+                                                        <td class="micro" colspan="3">
+<a class="button strong" href="/PatientPortal/Reservations/Reservation/ReservationConfirmation?City=Krak%C3%B3w&amp;CityId=3&amp;Clinic=MR%20Krak%C3%B3w%20-%20Wadowicka%208W&amp;ClinicId=87&amp;Date=02%2F02%2F2018%2010%3A40%3A00&amp;Doctor=lek.%20med.%20CHRA%C5%9ACIK-%C5%9ALIZOWSKA%20PAULA&amp;DoctorId=43812&amp;IsFree=True&amp;RoomId=4592&amp;Service=Konsultacja%20neurologa&amp;ServiceId=4549&amp;ReferralRequiredBySerivce=False&amp;TermId=f4b8c3e8-ec72-42d6-9117-3ed0e278c4c9" target="popup">10:40 Book</a>                                                            <br>
+                                                            <strong>lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA</strong>
+                                                            <br>
+                                                            MR Krak&#243;w - Wadowicka 8W
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="hours" style="vertical-align:top;" data-sort="12:20">
+                                                            <div class="reserveButtonDiv" term-id="f8ceb59e-960d-4d7a-b529-ec305d42989b">
+                                                                <form id="f8ceb59e-960d-4d7a-b529-ec305d42989b" data-select-term-url="/PatientPortal/Reservations/Reservation/ReservationConfirmation">
+                                                                    <input type="hidden" value="f8ceb59e-960d-4d7a-b529-ec305d42989b" name="termId">
+                                                                </form>
+                                                                <a class="button strong" href="#" data-term-id="f8ceb59e-960d-4d7a-b529-ec305d42989b">
+                                                                    12:20 Book
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <div data-sort="43812">
+                                                                lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA
+                                                            </div>
+                                                            <div data-sort="4549">
+                                                                Konsultacja neurologa
+                                                            </div>
+                                                            <div data-sort="87">
+                                                                MR Krak&#243;w - Wadowicka 8W
+                                                            </div>
+
+
+                                                        </td>
+                                                        <td class="micro" colspan="3">
+<a class="button strong" href="/PatientPortal/Reservations/Reservation/ReservationConfirmation?City=Krak%C3%B3w&amp;CityId=3&amp;Clinic=MR%20Krak%C3%B3w%20-%20Wadowicka%208W&amp;ClinicId=87&amp;Date=02%2F02%2F2018%2012%3A20%3A00&amp;Doctor=lek.%20med.%20CHRA%C5%9ACIK-%C5%9ALIZOWSKA%20PAULA&amp;DoctorId=43812&amp;IsFree=True&amp;RoomId=4592&amp;Service=Konsultacja%20neurologa&amp;ServiceId=4549&amp;ReferralRequiredBySerivce=False&amp;TermId=f8ceb59e-960d-4d7a-b529-ec305d42989b" target="popup">12:20 Book</a>                                                            <br>
+                                                            <strong>lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA</strong>
+                                                            <br>
+                                                            MR Krak&#243;w - Wadowicka 8W
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="hours" style="vertical-align:top;" data-sort="12:40">
+                                                            <div class="reserveButtonDiv" term-id="d889520a-c7e2-477a-aa19-be2fe667555a">
+                                                                <form id="d889520a-c7e2-477a-aa19-be2fe667555a" data-select-term-url="/PatientPortal/Reservations/Reservation/ReservationConfirmation">
+                                                                    <input type="hidden" value="d889520a-c7e2-477a-aa19-be2fe667555a" name="termId">
+                                                                </form>
+                                                                <a class="button strong" href="#" data-term-id="d889520a-c7e2-477a-aa19-be2fe667555a">
+                                                                    12:40 Book
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <div data-sort="43812">
+                                                                lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA
+                                                            </div>
+                                                            <div data-sort="4549">
+                                                                Konsultacja neurologa
+                                                            </div>
+                                                            <div data-sort="87">
+                                                                MR Krak&#243;w - Wadowicka 8W
+                                                            </div>
+
+
+                                                        </td>
+                                                        <td class="micro" colspan="3">
+<a class="button strong" href="/PatientPortal/Reservations/Reservation/ReservationConfirmation?City=Krak%C3%B3w&amp;CityId=3&amp;Clinic=MR%20Krak%C3%B3w%20-%20Wadowicka%208W&amp;ClinicId=87&amp;Date=02%2F02%2F2018%2012%3A40%3A00&amp;Doctor=lek.%20med.%20CHRA%C5%9ACIK-%C5%9ALIZOWSKA%20PAULA&amp;DoctorId=43812&amp;IsFree=True&amp;RoomId=4592&amp;Service=Konsultacja%20neurologa&amp;ServiceId=4549&amp;ReferralRequiredBySerivce=False&amp;TermId=d889520a-c7e2-477a-aa19-be2fe667555a" target="popup">12:40 Book</a>                                                            <br>
+                                                            <strong>lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA</strong>
+                                                            <br>
+                                                            MR Krak&#243;w - Wadowicka 8W
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="hours" style="vertical-align:top;" data-sort="18:00">
+                                                            <div class="reserveButtonDiv" term-id="bb850bdf-a45e-484f-8e6d-2b0b28d9bad5">
+                                                                <form id="bb850bdf-a45e-484f-8e6d-2b0b28d9bad5" data-select-term-url="/PatientPortal/Reservations/Reservation/ReservationConfirmation">
+                                                                    <input type="hidden" value="bb850bdf-a45e-484f-8e6d-2b0b28d9bad5" name="termId">
+                                                                </form>
+                                                                <a class="button strong" href="#" data-term-id="bb850bdf-a45e-484f-8e6d-2b0b28d9bad5">
+                                                                    18:00 Book
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <div data-sort="41023">
+                                                                dr n.med. SZCZYGIEŁ-PILUT ELŻBIETA
+                                                            </div>
+                                                            <div data-sort="4549">
+                                                                Konsultacja neurologa
+                                                            </div>
+                                                            <div data-sort="10">
+                                                                LX Krak&#243;w - Lublańska 38
+                                                            </div>
+
+
+                                                        </td>
+                                                        <td class="micro" colspan="3">
+<a class="button strong" href="/PatientPortal/Reservations/Reservation/ReservationConfirmation?City=Krak%C3%B3w&amp;CityId=3&amp;Clinic=LX%20Krak%C3%B3w%20-%20Lubla%C5%84ska%2038&amp;ClinicId=10&amp;Date=02%2F02%2F2018%2018%3A00%3A00&amp;Doctor=dr%20n.med.%20SZCZYGIE%C5%81-PILUT%20EL%C5%BBBIETA&amp;DoctorId=41023&amp;IsFree=True&amp;RoomId=5670&amp;Service=Konsultacja%20neurologa&amp;ServiceId=4549&amp;ReferralRequiredBySerivce=False&amp;TermId=bb850bdf-a45e-484f-8e6d-2b0b28d9bad5" target="popup">18:00 Book</a>                                                            <br>
+                                                            <strong>dr n.med. SZCZYGIEŁ-PILUT ELŻBIETA</strong>
+                                                            <br>
+                                                            LX Krak&#243;w - Lublańska 38
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="hours" style="vertical-align:top;" data-sort="18:20">
+                                                            <div class="reserveButtonDiv" term-id="9bcf9d1a-0278-42f3-9820-1cc6f4c1c0f0">
+                                                                <form id="9bcf9d1a-0278-42f3-9820-1cc6f4c1c0f0" data-select-term-url="/PatientPortal/Reservations/Reservation/ReservationConfirmation">
+                                                                    <input type="hidden" value="9bcf9d1a-0278-42f3-9820-1cc6f4c1c0f0" name="termId">
+                                                                </form>
+                                                                <a class="button strong" href="#" data-term-id="9bcf9d1a-0278-42f3-9820-1cc6f4c1c0f0">
+                                                                    18:20 Book
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <div data-sort="41023">
+                                                                dr n.med. SZCZYGIEŁ-PILUT ELŻBIETA
+                                                            </div>
+                                                            <div data-sort="4549">
+                                                                Konsultacja neurologa
+                                                            </div>
+                                                            <div data-sort="10">
+                                                                LX Krak&#243;w - Lublańska 38
+                                                            </div>
+
+
+                                                        </td>
+                                                        <td class="micro" colspan="3">
+<a class="button strong" href="/PatientPortal/Reservations/Reservation/ReservationConfirmation?City=Krak%C3%B3w&amp;CityId=3&amp;Clinic=LX%20Krak%C3%B3w%20-%20Lubla%C5%84ska%2038&amp;ClinicId=10&amp;Date=02%2F02%2F2018%2018%3A20%3A00&amp;Doctor=dr%20n.med.%20SZCZYGIE%C5%81-PILUT%20EL%C5%BBBIETA&amp;DoctorId=41023&amp;IsFree=True&amp;RoomId=5670&amp;Service=Konsultacja%20neurologa&amp;ServiceId=4549&amp;ReferralRequiredBySerivce=False&amp;TermId=9bcf9d1a-0278-42f3-9820-1cc6f4c1c0f0" target="popup">18:20 Book</a>                                                            <br>
+                                                            <strong>dr n.med. SZCZYGIEŁ-PILUT ELŻBIETA</strong>
+                                                            <br>
+                                                            LX Krak&#243;w - Lublańska 38
+                                                        </td>
+
+                                                    </tr>
+                                    </table>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="title">Monday, 05-02-2018</div>
+                                <div class="content">
+                                    <table class="reserveTable">
+                                        <thead>
+                                            <tr style="border:none" class="_desktop _tablet">
+                                                <td class="hours" style="width: 1%;">
+Visit                                                </td>
+                                                <td>
+Doctor                                                </td>
+                                                <td>
+                                                    Service
+                                                </td>
+                                                <td>
+Medical center                                                </td>
+                                            </tr>
+                                        <tbody>
+                                                    <tr>
+                                                        <td class="hours" style="vertical-align:top;" data-sort="15:00">
+                                                            <div class="reserveButtonDiv" term-id="87198559-2f54-4c27-bad1-8799072f8166">
+                                                                <form id="87198559-2f54-4c27-bad1-8799072f8166" data-select-term-url="/PatientPortal/Reservations/Reservation/ReservationConfirmation">
+                                                                    <input type="hidden" value="87198559-2f54-4c27-bad1-8799072f8166" name="termId">
+                                                                </form>
+                                                                <a class="button strong" href="#" data-term-id="87198559-2f54-4c27-bad1-8799072f8166">
+                                                                    15:00 Book
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <div data-sort="43812">
+                                                                lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA
+                                                            </div>
+                                                            <div data-sort="4549">
+                                                                Konsultacja neurologa
+                                                            </div>
+                                                            <div data-sort="87">
+                                                                MR Krak&#243;w - Wadowicka 8W
+                                                            </div>
+
+
+                                                        </td>
+                                                        <td class="micro" colspan="3">
+<a class="button strong" href="/PatientPortal/Reservations/Reservation/ReservationConfirmation?City=Krak%C3%B3w&amp;CityId=3&amp;Clinic=MR%20Krak%C3%B3w%20-%20Wadowicka%208W&amp;ClinicId=87&amp;Date=02%2F05%2F2018%2015%3A00%3A00&amp;Doctor=lek.%20med.%20CHRA%C5%9ACIK-%C5%9ALIZOWSKA%20PAULA&amp;DoctorId=43812&amp;IsFree=True&amp;RoomId=1239&amp;Service=Konsultacja%20neurologa&amp;ServiceId=4549&amp;ReferralRequiredBySerivce=False&amp;TermId=87198559-2f54-4c27-bad1-8799072f8166" target="popup">15:00 Book</a>                                                            <br>
+                                                            <strong>lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA</strong>
+                                                            <br>
+                                                            MR Krak&#243;w - Wadowicka 8W
+                                                        </td>
+
+                                                    </tr>
+                                    </table>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="title">Thursday, 08-02-2018</div>
+                                <div class="content">
+                                    <table class="reserveTable">
+                                        <thead>
+                                            <tr style="border:none" class="_desktop _tablet">
+                                                <td class="hours" style="width: 1%;">
+<select class="select" id="hourSort" name="hourSort"><option value="">Visit</option>
+<option value="09:20">09:20</option>
+<option value="13:20">13:20</option>
+</select>                                                </td>
+                                                <td>
+Doctor                                                </td>
+                                                <td>
+                                                    Service
+                                                </td>
+                                                <td>
+Medical center                                                </td>
+                                            </tr>
+                                        <tbody>
+                                                    <tr>
+                                                        <td class="hours" style="vertical-align:top;" data-sort="09:20">
+                                                            <div class="reserveButtonDiv" term-id="231e7df0-a6a1-4a83-93a9-a11610b04e21">
+                                                                <form id="231e7df0-a6a1-4a83-93a9-a11610b04e21" data-select-term-url="/PatientPortal/Reservations/Reservation/ReservationConfirmation">
+                                                                    <input type="hidden" value="231e7df0-a6a1-4a83-93a9-a11610b04e21" name="termId">
+                                                                </form>
+                                                                <a class="button strong" href="#" data-term-id="231e7df0-a6a1-4a83-93a9-a11610b04e21">
+                                                                    09:20 Book
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <div data-sort="43812">
+                                                                lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA
+                                                            </div>
+                                                            <div data-sort="4549">
+                                                                Konsultacja neurologa
+                                                            </div>
+                                                            <div data-sort="1879">
+                                                                LX Krak&#243;w - Czerwone Maki 87
+                                                            </div>
+
+
+                                                        </td>
+                                                        <td class="micro" colspan="3">
+<a class="button strong" href="/PatientPortal/Reservations/Reservation/ReservationConfirmation?City=Krak%C3%B3w&amp;CityId=3&amp;Clinic=LX%20Krak%C3%B3w%20-%20Czerwone%20Maki%2087&amp;ClinicId=1879&amp;Date=02%2F08%2F2018%2009%3A20%3A00&amp;Doctor=lek.%20med.%20CHRA%C5%9ACIK-%C5%9ALIZOWSKA%20PAULA&amp;DoctorId=43812&amp;IsFree=True&amp;RoomId=6236&amp;Service=Konsultacja%20neurologa&amp;ServiceId=4549&amp;ReferralRequiredBySerivce=False&amp;TermId=231e7df0-a6a1-4a83-93a9-a11610b04e21" target="popup">09:20 Book</a>                                                            <br>
+                                                            <strong>lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA</strong>
+                                                            <br>
+                                                            LX Krak&#243;w - Czerwone Maki 87
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="hours" style="vertical-align:top;" data-sort="13:20">
+                                                            <div class="reserveButtonDiv" term-id="83c95ad6-7029-4329-b40e-0fc4c92d5ecf">
+                                                                <form id="83c95ad6-7029-4329-b40e-0fc4c92d5ecf" data-select-term-url="/PatientPortal/Reservations/Reservation/ReservationConfirmation">
+                                                                    <input type="hidden" value="83c95ad6-7029-4329-b40e-0fc4c92d5ecf" name="termId">
+                                                                </form>
+                                                                <a class="button strong" href="#" data-term-id="83c95ad6-7029-4329-b40e-0fc4c92d5ecf">
+                                                                    13:20 Book
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <div data-sort="43812">
+                                                                lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA
+                                                            </div>
+                                                            <div data-sort="4549">
+                                                                Konsultacja neurologa
+                                                            </div>
+                                                            <div data-sort="1879">
+                                                                LX Krak&#243;w - Czerwone Maki 87
+                                                            </div>
+
+
+                                                        </td>
+                                                        <td class="micro" colspan="3">
+<a class="button strong" href="/PatientPortal/Reservations/Reservation/ReservationConfirmation?City=Krak%C3%B3w&amp;CityId=3&amp;Clinic=LX%20Krak%C3%B3w%20-%20Czerwone%20Maki%2087&amp;ClinicId=1879&amp;Date=02%2F08%2F2018%2013%3A20%3A00&amp;Doctor=lek.%20med.%20CHRA%C5%9ACIK-%C5%9ALIZOWSKA%20PAULA&amp;DoctorId=43812&amp;IsFree=True&amp;RoomId=6236&amp;Service=Konsultacja%20neurologa&amp;ServiceId=4549&amp;ReferralRequiredBySerivce=False&amp;TermId=83c95ad6-7029-4329-b40e-0fc4c92d5ecf" target="popup">13:20 Book</a>                                                            <br>
+                                                            <strong>lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA</strong>
+                                                            <br>
+                                                            LX Krak&#243;w - Czerwone Maki 87
+                                                        </td>
+
+                                                    </tr>
+                                    </table>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="title">Friday, 09-02-2018</div>
+                                <div class="content">
+                                    <table class="reserveTable">
+                                        <thead>
+                                            <tr style="border:none" class="_desktop _tablet">
+                                                <td class="hours" style="width: 1%;">
+<select class="select" id="hourSort" name="hourSort"><option value="">Visit</option>
+<option value="09:40">09:40</option>
+<option value="10:00">10:00</option>
+<option value="10:20">10:20</option>
+<option value="10:40">10:40</option>
+<option value="11:00">11:00</option>
+<option value="12:00">12:00</option>
+<option value="12:20">12:20</option>
+<option value="12:40">12:40</option>
+<option value="13:40">13:40</option>
+<option value="18:20">18:20</option>
+</select>                                                </td>
+                                                <td>
+<select class="select" id="doctorSort" name="doctorSort"><option value="">Doctor</option>
+<option value="43812">lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA</option>
+<option value="15872">lek. med. FURGAŁ JOANNA</option>
+<option value="41023">dr n.med. SZCZYGIEŁ-PILUT ELŻBIETA</option>
+</select>                                                </td>
+                                                <td>
+                                                    Service
+                                                </td>
+                                                <td>
+<select class="select" id="serviceSort" name="serviceSort"><option value="">Medical center</option>
+<option value="87">MR Krak&#243;w - Wadowicka 8W</option>
+<option value="86">MR Krak&#243;w - Lubelska 29</option>
+<option value="10">LX Krak&#243;w - Lublańska 38</option>
+</select>                                                </td>
+                                            </tr>
+                                        <tbody>
+                                                    <tr>
+                                                        <td class="hours" style="vertical-align:top;" data-sort="09:40">
+                                                            <div class="reserveButtonDiv" term-id="fd2bdac8-3605-4452-8e36-6ceafa7b0c2b">
+                                                                <form id="fd2bdac8-3605-4452-8e36-6ceafa7b0c2b" data-select-term-url="/PatientPortal/Reservations/Reservation/ReservationConfirmation">
+                                                                    <input type="hidden" value="fd2bdac8-3605-4452-8e36-6ceafa7b0c2b" name="termId">
+                                                                </form>
+                                                                <a class="button strong" href="#" data-term-id="fd2bdac8-3605-4452-8e36-6ceafa7b0c2b">
+                                                                    09:40 Book
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <div data-sort="43812">
+                                                                lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA
+                                                            </div>
+                                                            <div data-sort="4549">
+                                                                Konsultacja neurologa
+                                                            </div>
+                                                            <div data-sort="87">
+                                                                MR Krak&#243;w - Wadowicka 8W
+                                                            </div>
+
+
+                                                        </td>
+                                                        <td class="micro" colspan="3">
+<a class="button strong" href="/PatientPortal/Reservations/Reservation/ReservationConfirmation?City=Krak%C3%B3w&amp;CityId=3&amp;Clinic=MR%20Krak%C3%B3w%20-%20Wadowicka%208W&amp;ClinicId=87&amp;Date=02%2F09%2F2018%2009%3A40%3A00&amp;Doctor=lek.%20med.%20CHRA%C5%9ACIK-%C5%9ALIZOWSKA%20PAULA&amp;DoctorId=43812&amp;IsFree=True&amp;RoomId=4592&amp;Service=Konsultacja%20neurologa&amp;ServiceId=4549&amp;ReferralRequiredBySerivce=False&amp;TermId=fd2bdac8-3605-4452-8e36-6ceafa7b0c2b" target="popup">09:40 Book</a>                                                            <br>
+                                                            <strong>lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA</strong>
+                                                            <br>
+                                                            MR Krak&#243;w - Wadowicka 8W
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="hours" style="vertical-align:top;" data-sort="09:40">
+                                                            <div class="reserveButtonDiv" term-id="d7936f7d-4774-4898-a533-2e967ff7267c">
+                                                                <form id="d7936f7d-4774-4898-a533-2e967ff7267c" data-select-term-url="/PatientPortal/Reservations/Reservation/ReservationConfirmation">
+                                                                    <input type="hidden" value="d7936f7d-4774-4898-a533-2e967ff7267c" name="termId">
+                                                                </form>
+                                                                <a class="button strong" href="#" data-term-id="d7936f7d-4774-4898-a533-2e967ff7267c">
+                                                                    09:40 Book
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <div data-sort="15872">
+                                                                lek. med. FURGAŁ JOANNA
+                                                            </div>
+                                                            <div data-sort="4549">
+                                                                Konsultacja neurologa
+                                                            </div>
+                                                            <div data-sort="86">
+                                                                MR Krak&#243;w - Lubelska 29
+                                                            </div>
+
+
+                                                        </td>
+                                                        <td class="micro" colspan="3">
+<a class="button strong" href="/PatientPortal/Reservations/Reservation/ReservationConfirmation?City=Krak%C3%B3w&amp;CityId=3&amp;Clinic=MR%20Krak%C3%B3w%20-%20Lubelska%2029&amp;ClinicId=86&amp;Date=02%2F09%2F2018%2009%3A40%3A00&amp;Doctor=lek.%20med.%20FURGA%C5%81%20JOANNA&amp;DoctorId=15872&amp;IsFree=True&amp;RoomId=1010&amp;Service=Konsultacja%20neurologa&amp;ServiceId=4549&amp;ReferralRequiredBySerivce=False&amp;TermId=d7936f7d-4774-4898-a533-2e967ff7267c" target="popup">09:40 Book</a>                                                            <br>
+                                                            <strong>lek. med. FURGAŁ JOANNA</strong>
+                                                            <br>
+                                                            MR Krak&#243;w - Lubelska 29
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="hours" style="vertical-align:top;" data-sort="10:00">
+                                                            <div class="reserveButtonDiv" term-id="fe79326c-994e-4eed-82c0-0e43a2e2df1c">
+                                                                <form id="fe79326c-994e-4eed-82c0-0e43a2e2df1c" data-select-term-url="/PatientPortal/Reservations/Reservation/ReservationConfirmation">
+                                                                    <input type="hidden" value="fe79326c-994e-4eed-82c0-0e43a2e2df1c" name="termId">
+                                                                </form>
+                                                                <a class="button strong" href="#" data-term-id="fe79326c-994e-4eed-82c0-0e43a2e2df1c">
+                                                                    10:00 Book
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <div data-sort="43812">
+                                                                lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA
+                                                            </div>
+                                                            <div data-sort="4549">
+                                                                Konsultacja neurologa
+                                                            </div>
+                                                            <div data-sort="87">
+                                                                MR Krak&#243;w - Wadowicka 8W
+                                                            </div>
+
+
+                                                        </td>
+                                                        <td class="micro" colspan="3">
+<a class="button strong" href="/PatientPortal/Reservations/Reservation/ReservationConfirmation?City=Krak%C3%B3w&amp;CityId=3&amp;Clinic=MR%20Krak%C3%B3w%20-%20Wadowicka%208W&amp;ClinicId=87&amp;Date=02%2F09%2F2018%2010%3A00%3A00&amp;Doctor=lek.%20med.%20CHRA%C5%9ACIK-%C5%9ALIZOWSKA%20PAULA&amp;DoctorId=43812&amp;IsFree=True&amp;RoomId=4592&amp;Service=Konsultacja%20neurologa&amp;ServiceId=4549&amp;ReferralRequiredBySerivce=False&amp;TermId=fe79326c-994e-4eed-82c0-0e43a2e2df1c" target="popup">10:00 Book</a>                                                            <br>
+                                                            <strong>lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA</strong>
+                                                            <br>
+                                                            MR Krak&#243;w - Wadowicka 8W
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="hours" style="vertical-align:top;" data-sort="10:20">
+                                                            <div class="reserveButtonDiv" term-id="47ef05ab-9ed5-43f3-b312-596bc58fb99c">
+                                                                <form id="47ef05ab-9ed5-43f3-b312-596bc58fb99c" data-select-term-url="/PatientPortal/Reservations/Reservation/ReservationConfirmation">
+                                                                    <input type="hidden" value="47ef05ab-9ed5-43f3-b312-596bc58fb99c" name="termId">
+                                                                </form>
+                                                                <a class="button strong" href="#" data-term-id="47ef05ab-9ed5-43f3-b312-596bc58fb99c">
+                                                                    10:20 Book
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <div data-sort="43812">
+                                                                lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA
+                                                            </div>
+                                                            <div data-sort="4549">
+                                                                Konsultacja neurologa
+                                                            </div>
+                                                            <div data-sort="87">
+                                                                MR Krak&#243;w - Wadowicka 8W
+                                                            </div>
+
+
+                                                        </td>
+                                                        <td class="micro" colspan="3">
+<a class="button strong" href="/PatientPortal/Reservations/Reservation/ReservationConfirmation?City=Krak%C3%B3w&amp;CityId=3&amp;Clinic=MR%20Krak%C3%B3w%20-%20Wadowicka%208W&amp;ClinicId=87&amp;Date=02%2F09%2F2018%2010%3A20%3A00&amp;Doctor=lek.%20med.%20CHRA%C5%9ACIK-%C5%9ALIZOWSKA%20PAULA&amp;DoctorId=43812&amp;IsFree=True&amp;RoomId=4592&amp;Service=Konsultacja%20neurologa&amp;ServiceId=4549&amp;ReferralRequiredBySerivce=False&amp;TermId=47ef05ab-9ed5-43f3-b312-596bc58fb99c" target="popup">10:20 Book</a>                                                            <br>
+                                                            <strong>lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA</strong>
+                                                            <br>
+                                                            MR Krak&#243;w - Wadowicka 8W
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="hours" style="vertical-align:top;" data-sort="10:40">
+                                                            <div class="reserveButtonDiv" term-id="506cb0e2-039d-40d3-974f-fe22413cb852">
+                                                                <form id="506cb0e2-039d-40d3-974f-fe22413cb852" data-select-term-url="/PatientPortal/Reservations/Reservation/ReservationConfirmation">
+                                                                    <input type="hidden" value="506cb0e2-039d-40d3-974f-fe22413cb852" name="termId">
+                                                                </form>
+                                                                <a class="button strong" href="#" data-term-id="506cb0e2-039d-40d3-974f-fe22413cb852">
+                                                                    10:40 Book
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <div data-sort="43812">
+                                                                lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA
+                                                            </div>
+                                                            <div data-sort="4549">
+                                                                Konsultacja neurologa
+                                                            </div>
+                                                            <div data-sort="87">
+                                                                MR Krak&#243;w - Wadowicka 8W
+                                                            </div>
+
+
+                                                        </td>
+                                                        <td class="micro" colspan="3">
+<a class="button strong" href="/PatientPortal/Reservations/Reservation/ReservationConfirmation?City=Krak%C3%B3w&amp;CityId=3&amp;Clinic=MR%20Krak%C3%B3w%20-%20Wadowicka%208W&amp;ClinicId=87&amp;Date=02%2F09%2F2018%2010%3A40%3A00&amp;Doctor=lek.%20med.%20CHRA%C5%9ACIK-%C5%9ALIZOWSKA%20PAULA&amp;DoctorId=43812&amp;IsFree=True&amp;RoomId=4592&amp;Service=Konsultacja%20neurologa&amp;ServiceId=4549&amp;ReferralRequiredBySerivce=False&amp;TermId=506cb0e2-039d-40d3-974f-fe22413cb852" target="popup">10:40 Book</a>                                                            <br>
+                                                            <strong>lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA</strong>
+                                                            <br>
+                                                            MR Krak&#243;w - Wadowicka 8W
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="hours" style="vertical-align:top;" data-sort="10:40">
+                                                            <div class="reserveButtonDiv" term-id="e4d56dc8-ef96-4764-8a89-ec516920f884">
+                                                                <form id="e4d56dc8-ef96-4764-8a89-ec516920f884" data-select-term-url="/PatientPortal/Reservations/Reservation/ReservationConfirmation">
+                                                                    <input type="hidden" value="e4d56dc8-ef96-4764-8a89-ec516920f884" name="termId">
+                                                                </form>
+                                                                <a class="button strong" href="#" data-term-id="e4d56dc8-ef96-4764-8a89-ec516920f884">
+                                                                    10:40 Book
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <div data-sort="15872">
+                                                                lek. med. FURGAŁ JOANNA
+                                                            </div>
+                                                            <div data-sort="4549">
+                                                                Konsultacja neurologa
+                                                            </div>
+                                                            <div data-sort="86">
+                                                                MR Krak&#243;w - Lubelska 29
+                                                            </div>
+
+
+                                                        </td>
+                                                        <td class="micro" colspan="3">
+<a class="button strong" href="/PatientPortal/Reservations/Reservation/ReservationConfirmation?City=Krak%C3%B3w&amp;CityId=3&amp;Clinic=MR%20Krak%C3%B3w%20-%20Lubelska%2029&amp;ClinicId=86&amp;Date=02%2F09%2F2018%2010%3A40%3A00&amp;Doctor=lek.%20med.%20FURGA%C5%81%20JOANNA&amp;DoctorId=15872&amp;IsFree=True&amp;RoomId=1010&amp;Service=Konsultacja%20neurologa&amp;ServiceId=4549&amp;ReferralRequiredBySerivce=False&amp;TermId=e4d56dc8-ef96-4764-8a89-ec516920f884" target="popup">10:40 Book</a>                                                            <br>
+                                                            <strong>lek. med. FURGAŁ JOANNA</strong>
+                                                            <br>
+                                                            MR Krak&#243;w - Lubelska 29
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="hours" style="vertical-align:top;" data-sort="11:00">
+                                                            <div class="reserveButtonDiv" term-id="bc3db4e1-3874-4184-84c0-cd0842c32acd">
+                                                                <form id="bc3db4e1-3874-4184-84c0-cd0842c32acd" data-select-term-url="/PatientPortal/Reservations/Reservation/ReservationConfirmation">
+                                                                    <input type="hidden" value="bc3db4e1-3874-4184-84c0-cd0842c32acd" name="termId">
+                                                                </form>
+                                                                <a class="button strong" href="#" data-term-id="bc3db4e1-3874-4184-84c0-cd0842c32acd">
+                                                                    11:00 Book
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <div data-sort="15872">
+                                                                lek. med. FURGAŁ JOANNA
+                                                            </div>
+                                                            <div data-sort="4549">
+                                                                Konsultacja neurologa
+                                                            </div>
+                                                            <div data-sort="86">
+                                                                MR Krak&#243;w - Lubelska 29
+                                                            </div>
+
+
+                                                        </td>
+                                                        <td class="micro" colspan="3">
+<a class="button strong" href="/PatientPortal/Reservations/Reservation/ReservationConfirmation?City=Krak%C3%B3w&amp;CityId=3&amp;Clinic=MR%20Krak%C3%B3w%20-%20Lubelska%2029&amp;ClinicId=86&amp;Date=02%2F09%2F2018%2011%3A00%3A00&amp;Doctor=lek.%20med.%20FURGA%C5%81%20JOANNA&amp;DoctorId=15872&amp;IsFree=True&amp;RoomId=1010&amp;Service=Konsultacja%20neurologa&amp;ServiceId=4549&amp;ReferralRequiredBySerivce=False&amp;TermId=bc3db4e1-3874-4184-84c0-cd0842c32acd" target="popup">11:00 Book</a>                                                            <br>
+                                                            <strong>lek. med. FURGAŁ JOANNA</strong>
+                                                            <br>
+                                                            MR Krak&#243;w - Lubelska 29
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="hours" style="vertical-align:top;" data-sort="12:00">
+                                                            <div class="reserveButtonDiv" term-id="925c2cb4-194a-442f-842f-9d0e5baa6f31">
+                                                                <form id="925c2cb4-194a-442f-842f-9d0e5baa6f31" data-select-term-url="/PatientPortal/Reservations/Reservation/ReservationConfirmation">
+                                                                    <input type="hidden" value="925c2cb4-194a-442f-842f-9d0e5baa6f31" name="termId">
+                                                                </form>
+                                                                <a class="button strong" href="#" data-term-id="925c2cb4-194a-442f-842f-9d0e5baa6f31">
+                                                                    12:00 Book
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <div data-sort="43812">
+                                                                lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA
+                                                            </div>
+                                                            <div data-sort="4549">
+                                                                Konsultacja neurologa
+                                                            </div>
+                                                            <div data-sort="87">
+                                                                MR Krak&#243;w - Wadowicka 8W
+                                                            </div>
+
+
+                                                        </td>
+                                                        <td class="micro" colspan="3">
+<a class="button strong" href="/PatientPortal/Reservations/Reservation/ReservationConfirmation?City=Krak%C3%B3w&amp;CityId=3&amp;Clinic=MR%20Krak%C3%B3w%20-%20Wadowicka%208W&amp;ClinicId=87&amp;Date=02%2F09%2F2018%2012%3A00%3A00&amp;Doctor=lek.%20med.%20CHRA%C5%9ACIK-%C5%9ALIZOWSKA%20PAULA&amp;DoctorId=43812&amp;IsFree=True&amp;RoomId=4592&amp;Service=Konsultacja%20neurologa&amp;ServiceId=4549&amp;ReferralRequiredBySerivce=False&amp;TermId=925c2cb4-194a-442f-842f-9d0e5baa6f31" target="popup">12:00 Book</a>                                                            <br>
+                                                            <strong>lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA</strong>
+                                                            <br>
+                                                            MR Krak&#243;w - Wadowicka 8W
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="hours" style="vertical-align:top;" data-sort="12:20">
+                                                            <div class="reserveButtonDiv" term-id="27d7be76-935e-4abc-9d27-c472fa77e62c">
+                                                                <form id="27d7be76-935e-4abc-9d27-c472fa77e62c" data-select-term-url="/PatientPortal/Reservations/Reservation/ReservationConfirmation">
+                                                                    <input type="hidden" value="27d7be76-935e-4abc-9d27-c472fa77e62c" name="termId">
+                                                                </form>
+                                                                <a class="button strong" href="#" data-term-id="27d7be76-935e-4abc-9d27-c472fa77e62c">
+                                                                    12:20 Book
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <div data-sort="43812">
+                                                                lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA
+                                                            </div>
+                                                            <div data-sort="4549">
+                                                                Konsultacja neurologa
+                                                            </div>
+                                                            <div data-sort="87">
+                                                                MR Krak&#243;w - Wadowicka 8W
+                                                            </div>
+
+
+                                                        </td>
+                                                        <td class="micro" colspan="3">
+<a class="button strong" href="/PatientPortal/Reservations/Reservation/ReservationConfirmation?City=Krak%C3%B3w&amp;CityId=3&amp;Clinic=MR%20Krak%C3%B3w%20-%20Wadowicka%208W&amp;ClinicId=87&amp;Date=02%2F09%2F2018%2012%3A20%3A00&amp;Doctor=lek.%20med.%20CHRA%C5%9ACIK-%C5%9ALIZOWSKA%20PAULA&amp;DoctorId=43812&amp;IsFree=True&amp;RoomId=4592&amp;Service=Konsultacja%20neurologa&amp;ServiceId=4549&amp;ReferralRequiredBySerivce=False&amp;TermId=27d7be76-935e-4abc-9d27-c472fa77e62c" target="popup">12:20 Book</a>                                                            <br>
+                                                            <strong>lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA</strong>
+                                                            <br>
+                                                            MR Krak&#243;w - Wadowicka 8W
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="hours" style="vertical-align:top;" data-sort="12:40">
+                                                            <div class="reserveButtonDiv" term-id="9d333b5c-f6ca-4e3e-8f8c-528a66bd7209">
+                                                                <form id="9d333b5c-f6ca-4e3e-8f8c-528a66bd7209" data-select-term-url="/PatientPortal/Reservations/Reservation/ReservationConfirmation">
+                                                                    <input type="hidden" value="9d333b5c-f6ca-4e3e-8f8c-528a66bd7209" name="termId">
+                                                                </form>
+                                                                <a class="button strong" href="#" data-term-id="9d333b5c-f6ca-4e3e-8f8c-528a66bd7209">
+                                                                    12:40 Book
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <div data-sort="43812">
+                                                                lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA
+                                                            </div>
+                                                            <div data-sort="4549">
+                                                                Konsultacja neurologa
+                                                            </div>
+                                                            <div data-sort="87">
+                                                                MR Krak&#243;w - Wadowicka 8W
+                                                            </div>
+
+
+                                                        </td>
+                                                        <td class="micro" colspan="3">
+<a class="button strong" href="/PatientPortal/Reservations/Reservation/ReservationConfirmation?City=Krak%C3%B3w&amp;CityId=3&amp;Clinic=MR%20Krak%C3%B3w%20-%20Wadowicka%208W&amp;ClinicId=87&amp;Date=02%2F09%2F2018%2012%3A40%3A00&amp;Doctor=lek.%20med.%20CHRA%C5%9ACIK-%C5%9ALIZOWSKA%20PAULA&amp;DoctorId=43812&amp;IsFree=True&amp;RoomId=4592&amp;Service=Konsultacja%20neurologa&amp;ServiceId=4549&amp;ReferralRequiredBySerivce=False&amp;TermId=9d333b5c-f6ca-4e3e-8f8c-528a66bd7209" target="popup">12:40 Book</a>                                                            <br>
+                                                            <strong>lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA</strong>
+                                                            <br>
+                                                            MR Krak&#243;w - Wadowicka 8W
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="hours" style="vertical-align:top;" data-sort="13:40">
+                                                            <div class="reserveButtonDiv" term-id="c34a94cb-2c48-4d57-84ab-140cc8c6ca83">
+                                                                <form id="c34a94cb-2c48-4d57-84ab-140cc8c6ca83" data-select-term-url="/PatientPortal/Reservations/Reservation/ReservationConfirmation">
+                                                                    <input type="hidden" value="c34a94cb-2c48-4d57-84ab-140cc8c6ca83" name="termId">
+                                                                </form>
+                                                                <a class="button strong" href="#" data-term-id="c34a94cb-2c48-4d57-84ab-140cc8c6ca83">
+                                                                    13:40 Book
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <div data-sort="43812">
+                                                                lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA
+                                                            </div>
+                                                            <div data-sort="4549">
+                                                                Konsultacja neurologa
+                                                            </div>
+                                                            <div data-sort="87">
+                                                                MR Krak&#243;w - Wadowicka 8W
+                                                            </div>
+
+
+                                                        </td>
+                                                        <td class="micro" colspan="3">
+<a class="button strong" href="/PatientPortal/Reservations/Reservation/ReservationConfirmation?City=Krak%C3%B3w&amp;CityId=3&amp;Clinic=MR%20Krak%C3%B3w%20-%20Wadowicka%208W&amp;ClinicId=87&amp;Date=02%2F09%2F2018%2013%3A40%3A00&amp;Doctor=lek.%20med.%20CHRA%C5%9ACIK-%C5%9ALIZOWSKA%20PAULA&amp;DoctorId=43812&amp;IsFree=True&amp;RoomId=4592&amp;Service=Konsultacja%20neurologa&amp;ServiceId=4549&amp;ReferralRequiredBySerivce=False&amp;TermId=c34a94cb-2c48-4d57-84ab-140cc8c6ca83" target="popup">13:40 Book</a>                                                            <br>
+                                                            <strong>lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA</strong>
+                                                            <br>
+                                                            MR Krak&#243;w - Wadowicka 8W
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="hours" style="vertical-align:top;" data-sort="18:20">
+                                                            <div class="reserveButtonDiv" term-id="394db8b3-7e37-4651-b8ab-32b59a41cd1b">
+                                                                <form id="394db8b3-7e37-4651-b8ab-32b59a41cd1b" data-select-term-url="/PatientPortal/Reservations/Reservation/ReservationConfirmation">
+                                                                    <input type="hidden" value="394db8b3-7e37-4651-b8ab-32b59a41cd1b" name="termId">
+                                                                </form>
+                                                                <a class="button strong" href="#" data-term-id="394db8b3-7e37-4651-b8ab-32b59a41cd1b">
+                                                                    18:20 Book
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <div data-sort="41023">
+                                                                dr n.med. SZCZYGIEŁ-PILUT ELŻBIETA
+                                                            </div>
+                                                            <div data-sort="4549">
+                                                                Konsultacja neurologa
+                                                            </div>
+                                                            <div data-sort="10">
+                                                                LX Krak&#243;w - Lublańska 38
+                                                            </div>
+
+
+                                                        </td>
+                                                        <td class="micro" colspan="3">
+<a class="button strong" href="/PatientPortal/Reservations/Reservation/ReservationConfirmation?City=Krak%C3%B3w&amp;CityId=3&amp;Clinic=LX%20Krak%C3%B3w%20-%20Lubla%C5%84ska%2038&amp;ClinicId=10&amp;Date=02%2F09%2F2018%2018%3A20%3A00&amp;Doctor=dr%20n.med.%20SZCZYGIE%C5%81-PILUT%20EL%C5%BBBIETA&amp;DoctorId=41023&amp;IsFree=True&amp;RoomId=5670&amp;Service=Konsultacja%20neurologa&amp;ServiceId=4549&amp;ReferralRequiredBySerivce=False&amp;TermId=394db8b3-7e37-4651-b8ab-32b59a41cd1b" target="popup">18:20 Book</a>                                                            <br>
+                                                            <strong>dr n.med. SZCZYGIEŁ-PILUT ELŻBIETA</strong>
+                                                            <br>
+                                                            LX Krak&#243;w - Lublańska 38
+                                                        </td>
+
+                                                    </tr>
+                                    </table>
+                                </div>
+                            </li>
+                    </ul>
+            <script>
+                    reservation.events.hideFilter();
+            </script>
+</div>
+
+            </div>
+            <div id="footer">
+  <nav>
+    <ul class="menu">
+      <li class="_desktop"><a href="https://www.luxmed.pl/en/for-patients/contact/contact-from.html" target="_blank">Contact</a></li>
+      <li class="_desktop"><a href="/PatientPortal/Home/FAQ">Frequently asked questions (FAQ)</a></li>
+      <li><a href="http://www.luxmed.pl/en/for-patients/about-us/lux-med-sp-z-o-o-cookies-policy.html" target="_blank">Privacy policy</a></li>
+      <li><a href="/PatientPortal/Home/TermsAll">Rules for registering  to www site</a></li>
+      <li class="_desktop"><a href="http://www.luxmed.pl/en.html/" target="_blank">LUX MED Group websites</a></li>
+      <li class="_desktop"><a href="/PatientPortal/Reservations/Clinics/Duty">Emergency appointments offered by LUX MED Group</a></li>
+      <li class="_desktop"><a href="/PatientPortal/Home/AvaiableServices">List of consultation available on the Patient Portal</a></li>
+      <li><span class="copyrights">Call Center: 22 33 22 888</span></li>
+    </ul>
+  </nav>
+
+  <span class="copyrights">
+    Copyright by LUX MED Sp. z o.o.
+</span>
+</div>
+
+        </div>
+    </div>
+
+        <div id="_mobileNavigation">
+            <ul class="menu">
+    <li class="_tablet _smartphone"><a href="#" class="_toggleMobileNavigation"><< Hide menu</a></li>
+      <li class="">
+            <a href="/PatientPortal/" target="_parent">Start</a>
+      </li>
+      <li class="">
+            <a href="/PatientPortal/Reservations/Visits" target="_parent">Visits</a>
+      </li>
+      <li class="">
+            <a href="/PatientPortal/Reservations/MedicalExaminations" target="_parent">Lab results</a>
+      </li>
+      <li class="">
+            <a href="/PatientPortal/Reservations/Referrals" target="_parent">Referrals</a>
+      </li>
+      <li class="">
+            <a href="/PatientPortal/Reservations/PrescriptionsOrdering/History" target="_parent">Drugs</a>
+      </li>
+      <li class="">
+            <a href="/PatientPortal/Reservations/EQuestions" target="_parent">e-Question</a>
+      </li>
+      <li class="">
+            <a href="/PatientPortal/Reservations/Doctors/Schedule" target="_parent">Doctors&#39; schedule</a>
+      </li>
+      <li class="">
+            <a href="/PatientPortal/Reservations/Clinics/Duty" target="_parent">Duty</a>
+      </li>
+      <li class="">
+            <a href="/PatientPortal/Reservations/Clinics/List" target="_parent">Clinics</a>
+      </li>
+      <li class="">
+            <a href="/PatientPortal/Home/Documents" target="_parent">Document templates</a>
+      </li>
+      <li class="">
+            <a href="/PatientPortal/Users/User/Details" target="_parent">Account</a>
+      </li>
+      <li class="">
+            <a href="/PatientPortal/Home/GoToContact" target="_parent">Contact</a>
+      </li>
+      <li class="">
+            <a href="/PatientPortal/Home/TryChangeLanguage" target="popup">Wersja polska</a>
+      </li>
+      <li class="">
+            <a href="/PatientPortal/Account/LogOut" target="_parent">Log Out</a>
+      </li>
+</ul>
+        </div>
+
+    <div id="_mobileLoginForm">
+        <div class="nav">
+            <a class="button _toggleLoginForm">&lt; Back</a>
+        </div>
+        
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Password").focus(function () {
+            $(this).data("hasfocus", true);
+        });
+        $("#Password").blur(function () {
+            $(this).data("hasfocus", false);
+
+        });
+        $(document.body).keyup(function (ev) {
+            if (ev.which === 13 && $("#Password").data("hasfocus")) {
+                //document.loginForm.submit();
+                return true;
+            }
+        });
+
+        var i1 = $('#Login');
+        var i2 = $('#Password');
+        var t2 = $('#TempPassword');
+
+        var txtval = $(i1).val();
+        $(i1).focus(function () {
+            if ($(i1).val() == txtval) {
+                $(i1).val('');
+            }
+        });
+        $(i1).blur(function () {
+            if ($(i1).val() == "") {
+                $(i1).val(txtval);
+            }
+        });
+
+        $(t2).focus(function () {
+            t2.hide();
+            i2.show();
+            i2.focus();
+        });
+        $(i2).blur(function () {
+            if ($(i2).val() == "") {
+                t2.show();
+                i2.hide();
+            }
+        });
+        showPasswordModule.init("#mobileCheckBoxDisplayPassword", ".mobilePasswordInput");
+    });
+
+    submitLoginSmartphone = function () {
+        if ($('#Login').val() == 'Patient login (*)') {
+            $('#Login').val("");
+        }
+        $("#loginFormSmart").submit();
+    };
+</script>
+
+<form action="/PatientPortal/Account/LogIn" autocomplete="off" id="loginFormSmart" method="post" name="loginFormSmart">    <form action="?p=startPopup" method="POST">
+        <div class="fields">
+            <h3>Do you have an account?</h3>
+            <div class="field">
+                    <input type="text" id="Login" name="Login" />
+                <span title="Enter your email address or login name that you created during registration" data-tooltip-direction="left" class="tooltip"></span>
+            </div>
+            <div class="field">
+                    <input type="password" name="Password" id="Password" class="mobilePasswordInput" />
+                <span title="The password must be at least 8 characters long and include at least: one digit, one uppercase letter and one lowercase letter. If you forgot your password, enter your login to reset it. We will either send you a password-resetting link to your e-mail address or a text message (SMS) with one-time password, depending on what you have provided for your account" data-tooltip-direction="left" class="tooltip"></span>
+            </div>
+           
+            <div id="smart-val-info">
+                <div class="wrapper"></div>
+            </div>
+            <div class="actions">
+                <div>
+                    <input id="mobileCheckBoxDisplayPassword" class="checkBoxDisplayPassword" type="checkbox" />
+                    <label for="mobileCheckBoxDisplayPassword" class="lblDisplayPasswd">Display characters</label>
+                </div>
+                <a href="/PatientPortal/Users/Account/LoginTroubles">Problems accessing your account?</a>
+            </div>
+        </div>
+        <div class="submitSection">
+            <button class="button large green" type="submit" onclick="submitLoginSmartphone();">LOG IN</button>
+        </div>
+    </form>
+</form>
+        <div class="security">
+            <img src="/PatientPortal/Content/images/template/geotrust_smartphone.jpg" alt="">
+        </div>
+    </div>
+
+    <div id="__popupOverlay"></div>
+    <div id="__popup">
+        <div class="_wrapper" id="popUpWrapper">
+            <div class="_box">
+                <div class="_content" id="poupContent">
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="ui-widget-overlay ui-front" id="spinnerDiv" >
+    <div>
+        <div id="circularG">
+            <div id="circularG_1" class="circularG">
+            </div>
+            <div id="circularG_2" class="circularG">
+            </div>
+            <div id="circularG_3" class="circularG">
+            </div>
+            <div id="circularG_4" class="circularG">
+            </div>
+            <div id="circularG_5" class="circularG">
+            </div>
+            <div id="circularG_6" class="circularG">
+            </div>
+            <div id="circularG_7" class="circularG">
+            </div>
+            <div id="circularG_8" class="circularG">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  <script type="text/javascript">
+      var isMyLink = false;
+
+      window.onbeforeunload = function(evt) {
+          if (!isMyLink) {
+              return "Zamierzasz wyjść z Portalu Pacjenta. Po tej operacji niezbędne będzie ponowne zalogowanie do systemu.";
+          }
+      };
+
+      window.onunload = function onUnloadPage(e) {          
+          var logOutUrl = '/PatientPortal/Account/LogOutAjax';
+
+          if (!isMyLink && !isAjaxRequestExecuting) {
+            redirectAjaxErrorToGlobalError = false;
+              window.name = "reloader";
+              isMyLink = true;
+              // window.location = '/PatientPortal/Account/LogOut';
+              if (kpis && typeof kpis === 'object' && kpis.save !== undefined && typeof kpis.save === "function") { kpis.save() }
+              $.ajax({
+                  url: logOutUrl,
+                  async: false,
+                  error: function(e) {
+                      isMyLink = true;
+                      window.location = '/PatientPortal/Account/LogOut';
+                  },
+                  success: function(data) {
+                      isMyLink = true;
+                      window.location = '/PatientPortal/Account/LogOut';
+                  }
+              });
+          }
+      };
+
+   
+      function captureLink() {
+          isMyLink = true;
+      }
+
+      $(document).ready(function () {
+        $('a').bindFirst('click', captureLink);
+    });
+
+  </script>
+
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-59149964-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+
+<input id="MaxPeriodLength" name="MaxPeriodLength" type="hidden" value="365" />
+
+
+
+</body>
+</html>
