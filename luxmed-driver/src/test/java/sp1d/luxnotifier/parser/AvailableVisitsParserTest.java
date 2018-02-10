@@ -15,16 +15,16 @@ public class AvailableVisitsParserTest {
 
     @Before
     public void setUp() throws Exception {
-        parser = AvailableVisitsParser.createParser(testResponse);
+        parser = AvailableVisitsParser.anAvailableVisitsParser(testResponse);
     }
 
     @Test
     public void parsesAllVisits() {
-        AvailableVisit firstExpectedVisit = AvailableVisit.builder()
-                .doctor("lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA")
-                .dateTime(LocalDateTime.of(2018, 1, 30, 15, 40))
-                .clinic("MR Kraków - Wadowicka 8W")
-                .service("Konsultacja neurologa")
+        AvailableVisit firstExpectedVisit = AvailableVisit.anAvailableVisit()
+                .withDoctor("lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA")
+                .withDateTime(LocalDateTime.of(2018, 1, 30, 15, 40))
+                .withClinic("MR Kraków - Wadowicka 8W")
+                .withService("Konsultacja neurologa")
                 .build();
 
         List<AvailableVisit> availableVisits = parser.parse();

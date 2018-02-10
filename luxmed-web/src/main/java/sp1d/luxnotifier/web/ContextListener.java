@@ -1,0 +1,24 @@
+package sp1d.luxnotifier.web;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
+
+@WebListener
+public class ContextListener implements ServletContextListener {
+    private static final Logger LOG = LoggerFactory.getLogger(ContextListener.class);
+
+    @Override
+    public void contextInitialized(ServletContextEvent sce) {
+
+    }
+
+    @Override
+    public void contextDestroyed(ServletContextEvent sce) {
+        LOG.info("DESTROY!!!!!!!!!!");
+        System.out.println("DESTROY!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
+    }
+}

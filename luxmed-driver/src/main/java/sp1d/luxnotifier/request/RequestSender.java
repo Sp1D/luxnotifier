@@ -7,12 +7,13 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
+import org.springframework.util.StringUtils;
 import sp1d.luxnotifier.LuxnotifierRuntimeException;
 
 import java.util.*;
 
 public abstract class RequestSender {
-    private static final Set<String> ALLOWED_HTTP_METHOD = Collections.unmodifiableSet(
+    private static final Set<String> SUPPPORTED_HTTP_METHOD = Collections.unmodifiableSet(
             new HashSet<>(Arrays.asList("POST", "GET"))
     );
 
@@ -45,10 +46,10 @@ public abstract class RequestSender {
 
     private Request buildRequest(Map<String, String> customParameters) {
         RequestParameters parameters = buildRequestParameters(customParameters);
-        if (!ALLOWED_HTTP_METHOD.contains(parameters.getMethod())) {
+        if (!SUPPPORTED_HTTP_METHOD.contains(parameters.getMethod())) {
             throw new LuxnotifierRuntimeException(
                     new IllegalArgumentException(
-                            String.format("HTTP method %s is invalid", parameters.getMethod())
+                            String.format("HTTP method %s is not supported", parameters.getMethod())
                     )
             );
         }
@@ -67,4 +68,12 @@ public abstract class RequestSender {
 
     protected abstract @NonNull
     RequestParameters buildRequestParameters(Map<String, String> customParameters);
+
+    protected final String getParameter(Map<String, String> customParameters, String parameter) {
+        if (customParameters != null && !StringUtils.isEmpty(customParameters.get(parameter))) {
+            return customParameters.get(parameter);
+        } else {
+            throw new LuxnotifierRuntimeException(new IllegalArgumentException(parameter + " is null or empty!"));
+        }
+    }
 }

@@ -12,6 +12,7 @@ import sp1d.luxnotifier.request.SearchPageRequestSender;
 import sp1d.luxnotifier.request.SearchTimeslotRequestSender;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +28,10 @@ public class Action {
 
 
     public void act() {
-        String loginResponse = login.send();
+        Map<String, String> authParams = new HashMap<>();
+        authParams.put("login", "buzzband@gmail.com");
+        authParams.put("password", "HrenVam4745");
+        String loginResponse = login.send(authParams);
         validateLoginResponse(loginResponse);
 
         String searchPageResponse = searchPage.send();
@@ -38,7 +42,7 @@ public class Action {
 
         Map<String, String> services = new SearchPageParser(searchResponse).parseServices();
 
-        AvailableVisitsParser availableVisitsParser = AvailableVisitsParser.createParser(searchResponse);
+        AvailableVisitsParser availableVisitsParser = AvailableVisitsParser.anAvailableVisitsParser(searchResponse);
         List<AvailableVisit> availableVisits = availableVisitsParser.parse();
 
         for (AvailableVisit availableVisit : availableVisits) {

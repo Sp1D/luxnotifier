@@ -45,4 +45,8 @@ public class LuxCookieJar implements CookieJar {
     private boolean notExpired(Cookie cookie) {
         return System.currentTimeMillis() < cookie.expiresAt();
     }
+
+    public void clear() {
+        cookieMap.clear();
+    }
 }

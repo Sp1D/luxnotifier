@@ -22,7 +22,7 @@ public class AvailableVisitsParser {
         this.doc = doc;
     }
 
-    public static AvailableVisitsParser createParser(String html) {
+    public static AvailableVisitsParser anAvailableVisitsParser(String html) {
         return new AvailableVisitsParser(Jsoup.parse(html));
     }
 
@@ -40,11 +40,11 @@ public class AvailableVisitsParser {
             LocalDate date = parseDate(dayElement);
             Elements visitElements = dayElement.select("div.content > table > tbody > tr");
             for (Element visitElement : visitElements) {
-                AvailableVisit availableVisit = AvailableVisit.builder()
-                        .doctor(getElementText(visitElement, "td:nth-child(2) > div:nth-child(1)"))
-                        .dateTime(parseAndConstructVisitDateTime(date, visitElement))
-                        .clinic(getElementText(visitElement, "td:nth-child(2) > div:nth-child(3)"))
-                        .service(getElementText(visitElement, "td:nth-child(2) > div:nth-child(2)"))
+                AvailableVisit availableVisit = AvailableVisit.anAvailableVisit()
+                        .withDoctor(getElementText(visitElement, "td:nth-child(2) > div:nth-child(1)"))
+                        .withDateTime(parseAndConstructVisitDateTime(date, visitElement))
+                        .withClinic(getElementText(visitElement, "td:nth-child(2) > div:nth-child(3)"))
+                        .withService(getElementText(visitElement, "td:nth-child(2) > div:nth-child(2)"))
                         .build();
                 availableVisits.add(availableVisit);
             }

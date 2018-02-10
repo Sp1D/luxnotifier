@@ -1,18 +1,13 @@
 package sp1d.luxnotifier;
 
-import okhttp3.*;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import sp1d.luxnotifier.action.Action;
-
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Configuration
 @ComponentScan
@@ -20,9 +15,11 @@ import java.util.Map;
 public class Luxnotifier {
     private final static Logger LOG = LoggerFactory.getLogger(Luxnotifier.class);
     private final static Logger LOG_HTTP_CLIENT = LoggerFactory.getLogger(OkHttpClient.class);
-    @Autowired
     private Environment env;
 
+    public Luxnotifier(Environment env) {
+        this.env = env;
+    }
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(Luxnotifier.class);
@@ -38,7 +35,6 @@ public class Luxnotifier {
                 .followRedirects(true)
                 .followSslRedirects(true)
                 .cookieJar(new LuxCookieJar())
-
                 .build();
     }
 
@@ -48,26 +44,4 @@ public class Luxnotifier {
         return new HttpLoggingInterceptor(LOG_HTTP_CLIENT::debug).setLevel(loggingLevel);
     }
 
-    @Bean
-    public CookieJar cookieJar() {
-        return new CookieJar() {
-            private final Logger LOG = LoggerFactory.getLogger(this.getClass());
-            private Map<String, List<Cookie>> cookieStorage = new HashMap<>();
-
-            @Override
-            public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
-                LOG.debug("Saving cookies {}", cookies);
-                cookieStorage.put(url.host(), cookies);
-            }
-
-            @Override
-            public List<Cookie> loadForRequest(HttpUrl url) {
-                List<Cookie> cookies = cookieStorage.get(url.host());
-                if (cookies != null) {
-                    return cookies;
-                }
-                return Collections.emptyList();
-            }
-        };
-    }
 }
