@@ -1,12 +1,27 @@
 package sp1d.luxnotifier.web;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
-@Data
-@AllArgsConstructor
 public class SubscriptionForm {
     private String selectedServiceId;
     private String selectedLanguageId;
-    private boolean bookingEnabled;
+
+    public SubscriptionForm(String selectedServiceId, String selectedLanguageId) {
+        this.selectedServiceId = selectedServiceId;
+        this.selectedLanguageId = selectedLanguageId;
+    }
+
+    public String getSelectedServiceId() {
+        return selectedServiceId;
+    }
+
+    public void setSelectedServiceId(String selectedServiceId) {
+        this.selectedServiceId = selectedServiceId;
+    }
+
+    public String getSelectedLanguageId() {
+        return selectedLanguageId;
+    }
+
+    public void setSelectedLanguageId(String selectedLanguageId) {
+        this.selectedLanguageId = selectedLanguageId;
+    }
 }

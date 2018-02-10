@@ -19,7 +19,7 @@ public class LuxCookieJar implements CookieJar {
             if (domainCookies == null) {
                 domainCookies = new HashMap<>();
             }
-            LOG.debug("Saving cookie {}", cookie);
+            LOG.trace("Saving cookie {}", cookie);
             domainCookies.put(cookie.name(), cookie);
             cookieMap.put(cookie.domain(), domainCookies);
         }
@@ -35,7 +35,7 @@ public class LuxCookieJar implements CookieJar {
         for (Map.Entry<String, Cookie> cookieEntry : domainCookies.entrySet()) {
             Cookie cookie = cookieEntry.getValue();
             if (notExpired(cookie)) {
-                LOG.debug("Loading cookie {}", cookie);
+                LOG.trace("Loading cookie {}", cookie);
                 outputList.add(cookie);
             }
         }

@@ -45,7 +45,6 @@ public class SubscriptionDaoTest {
         subscription.setServiceName("Doctor Who");
         subscription.setLanguageId("2");
         subscription.setLanguageName("English");
-        subscription.setBookingEnabled(true);
         subscription.setSearchUntilDate(LocalDate.of(2018, 2, 14));
         return subscription;
     }

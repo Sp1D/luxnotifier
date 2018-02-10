@@ -29,14 +29,13 @@
     <sf:label path="serviceId">Select service:</sf:label><sf:select path="serviceId" items="${services}"/><br/>
     <sf:label path="languageId">Select language:</sf:label><sf:select path="languageId" items="${languages}"/><br/>
     <sf:label path="searchUntilDate">Search visits until:</sf:label><input type="date" id="searchUntilDate" name="searchUntilDate"/><br/>
-    <sf:label path="bookingEnabled">Book a visit automatically?</sf:label><sf:checkbox path="bookingEnabled"/><br/>
     <input type="submit"/>
 </sf:form>
 <br>
 <h1>Current subscriptions</h1>
 <ul>
     <c:forEach items="${subscriptions}" var="subscription">
-        <li><c:out value="${subscription.serviceName} (${subscription.languageName} language) until ${subscription.searchUntilDate} ${subscription.bookingEnabled ? 'Auto booking' : 'No booking'}"/>&nbsp;
+        <li><c:out value="${subscription.serviceName} (${subscription.languageName} language) until ${subscription.searchUntilDate}"/>&nbsp;
             <a href="#" onclick="deleteSubscription(${subscription.serviceId})">Cancel</a></li>
     </c:forEach>
 </ul>

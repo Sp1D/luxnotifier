@@ -14,7 +14,6 @@ CREATE TABLE subscription
   service_name      VARCHAR(100) NOT NULL,
   language_id       VARCHAR(20)  NOT NULL,
   language_name     VARCHAR(100) NOT NULL,
-  booking_enabled   BOOLEAN      NOT NULL,
   search_until_date DATE         NOT NULL,
   PRIMARY KEY (user_email, service_id),
   CONSTRAINT subscription_user_email_fk FOREIGN KEY (user_email) REFERENCES USER (email)

@@ -14,12 +14,11 @@ import java.util.List;
 @Component
 public class SubscriptionDao {
     private static final String SELECT_SUBSCRIPTION_BY_EMAIL =
-            "SELECT USER_EMAIL, SERVICE_ID, SERVICE_NAME, LANGUAGE_ID, LANGUAGE_NAME, BOOKING_ENABLED, SEARCH_UNTIL_DATE FROM SUBSCRIPTION WHERE USER_EMAIL = ?";
+            "SELECT USER_EMAIL, SERVICE_ID, SERVICE_NAME, LANGUAGE_ID, LANGUAGE_NAME, SEARCH_UNTIL_DATE FROM SUBSCRIPTION WHERE USER_EMAIL = ?";
     private static final String USER_EMAIL = "user_email";
     private static final String SERVICE_ID = "service_id";
     private static final String SERVICE_NAME = "service_name";
     private static final String LANGUAGE_ID = "language_id";
-    private static final String BOOKING_ENABLED = "booking_enabled";
     private static final String SEARCH_UNTIL_DATE = "search_until_date";
     private static final String LANGUAGE_NAME = "language_name";
     final private SimpleJdbcInsert insert;
@@ -37,7 +36,6 @@ public class SubscriptionDao {
         parameters.addValue(SERVICE_NAME, subscription.getServiceName());
         parameters.addValue(LANGUAGE_ID, subscription.getLanguageId());
         parameters.addValue(LANGUAGE_NAME, subscription.getLanguageName());
-        parameters.addValue(BOOKING_ENABLED, subscription.isBookingEnabled());
         parameters.addValue(SEARCH_UNTIL_DATE, LocalDateTime.of(subscription.getSearchUntilDate(), LocalTime.MIDNIGHT), Types.DATE);
         insert.execute(parameters);
     }
@@ -50,7 +48,6 @@ public class SubscriptionDao {
                         .withServiceName(rs.getString(SERVICE_NAME))
                         .withLanguageId(rs.getString(LANGUAGE_ID))
                         .withLanguageName(rs.getString(LANGUAGE_NAME))
-                        .withBookingEnabled(rs.getBoolean(BOOKING_ENABLED))
                         .withSearchUntilDate(rs.getDate(SEARCH_UNTIL_DATE).toLocalDate())
                         .build());
     }

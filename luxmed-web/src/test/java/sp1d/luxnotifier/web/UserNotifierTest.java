@@ -100,7 +100,6 @@ public class UserNotifierTest {
                 .withServiceName("Doctor Who")
                 .withLanguageId("42")
                 .withLanguageName("Kiswahili")
-                .withBookingEnabled(false)
                 .build();
     }
 }

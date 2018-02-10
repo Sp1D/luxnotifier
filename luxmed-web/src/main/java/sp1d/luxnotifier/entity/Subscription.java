@@ -11,7 +11,6 @@ public class Subscription {
     private String serviceName;
     private String languageId;
     private String languageName;
-    private boolean bookingEnabled;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate searchUntilDate;
 
@@ -33,10 +32,6 @@ public class Subscription {
 
     public String getLanguageName() {
         return languageName;
-    }
-
-    public boolean isBookingEnabled() {
-        return bookingEnabled;
     }
 
     public LocalDate getSearchUntilDate() {
@@ -61,10 +56,6 @@ public class Subscription {
 
     public void setLanguageName(String languageName) {
         this.languageName = languageName;
-    }
-
-    public void setBookingEnabled(boolean bookingEnabled) {
-        this.bookingEnabled = bookingEnabled;
     }
 
     public void setSearchUntilDate(LocalDate searchUntilDate) {
@@ -95,7 +86,6 @@ public class Subscription {
         private String serviceName;
         private String languageId;
         private String languageName;
-        private boolean bookingEnabled;
         private LocalDate searchUntilDate;
 
         private Builder() {
@@ -126,11 +116,6 @@ public class Subscription {
             return this;
         }
 
-        public Builder withBookingEnabled(boolean bookingEnabled) {
-            this.bookingEnabled = bookingEnabled;
-            return this;
-        }
-
         public Builder withSearchUntilDate(LocalDate searchUntilDate) {
             this.searchUntilDate = searchUntilDate;
             return this;
@@ -144,7 +129,6 @@ public class Subscription {
             subscription.languageName = this.languageName;
             subscription.languageId = this.languageId;
             subscription.searchUntilDate = this.searchUntilDate;
-            subscription.bookingEnabled = this.bookingEnabled;
             return subscription;
         }
     }
