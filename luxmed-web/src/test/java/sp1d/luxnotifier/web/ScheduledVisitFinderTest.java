@@ -28,8 +28,6 @@ public class ScheduledVisitFinderTest {
     @Mock
     private UserNotifier notifier;
     @Mock
-    private VisitBooker booker;
-    @Mock
     private UserDao userDao;
     @Mock
     private SubscriptionDao subscriptionDao;
@@ -54,7 +52,6 @@ public class ScheduledVisitFinderTest {
         finder.find();
         verify(loginRequestSender, never()).send(any());
         verify(notifier, never()).notifyUser(any(), Collections.emptyList());
-        verify(booker, never()).bookVisit(any());
     }
 
     @Test

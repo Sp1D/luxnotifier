@@ -70,6 +70,11 @@ public class UserNotifierTest {
         );
     }
 
+    @Test
+    public void writesFirstVisitsDateTimeAndServiceNameToEmailSubject() {
+        assertThat(notifyUserAndGetMessage().getSubject()).contains("23-02-2018 07:40, Doctor Who");
+    }
+
     private SimpleMailMessage notifyUserAndGetMessage() {
         notifier.notifyUser(aSubscription(), visits());
         verify(mailSender, only()).send(msgCaptor.capture());

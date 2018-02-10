@@ -35,8 +35,6 @@ public class ScheduledVisitFinder {
     @Autowired
     private UserNotifier notifier;
     @Autowired
-    private VisitBooker visitBooker;
-    @Autowired
     private LoginRequestSender loginRequest;
     @Autowired
     private SearchPageRequestSender searchRequest;
@@ -63,8 +61,7 @@ public class ScheduledVisitFinder {
                 LOG.debug("Searching for {}", subscription.getServiceName());
                 List<AvailableVisit> availableVisits = loadAndParseAvailableVisits(subscription, verificationToken);
                 if (availableVisits.size() > 0) {
-                    LOG.info("Subscription for {} found", subscription.getServiceName());
-                    visitBooker.bookVisit(subscription);
+                    LOG.info("Visit of {} is possible", subscription.getServiceName());
                     notifier.notifyUser(subscription, availableVisits);
                 }
             }

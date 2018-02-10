@@ -24,14 +24,30 @@ public class UserNotifier {
     }
 
     public void notifyUser(Subscription subscription, List<AvailableVisit> availableVisits) {
+        if (availableVisits == null || availableVisits.isEmpty()) {
+            return;
+        }
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(subscription.getUserEmail());
         msg.setFrom("luxmed.notifier@gmail.com");
-        msg.setSubject("Luxnotifier: new visit available");
-        msg.setText(String.format(
-                "New visits are available:\n%s\nPlease proceed to Luxmed site in order to book a visit.", formatVisitsInformation(availableVisits)));
+        formatSubject(msg, availableVisits);
+        formatBody(msg, availableVisits);
+
         mailSender.send(msg);
         LOG.info("Notifying email is sent to {}", msg.getTo()[0]);
+    }
+
+    private void formatSubject(SimpleMailMessage msg, List<AvailableVisit> availableVisits) {
+        String subject = String.format("Luxnotifier: new visit available, %s, %s",
+                availableVisits.get(0).getDateTime().format(DATE_TIME_FORMATTER),
+                availableVisits.get(0).getService());
+        msg.setSubject(subject);
+    }
+
+    private void formatBody(SimpleMailMessage msg, List<AvailableVisit> availableVisits) {
+        String body = String.format("New visits are available:\n%s\nPlease proceed to Luxmed site in order to book a visit.",
+                formatVisitsInformation(availableVisits));
+        msg.setText(body);
     }
 
     private StringBuilder formatVisitsInformation(List<AvailableVisit> visits) {
