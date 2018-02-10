@@ -1,5 +1,6 @@
 package sp1d.luxnotifier.web;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,11 @@ public class UserNotifierSmtpTest {
     private MailSender mailSender;
 
     @Test
+    @Ignore
     public void sendsMessageViaRealSmtpHost() {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo("buzzband@gmail.com");
-        msg.setFrom("luxnotifier@sp1d.ftp.sh");
+        msg.setFrom("luxmed.notifier@gmail.com");
         msg.setSubject("Test email from luxnotifier");
         msg.setText("Subj.");
         mailSender.send(msg);

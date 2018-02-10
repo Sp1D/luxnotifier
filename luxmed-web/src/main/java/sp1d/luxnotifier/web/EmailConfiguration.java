@@ -13,14 +13,12 @@ public class EmailConfiguration {
     public MailSender mailSender() {
         JavaMailSenderImpl sender = new JavaMailSenderImpl();
         Properties props = new Properties();
-//        props.setProperty("mail.smtp.ssl.enable", "true");
+        props.setProperty("mail.smtp.ssl.enable", "true");
         sender.setJavaMailProperties(props);
-//        sender.setHost("smtp.gmail.com");
-//        sender.setHost("aspmx.l.google.com");
-        sender.setHost("mail.upcpoczta.pl");
-        sender.setPort(587);
-//        sender.setUsername("buzzband@gmail.com");
-//        sender.setPassword("Tango52gaivamebel");
+        sender.setHost("smtp.gmail.com");
+        sender.setPort(465);
+        sender.setUsername("luxmed.notifier@gmail.com");
+        sender.setPassword("lubiisanochkivozit");
         return sender;
     }
 }

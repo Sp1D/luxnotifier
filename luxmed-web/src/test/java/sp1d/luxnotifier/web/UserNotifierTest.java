@@ -23,7 +23,7 @@ import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserNotifierTest {
-    public static final String USER_EMAIL = "test@test.com";
+    private static final String USER_EMAIL = "test@test.com";
     @Captor
     private ArgumentCaptor<SimpleMailMessage> msgCaptor;
     @Mock
@@ -38,7 +38,7 @@ public class UserNotifierTest {
 
     @Test
     public void sendsEmailFromLuxnotifierSp1DFtpSh() {
-        assertThat(notifyUserAndGetMessage().getFrom()).contains("luxnotifier@sp1d.ftp.sh");
+        assertThat(notifyUserAndGetMessage().getFrom()).contains("luxmed.notifier@gmail.com");
     }
 
     @Test

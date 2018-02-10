@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static sp1d.luxnotifier.entity.User.anUser;
 import static sp1d.luxnotifier.parser.AvailableVisitsParser.anAvailableVisitsParser;
 import static sp1d.luxnotifier.request.SearchTimeslotRequestSender.DD_MM_YYYY;
 
@@ -57,7 +58,7 @@ public class ScheduledVisitFinder {
                 continue;
             }
             LOG.debug("Searching for visits subscribed by {}", user.getEmail());
-            loginUser(user);
+            loginUser(anUser().withEmail("luxmed.notifier@gmail.com").withPassword("RoyalCanin1").build());
             String verificationToken = parseVerificationToken();
             for (Subscription subscription : subscriptions) {
                 LOG.debug("Searching for {}", subscription.getServiceName());
@@ -77,14 +78,17 @@ public class ScheduledVisitFinder {
     }
 
     private List<AvailableVisit> loadAndParseAvailableVisits(Subscription subscription, String verificationToken) {
+        Map<String, String> requestParameters = prepareRequestParameters(subscription);
+        requestParameters.put("verificationToken", verificationToken);
+        return anAvailableVisitsParser(timeslotRequest.send(requestParameters)).parse();
+    }
+
+    private Map<String, String> prepareRequestParameters(Subscription subscription) {
         Map<String, String> requestParameters = new HashMap<>();
         requestParameters.put("serviceId", subscription.getServiceId());
         requestParameters.put("languageId", subscription.getLanguageId());
-        requestParameters.put("verificationToken", verificationToken);
         requestParameters.put("searchUntilDate", subscription.getSearchUntilDate().format(DD_MM_YYYY));
-
-        String searchResponse = timeslotRequest.send(requestParameters);
-        return anAvailableVisitsParser(searchResponse).parse();
+        return requestParameters;
     }
 
     private String parseVerificationToken() {

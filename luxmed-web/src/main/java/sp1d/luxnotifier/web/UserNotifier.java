@@ -26,7 +26,7 @@ public class UserNotifier {
     public void notifyUser(Subscription subscription, List<AvailableVisit> availableVisits) {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(subscription.getUserEmail());
-        msg.setFrom("luxnotifier@sp1d.ftp.sh");
+        msg.setFrom("luxmed.notifier@gmail.com");
         msg.setSubject("Luxnotifier: new visit available");
         msg.setText(String.format(
                 "New visits are available:\n%s\nPlease proceed to Luxmed site in order to book a visit.", formatVisitsInformation(availableVisits)));
