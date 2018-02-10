@@ -21,7 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static sp1d.luxnotifier.entity.User.anUser;
 import static sp1d.luxnotifier.parser.AvailableVisitsParser.anAvailableVisitsParser;
 import static sp1d.luxnotifier.request.SearchTimeslotRequestSender.DD_MM_YYYY;
 
@@ -58,7 +57,7 @@ public class ScheduledVisitFinder {
                 continue;
             }
             LOG.debug("Searching for visits subscribed by {}", user.getEmail());
-            loginUser(anUser().withEmail("luxmed.notifier@gmail.com").withPassword("RoyalCanin1").build());
+            loginUser();
             String verificationToken = parseVerificationToken();
             for (Subscription subscription : subscriptions) {
                 LOG.debug("Searching for {}", subscription.getServiceName());
@@ -73,8 +72,11 @@ public class ScheduledVisitFinder {
         LOG.debug("Scheduled visit search is stopped");
     }
 
-    private void loginUser(User user) {
-        loginRequest.send(user.asMap());
+    private void loginUser() {
+        Map<String, String> userMap = new HashMap<>();
+        userMap.put("login", "luxmed.notifier@gmail.com");
+        userMap.put("password", "RoyalCanin1");
+        loginRequest.send(userMap);
     }
 
     private List<AvailableVisit> loadAndParseAvailableVisits(Subscription subscription, String verificationToken) {

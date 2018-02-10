@@ -20,7 +20,6 @@ public class LuxmedAuthenticationManager implements RemoteAuthenticationManager 
 
     @Override
     public Collection<? extends GrantedAuthority> attemptAuthentication(String username, String password) throws RemoteAuthenticationException {
-//        return Collections.singletonList(new SimpleGrantedAuthority("USER"));
         Map<String, String> authMap = new HashMap<>();
         authMap.put("login", username);
         authMap.put("password", password);

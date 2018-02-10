@@ -68,7 +68,6 @@ public class ScheduledVisitFinderTest {
     private User userWithOneSubscription() {
         User user = anUser()
                 .withEmail("test@test.com")
-                .withPassword("pass")
                 .build();
         Subscription subscription = aSubscription()
                 .withUserEmail(user.getEmail())
@@ -83,7 +82,6 @@ public class ScheduledVisitFinderTest {
         return Collections.singletonList(
                 anUser()
                         .withEmail("test@test.com")
-                        .withPassword("pass")
                         .build()
         );
     }

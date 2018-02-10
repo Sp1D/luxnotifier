@@ -1,4 +1,4 @@
-INSERT INTO USER (EMAIL, PASSWORD) VALUES ('test@test.com', 'pass');
-INSERT INTO USER (EMAIL, PASSWORD) VALUES ('test2@test.com', 'pass2');
+INSERT INTO USER (EMAIL) VALUES ('test@test.com');
+INSERT INTO USER (EMAIL) VALUES ('test2@test.com');
 INSERT INTO SUBSCRIPTION (USER_EMAIL, SERVICE_ID, SERVICE_NAME, LANGUAGE_ID, LANGUAGE_NAME, BOOKING_ENABLED, SEARCH_UNTIL_DATE) VALUES
   ('test@test.com', '1', 'Doctor', '1', 'Spanish', TRUE, to_date('14-02-2018', 'dd-mm-yyyy'));

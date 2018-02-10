@@ -57,7 +57,6 @@ public class IndexController {
         if (!userDao.findByEmail(userEmail).isPresent()) {
             User user = User.anUser()
                     .withEmail(userEmail)
-                    .withPassword((String) SecurityContextHolder.getContext().getAuthentication().getCredentials())
                     .build();
             userDao.save(user);
         }
