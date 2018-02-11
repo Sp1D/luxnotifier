@@ -28,7 +28,6 @@ public class Luxnotifier {
     }
 
     @Bean
-    @Scope("session")
     public OkHttpClient httpClient() {
         LOG.debug("creating OkHttpClient instance");
         return new OkHttpClient.Builder()
