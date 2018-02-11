@@ -11,7 +11,7 @@ import sp1d.luxnotifier.action.Action;
 
 @Configuration
 @ComponentScan
-@PropertySource("classpath:luxnotifier.properties")
+@PropertySource("classpath:luxmed-driver.properties")
 public class Luxnotifier {
     private final static Logger LOG = LoggerFactory.getLogger(Luxnotifier.class);
     private final static Logger LOG_HTTP_CLIENT = LoggerFactory.getLogger(OkHttpClient.class);
@@ -28,6 +28,7 @@ public class Luxnotifier {
     }
 
     @Bean
+    @Scope("session")
     public OkHttpClient httpClient() {
         LOG.debug("creating OkHttpClient instance");
         return new OkHttpClient.Builder()

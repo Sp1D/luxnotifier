@@ -47,11 +47,6 @@ public class UserNotifierTest {
     }
 
     @Test
-    public void sendsSubjectThatBeginsWithLuxnotifier() {
-        assertThat(notifyUserAndGetMessage().getSubject()).startsWith("Luxnotifier");
-    }
-
-    @Test
     public void sendsAllVisitsInMessageBody() {
         assertThat(notifyUserAndGetMessage().getText())
                 .contains(
@@ -63,7 +58,7 @@ public class UserNotifierTest {
     @Test
     public void sendsMessageBodyInCorrectFormat() {
         assertThat(notifyUserAndGetMessage().getText()).contains(
-                "New visits are available:\n" +
+                "All available visits:\n" +
                         "23-02-2018 07:40, Doctor Who, Elm street, Batman\n" +
                         "24-02-2018 15:20, Doctor Who, Elm street, Batman\n\n" +
                         "Please proceed to Luxmed site in order to book a visit."

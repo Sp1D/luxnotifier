@@ -1,6 +1,5 @@
 package sp1d.luxnotifier.web;
 
-import okhttp3.OkHttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,25 +39,21 @@ public class ScheduledVisitFinder {
     private SearchPageRequestSender searchRequest;
     @Autowired
     private SearchTimeslotRequestSender timeslotRequest;
-    @Autowired
-    private OkHttpClient httpClient;
 
-
-    @Scheduled(cron = "0 * * * * *")
-//    @Scheduled(cron = "0 25,55 5-24 * * *")
+    @Scheduled(cron = "0 55 5-24 * * *")
     public void find() {
-        LOG.debug("Scheduled visit search is started");
+        LOG.info("Scheduled visit search is started");
         for (User user : userDao.findAll()) {
             List<Subscription> subscriptions = subscriptionDao.findByUserEmail(user.getEmail());
             if (CollectionUtils.isEmpty(subscriptions)) {
-                LOG.debug("User {} has no subscriptions", user.getEmail());
+                LOG.info("User {} has no subscriptions", user.getEmail());
                 continue;
             }
-            LOG.debug("Searching for visits subscribed by {}", user.getEmail());
+            LOG.info("Searching for visits subscribed by {}", user.getEmail());
             loginUser();
             String verificationToken = parseVerificationToken();
             for (Subscription subscription : subscriptions) {
-                LOG.debug("Searching for {}", subscription.getServiceName());
+                LOG.info("Searching for {}", subscription.getServiceName());
                 List<AvailableVisit> availableVisits = loadAndParseAvailableVisits(subscription, verificationToken);
                 if (availableVisits.size() > 0) {
                     LOG.info("Visit of {} is possible", subscription.getServiceName());
@@ -66,14 +61,11 @@ public class ScheduledVisitFinder {
                 }
             }
         }
-        LOG.debug("Scheduled visit search is stopped");
+        LOG.info("Scheduled visit search is stopped");
     }
 
     private void loginUser() {
-        Map<String, String> userMap = new HashMap<>();
-        userMap.put("login", "luxmed.notifier@gmail.com");
-        userMap.put("password", "RoyalCanin1");
-        loginRequest.send(userMap);
+        loginRequest.send();
     }
 
     private List<AvailableVisit> loadAndParseAvailableVisits(Subscription subscription, String verificationToken) {

@@ -5,6 +5,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -23,7 +24,9 @@ public class AvailableVisitsParser {
     }
 
     public static AvailableVisitsParser anAvailableVisitsParser(String html) {
-        return new AvailableVisitsParser(Jsoup.parse(html));
+        Document doc = Jsoup.parse(html);
+        doc.charset(Charset.forName("UTF-8"));
+        return new AvailableVisitsParser(doc);
     }
 
     public List<AvailableVisit> parse() {

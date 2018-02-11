@@ -13,7 +13,6 @@ import sp1d.luxnotifier.entity.User;
 import sp1d.luxnotifier.parser.SearchPageParser;
 import sp1d.luxnotifier.request.SearchPageRequestSender;
 
-import javax.servlet.ServletContext;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +29,6 @@ public class IndexController {
     @Autowired
     private UserDao userDao;
     private SearchPageParser searchPageParser;
-    private ServletContext servletContext;
 
     @GetMapping("/")
     public ModelAndView subscriptionsPage(ModelAndView mav) {

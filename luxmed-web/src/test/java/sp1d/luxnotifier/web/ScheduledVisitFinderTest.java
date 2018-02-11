@@ -14,6 +14,7 @@ import sp1d.luxnotifier.request.LoginRequestSender;
 import sp1d.luxnotifier.request.SearchPageRequestSender;
 import sp1d.luxnotifier.request.SearchTimeslotRequestSender;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 
@@ -51,7 +52,7 @@ public class ScheduledVisitFinderTest {
         when(userDao.findAll()).thenReturn(userWithoutSubscriptions());
         finder.find();
         verify(loginRequestSender, never()).send(any());
-        verify(notifier, never()).notifyUser(any(), Collections.emptyList());
+        verify(notifier, never()).notifyUser(any(), anyList());
     }
 
     @Test
@@ -59,7 +60,7 @@ public class ScheduledVisitFinderTest {
         User user = userWithOneSubscription();
         when(userDao.findAll()).thenReturn(Collections.singletonList(user));
         finder.find();
-        verify(loginRequestSender, atLeastOnce()).send(user.asMap());
+        verify(loginRequestSender, atLeastOnce()).send();
     }
 
     private User userWithOneSubscription() {
@@ -69,6 +70,10 @@ public class ScheduledVisitFinderTest {
         Subscription subscription = aSubscription()
                 .withUserEmail(user.getEmail())
                 .withServiceId("42")
+                .withServiceName("Doctor Who")
+                .withLanguageId("42")
+                .withLanguageName("Mandarin")
+                .withSearchUntilDate(LocalDate.of(2018, 2, 14))
                 .build();
         when(subscriptionDao.findByUserEmail(user.getEmail()))
                 .thenReturn(Collections.singletonList(subscription));

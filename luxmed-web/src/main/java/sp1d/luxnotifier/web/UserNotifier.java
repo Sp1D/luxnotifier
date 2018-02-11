@@ -38,14 +38,14 @@ public class UserNotifier {
     }
 
     private void formatSubject(SimpleMailMessage msg, List<AvailableVisit> availableVisits) {
-        String subject = String.format("Luxnotifier: new visit available, %s, %s",
+        String subject = String.format("New visit is available, %s, %s",
                 availableVisits.get(0).getDateTime().format(DATE_TIME_FORMATTER),
                 availableVisits.get(0).getService());
         msg.setSubject(subject);
     }
 
     private void formatBody(SimpleMailMessage msg, List<AvailableVisit> availableVisits) {
-        String body = String.format("New visits are available:\n%s\nPlease proceed to Luxmed site in order to book a visit.",
+        String body = String.format("All available visits:\n%s\nPlease proceed to Luxmed site in order to book a visit.",
                 formatVisitsInformation(availableVisits));
         msg.setText(body);
     }
