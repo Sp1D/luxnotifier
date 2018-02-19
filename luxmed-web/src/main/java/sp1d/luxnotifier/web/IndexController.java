@@ -14,7 +14,6 @@ import sp1d.luxnotifier.parser.SearchPageParser;
 import sp1d.luxnotifier.request.SearchPageRequestSender;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -35,41 +34,48 @@ public class IndexController {
         if (searchPageParser == null) {
             searchPageParser = new SearchPageParser(searchPage.send());
         }
-        String userEmail = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        Map<String, String> services = sortMapValuesByAlphabet(searchPageParser.parseServices());
-        Map<String, String> languages = sortMapValuesByAlphabet(searchPageParser.parseLanguages());
-        List<Subscription> subscriptions = subscriptionDao.findByUserEmail(userEmail);
-
         mav.addObject(new Subscription());
-        mav.addObject("services", services);
-        mav.addObject("languages", languages);
-        mav.addObject("subscriptions", subscriptions);
+        mav.addObject("services", sortMapValuesByAlphabet(searchPageParser.parseServices()));
+        mav.addObject("languages", sortMapValuesByAlphabet(searchPageParser.parseLanguages()));
+        mav.addObject("subscriptions", subscriptionDao.findByUserEmail(currentUserEmail()));
         mav.setViewName("subscriptions");
         return mav;
     }
 
     @PostMapping("/subscription")
     public String addSubscription(@ModelAttribute Subscription subscription) {
-        String userEmail = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (!userDao.findByEmail(userEmail).isPresent()) {
-            User user = User.anUser()
-                    .withEmail(userEmail)
-                    .build();
-            userDao.save(user);
-        }
-        subscription.setUserEmail(userEmail);
+        createAndSaveUserIfNotExists();
+
+        subscription.setUserEmail(currentUserEmail());
         subscription.setServiceName(searchPageParser.parseServices().get(subscription.getServiceId()));
         subscription.setLanguageName(searchPageParser.parseLanguages().get(subscription.getLanguageId()));
         subscriptionDao.save(subscription);
         return "redirect:/";
     }
 
+    private void createAndSaveUserIfNotExists() {
+        String email = currentUserEmail();
+        if (!userDao.findByEmail(email).isPresent()) {
+            User user = User.anUser()
+                    .withEmail(email)
+                    .withPassword(currentUserPassword())
+                    .build();
+            userDao.save(user);
+        }
+    }
+
+    private String currentUserPassword() {
+        return (String)SecurityContextHolder.getContext().getAuthentication().getCredentials();
+    }
+
+    private String currentUserEmail() {
+        return (String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
+
     @DeleteMapping("/subscription/{serviceId}")
     @ResponseBody
     public String deleteSubscription(@PathVariable int serviceId) {
-        String userEmail = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        subscriptionDao.deleteByUserEmailAndId(userEmail, serviceId);
+        subscriptionDao.deleteByUserEmailAndId(currentUserEmail(), serviceId);
         return "";
     }
 

@@ -40,7 +40,7 @@ public class ScheduledVisitFinder {
     @Autowired
     private SearchTimeslotRequestSender timeslotRequest;
 
-    @Scheduled(cron = "0 55 5-23 * * *")
+    @Scheduled(cron = "0 */2 5-23 * * *")
     public void find() {
         LOG.info("Scheduled visit search is started");
         for (User user : userDao.findAll()) {
@@ -50,7 +50,7 @@ public class ScheduledVisitFinder {
                 continue;
             }
             LOG.info("Searching for visits subscribed by {}", user.getEmail());
-            loginUser();
+            loginUser(user);
             String verificationToken = parseVerificationToken();
             for (Subscription subscription : subscriptions) {
                 LOG.info("Searching for {}", subscription.getServiceName());
@@ -64,8 +64,15 @@ public class ScheduledVisitFinder {
         LOG.info("Scheduled visit search is stopped");
     }
 
-    private void loginUser() {
-        loginRequest.send();
+    private void loginUser(User user) {
+        loginRequest.send(userToMap(user));
+    }
+
+    private Map<String, String> userToMap(User user) {
+        Map<String, String> map = new HashMap<>();
+        map.put("login", user.getEmail());
+        map.put("password", user.getPassword());
+        return map;
     }
 
     private List<AvailableVisit> loadAndParseAvailableVisits(Subscription subscription, String verificationToken) {

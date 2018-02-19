@@ -34,7 +34,7 @@ public class UserDao {
         User user = null;
         RowMapper<User> userRowMapper = new BeanPropertyRowMapper<>(User.class);
         try {
-            user = jdbcTemplate.queryForObject("SELECT EMAIL FROM USER WHERE EMAIL = ?", userRowMapper, email);
+            user = jdbcTemplate.queryForObject("SELECT EMAIL, PASSWORD FROM USER WHERE EMAIL = ?", userRowMapper, email);
         } catch (EmptyResultDataAccessException e) {
             LOG.info("No such user with email {} can be found", email);
         }
@@ -42,7 +42,7 @@ public class UserDao {
     }
 
     public List<User> findAll() {
-        return jdbcTemplate.query("SELECT EMAIL FROM USER", new BeanPropertyRowMapper<>(User.class));
+        return jdbcTemplate.query("SELECT EMAIL, PASSWORD FROM USER", new BeanPropertyRowMapper<>(User.class));
     }
 
 
