@@ -40,7 +40,7 @@ public class ScheduledVisitFinder {
     @Autowired
     private SearchTimeslotRequestSender timeslotRequest;
 
-    @Scheduled(cron = "0 */2 5-23 * * *")
+    @Scheduled(cron = "0 55 * * * *")
     public void find() {
         LOG.info("Scheduled visit search is started");
         for (User user : userDao.findAll()) {
