@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 import java.nio.charset.Charset;
 import java.util.Map;
 
+import static sp1d.luxnotifier.request.RequestParameters.aRequestParameters;
+
 @Component
 public class LoginRequestSender extends RequestSender {
 
@@ -20,10 +22,10 @@ public class LoginRequestSender extends RequestSender {
                 .add("login", getParameter(customParameters, "login"))
                 .add("password", getParameter(customParameters, "password"))
                 .build();
-        return RequestParameters.builder()
-                .requestBody(urlEncodedForm)
-                .url("https://portalpacjenta.luxmed.pl/PatientPortal/Account/LogIn")
-                .method("POST")
+        return aRequestParameters()
+                .withRequestBody(urlEncodedForm)
+                .withUrl("https://portalpacjenta.luxmed.pl/PatientPortal/Account/LogIn")
+                .withMethod("POST")
                 .build();
     }
 }

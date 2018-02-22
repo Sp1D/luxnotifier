@@ -22,23 +22,10 @@ import java.sql.Statement;
 @Import(EmailConfiguration.class)
 public class ServiceConfiguration {
 
-
-/*@Bean
-    @Profile("dev")
-    public DataSource dataSource() {
-        return new EmbeddedDatabaseBuilder()
-                .setScriptEncoding("UTF-8")
-                .ignoreFailedDrops(true)
-                .addScript("sql/schema.sql")
-                .build();
-    }*/
-
     @Bean
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
-//        JDBCDataSource dataSource = new JDBCDataSource();
         dataSource.setUsername("SA");
-//        dataSource.setUser("SA");
         dataSource.setPassword("");
         dataSource.setUrl("jdbc:hsqldb:file:db/sqlnotifier_db");
         dataSource.setDriverClassName("org.hsqldb.jdbc.JDBCDriver");

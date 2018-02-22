@@ -50,6 +50,22 @@
     </build>
 
         <dependencies>
+
+            <!--Spring-->
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>5.0.2.RELEASE</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>5.0.2.RELEASE</version>
+                <scope>test</scope>
+            </dependency>
+
             <!-- Testing -->
 
             <dependency>
@@ -73,20 +89,27 @@
                 <scope>test</scope>
             </dependency>
 
-            <!--Other-->
+            <!--Logging-->
 
             <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>1.16.18</version>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.25</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>1.7.25</version>
+            </dependency>
+
+            <!--Other-->
 
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>3.7</version>
             </dependency>
-
 
         </dependencies>
 

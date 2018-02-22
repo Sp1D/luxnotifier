@@ -1,5 +1,7 @@
 package sp1d.luxnotifier.entity;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import java.util.Objects;
 
 public class User {
@@ -34,6 +36,13 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(email, password);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("email", email)
+                .toString();
     }
 
     public static User.Builder anUser() {

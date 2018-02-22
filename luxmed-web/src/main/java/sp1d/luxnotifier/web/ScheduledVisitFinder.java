@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import sp1d.luxnotifier.dao.NotificationDao;
 import sp1d.luxnotifier.dao.SubscriptionDao;
 import sp1d.luxnotifier.dao.UserDao;
@@ -55,8 +56,11 @@ public class ScheduledVisitFinder {
                 continue;
             }
             LOG.info("Searching for visits subscribed by {}", user.getEmail());
-            loginUser(user);
-            String verificationToken = parseVerificationToken();
+            String verificationToken = loginAndGetVerificationToken(user);
+            if (StringUtils.isEmpty(verificationToken)) {
+                LOG.info("No success with verification token");
+                continue;
+            }
             for (Subscription subscription : subscriptions) {
                 LOG.info("Searching for {}", subscription.getServiceName());
                 List<AvailableVisit> availableVisits = loadAndParseAvailableVisits(subscription, verificationToken);
@@ -74,6 +78,17 @@ public class ScheduledVisitFinder {
             }
         }
         LOG.info("Scheduled visit search is STOPPED");
+    }
+
+    private String loginAndGetVerificationToken(User user) {
+        loginUser(user);
+        String verificationToken = parseVerificationToken();
+        if (StringUtils.isEmpty(verificationToken)) {
+            LOG.info("Can't parse verification token. Trying one more time");
+            loginUser(user);
+            verificationToken = parseVerificationToken();
+        }
+        return verificationToken;
     }
 
     private void loginUser(User user) {

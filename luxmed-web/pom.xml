@@ -40,12 +40,7 @@
             <artifactId>spring-context-support</artifactId>
             <version>5.0.2.RELEASE</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>5.0.2.RELEASE</version>
-            <scope>test</scope>
-        </dependency>
+
         <dependency>
             <groupId>sp1d.luxnotifier</groupId>
             <artifactId>luxmed-driver</artifactId>

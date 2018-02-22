@@ -29,6 +29,7 @@ public class UserDaoTest {
     public void savesAndFindsUser() {
         User testUser = User.anUser()
                 .withEmail("testuser@test.com")
+                .withPassword("")
                 .build();
         userDao.save(testUser);
         assertThat(userDao.findByEmail("testuser@test.com").get()).isEqualToComparingFieldByField(testUser);
@@ -42,8 +43,8 @@ public class UserDaoTest {
 
     private List<User> allUsers() {
         List<User> users = new ArrayList<>();
-        users.add(User.anUser().withEmail("test@test.com").build());
-        users.add(User.anUser().withEmail("test2@test.com").build());
+        users.add(User.anUser().withEmail("test@test.com").withPassword("test").build());
+        users.add(User.anUser().withEmail("test2@test.com").withPassword("test").build());
         return Collections.unmodifiableList(users);
     }
 }

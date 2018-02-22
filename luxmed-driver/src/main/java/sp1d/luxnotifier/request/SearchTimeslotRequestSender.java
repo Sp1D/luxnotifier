@@ -12,6 +12,7 @@ import java.util.Map;
 
 import static java.time.LocalDate.now;
 import static org.apache.commons.lang3.ObjectUtils.firstNonNull;
+import static sp1d.luxnotifier.request.RequestParameters.aRequestParameters;
 
 @Component
 public class SearchTimeslotRequestSender extends RequestSender {
@@ -46,10 +47,10 @@ public class SearchTimeslotRequestSender extends RequestSender {
                 .add("__RequestVerificationToken", verificationToken)
                 .add("IsDisabled", "false")
                 .build();
-        return RequestParameters.builder()
-                .url("https://portalpacjenta.luxmed.pl/PatientPortal/Reservations/Reservation/Find")
-                .requestBody(requestBody)
-                .method("POST")
+        return aRequestParameters()
+                .withUrl("https://portalpacjenta.luxmed.pl/PatientPortal/Reservations/Reservation/Find")
+                .withRequestBody(requestBody)
+                .withMethod("POST")
                 .build();
     }
 }

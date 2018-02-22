@@ -25,7 +25,7 @@ public class LuxmedAuthenticationManager implements RemoteAuthenticationManager 
         authMap.put("password", password);
         String loginResponse = loginRequestSender.send(authMap);
         if (!isValidLoginResponse(loginResponse)) {
-            throw new RemoteAuthenticationException("User is not recognized by Luxmed system");
+            throw new RemoteAuthenticationException("User is not recognized by Luxmed system (is Luxmed site on maintenance?)");
         }
         return Collections.singletonList(new SimpleGrantedAuthority("USER"));
     }

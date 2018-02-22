@@ -26,24 +26,26 @@ public class UserDao {
     }
 
     public int save(User user) {
+        LOG.debug("Saving user {}", user);
         BeanPropertySqlParameterSource parameterSource = new BeanPropertySqlParameterSource(user);
         return simpleJdbcInsert.execute(parameterSource);
     }
 
     public Optional<User> findByEmail(String email) {
+        LOG.debug("Finding user {}", email);
         User user = null;
         RowMapper<User> userRowMapper = new BeanPropertyRowMapper<>(User.class);
         try {
             user = jdbcTemplate.queryForObject("SELECT EMAIL, PASSWORD FROM USER WHERE EMAIL = ?", userRowMapper, email);
         } catch (EmptyResultDataAccessException e) {
-            LOG.info("No such user with email {} can be found", email);
+            LOG.debug("No such user with email {}", email);
         }
         return Optional.ofNullable(user);
     }
 
     public List<User> findAll() {
+        LOG.debug("Finding all users");
         return jdbcTemplate.query("SELECT EMAIL, PASSWORD FROM USER", new BeanPropertyRowMapper<>(User.class));
     }
-
 
 }
