@@ -11,6 +11,9 @@ public class AvailableVisit {
     private String clinic;
     private String service;
 
+    public AvailableVisit() {
+    }
+
     public AvailableVisit(String doctor, LocalDateTime dateTime, String clinic, String service) {
         this.doctor = doctor;
         this.dateTime = dateTime;
@@ -36,6 +39,22 @@ public class AvailableVisit {
 
     public String getService() {
         return service;
+    }
+
+    public void setDoctor(String doctor) {
+        this.doctor = doctor;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public void setClinic(String clinic) {
+        this.clinic = clinic;
+    }
+
+    public void setService(String service) {
+        this.service = service;
     }
 
     @Override

@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
+import sp1d.luxnotifier.dao.NotificationDao;
 import sp1d.luxnotifier.dao.SubscriptionDao;
 import sp1d.luxnotifier.dao.UserDao;
 import sp1d.luxnotifier.entity.Subscription;
 import sp1d.luxnotifier.entity.User;
 import sp1d.luxnotifier.parser.AvailableVisit;
+import sp1d.luxnotifier.parser.AvailableVisitsParserFactory;
 import sp1d.luxnotifier.parser.SimpleParser;
 import sp1d.luxnotifier.request.LoginRequestSender;
 import sp1d.luxnotifier.request.SearchPageRequestSender;
@@ -20,7 +22,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static sp1d.luxnotifier.parser.AvailableVisitsParser.anAvailableVisitsParser;
 import static sp1d.luxnotifier.request.SearchTimeslotRequestSender.DD_MM_YYYY;
 
 @Component
@@ -32,6 +33,8 @@ public class ScheduledVisitFinder {
     @Autowired
     private SubscriptionDao subscriptionDao;
     @Autowired
+    private NotificationDao notificationDao;
+    @Autowired
     private UserNotifier notifier;
     @Autowired
     private LoginRequestSender loginRequest;
@@ -39,10 +42,12 @@ public class ScheduledVisitFinder {
     private SearchPageRequestSender searchRequest;
     @Autowired
     private SearchTimeslotRequestSender timeslotRequest;
+    @Autowired
+    private AvailableVisitsParserFactory availableVisitsParserFactory;
 
     @Scheduled(cron = "0 55 * * * *")
     public void find() {
-        LOG.info("Scheduled visit search is started");
+        LOG.info("Scheduled visit search is STARTED");
         for (User user : userDao.findAll()) {
             List<Subscription> subscriptions = subscriptionDao.findByUserEmail(user.getEmail());
             if (CollectionUtils.isEmpty(subscriptions)) {
@@ -56,12 +61,19 @@ public class ScheduledVisitFinder {
                 LOG.info("Searching for {}", subscription.getServiceName());
                 List<AvailableVisit> availableVisits = loadAndParseAvailableVisits(subscription, verificationToken);
                 if (availableVisits.size() > 0) {
-                    LOG.info("Visit of {} is possible", subscription.getServiceName());
+                    LOG.info("Visit is possible", subscription.getServiceName());
+                    List<AvailableVisit> notifiedVisits = notificationDao.loadNotifiedVisits(user.getEmail());
+                    availableVisits.removeAll(notifiedVisits);
+                    if (availableVisits.size() == 0) {
+                        LOG.info("User was already notified");
+                        continue;
+                    }
                     notifier.notifyUser(subscription, availableVisits);
+                    notificationDao.saveNotifiedVisits(user.getEmail(), availableVisits);
                 }
             }
         }
-        LOG.info("Scheduled visit search is stopped");
+        LOG.info("Scheduled visit search is STOPPED");
     }
 
     private void loginUser(User user) {
@@ -78,7 +90,7 @@ public class ScheduledVisitFinder {
     private List<AvailableVisit> loadAndParseAvailableVisits(Subscription subscription, String verificationToken) {
         Map<String, String> requestParameters = prepareRequestParameters(subscription);
         requestParameters.put("verificationToken", verificationToken);
-        return anAvailableVisitsParser(timeslotRequest.send(requestParameters)).parse();
+        return availableVisitsParserFactory.createParser(timeslotRequest.send(requestParameters)).parse();
     }
 
     private Map<String, String> prepareRequestParameters(Subscription subscription) {
