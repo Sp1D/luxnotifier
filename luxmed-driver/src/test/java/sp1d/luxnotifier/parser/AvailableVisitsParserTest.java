@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static sp1d.luxnotifier.parser.AvailableVisit.anAvailableVisit;
 
 public class AvailableVisitsParserTest {
     private AvailableVisitsParser parser;
@@ -20,15 +21,21 @@ public class AvailableVisitsParserTest {
 
     @Test
     public void parsesAllVisits() {
-        AvailableVisit firstExpectedVisit = AvailableVisit.anAvailableVisit()
-                .withDoctor("lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA")
-                .withDateTime(LocalDateTime.of(2018, 1, 30, 15, 40))
-                .withClinic("MR Kraków - Wadowicka 8W")
-                .withService("Konsultacja neurologa")
-                .build();
-
         List<AvailableVisit> availableVisits = parser.parse();
         assertThat(availableVisits).hasSize(21);
-        assertThat(availableVisits).startsWith(firstExpectedVisit);
+        assertThat(availableVisits).contains(
+                anAvailableVisit()
+                        .withDoctor("lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA")
+                        .withDateTime(LocalDateTime.of(2018, 1, 30, 15, 40))
+                        .withClinic("MR Kraków - Wadowicka 8W")
+                        .withService("Konsultacja neurologa")
+                        .build(),
+                anAvailableVisit()
+                        .withDoctor("lek. med. CHRAŚCIK-ŚLIZOWSKA PAULA")
+                        .withDateTime(LocalDateTime.of(2018, 2, 2, 10, 40))
+                        .withClinic("MR Kraków - Wadowicka 8W")
+                        .withService("Konsultacja neurologa")
+                        .build()
+        );
     }
 }

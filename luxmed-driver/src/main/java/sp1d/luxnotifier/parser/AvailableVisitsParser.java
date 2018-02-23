@@ -72,7 +72,9 @@ public class AvailableVisitsParser {
     }
 
     private LocalDateTime parseAndConstructVisitDateTime(LocalDate date, Element visitElement) {
-        String timeString = visitElement.select("td.hours > div > a").text().replace("Book", "").trim();
+        String timeElementText = visitElement.select("td.hours > div > a").text();
+        int colonPosition = timeElementText.indexOf(":");
+        String timeString = timeElementText.substring(colonPosition - 2, colonPosition + 3).trim();
         return LocalDateTime.of(date, LocalTime.parse(timeString, TIME_FORMAT));
     }
 }
