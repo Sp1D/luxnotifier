@@ -46,7 +46,7 @@
                                     <resources>
                                         <resource>
                                             <directory>
-                                                /luxmed-web/src/main/resources
+                                                luxmed-web/src/main/resources
                                             </directory>
                                             <includes>
                                                 <include>
