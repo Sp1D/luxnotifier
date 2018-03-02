@@ -22,7 +22,7 @@ public class UserDao {
 
     public UserDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate).withTableName("USER");
+        simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate).withTableName("user");
     }
 
     public int save(User user) {
