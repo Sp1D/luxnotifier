@@ -1,8 +1,8 @@
 DROP TABLE notification IF EXISTS;
 DROP TABLE subscription IF EXISTS;
-DROP TABLE user IF EXISTS;
+DROP TABLE users IF EXISTS;
 
-CREATE TABLE user
+CREATE TABLE users
 (
   email    VARCHAR(100) PRIMARY KEY,
   password VARCHAR(100) NOT NULL
@@ -16,7 +16,7 @@ CREATE TABLE subscription
   language_name     VARCHAR(100) NOT NULL,
   search_until_date DATE         NOT NULL,
   PRIMARY KEY (user_email, service_id),
-  CONSTRAINT subscription_user_email_fk FOREIGN KEY (user_email) REFERENCES USER (email)
+  CONSTRAINT subscription_user_email_fk FOREIGN KEY (user_email) REFERENCES users (email)
 );
 CREATE TABLE notification
 (
@@ -26,5 +26,5 @@ CREATE TABLE notification
   clinic     VARCHAR(100) NOT NULL,
   service    VARCHAR(100) NOT NULL,
   date_time  DATETIME,
-  CONSTRAINT notification_user_email_fk FOREIGN KEY (user_email) REFERENCES USER (email)
+  CONSTRAINT notification_user_email_fk FOREIGN KEY (user_email) REFERENCES users (email)
 )

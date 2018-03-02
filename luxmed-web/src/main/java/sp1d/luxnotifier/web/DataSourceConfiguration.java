@@ -33,7 +33,7 @@ public class DataSourceConfiguration {
         String url = environment.getProperty("db.url");
         String driver = environment.getProperty("db.driver");
 
-        LOG.info("Trying to connect to {}", url);
+        LOG.info("Connecting to {}", url);
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setUsername(user);
         dataSource.setPassword(password);

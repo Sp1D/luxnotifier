@@ -22,7 +22,7 @@ public class UserDao {
 
     public UserDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate).withTableName("user");
+        simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate).withTableName("users");
     }
 
     public int save(User user) {
@@ -36,7 +36,7 @@ public class UserDao {
         User user = null;
         RowMapper<User> userRowMapper = new BeanPropertyRowMapper<>(User.class);
         try {
-            user = jdbcTemplate.queryForObject("SELECT EMAIL, PASSWORD FROM user WHERE EMAIL = ?", userRowMapper, email);
+            user = jdbcTemplate.queryForObject("SELECT EMAIL, PASSWORD FROM users WHERE EMAIL = ?", userRowMapper, email);
         } catch (EmptyResultDataAccessException e) {
             LOG.debug("No such user with email {}", email);
         }
@@ -45,7 +45,7 @@ public class UserDao {
 
     public List<User> findAll() {
         LOG.debug("Finding all users");
-        return jdbcTemplate.query("SELECT EMAIL, PASSWORD FROM user", new BeanPropertyRowMapper<>(User.class));
+        return jdbcTemplate.query("SELECT EMAIL, PASSWORD FROM users", new BeanPropertyRowMapper<>(User.class));
     }
 
 }
