@@ -29,6 +29,33 @@
                             <warName>ROOT</warName>
                         </configuration>
                     </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>3.0.2</version>
+                        <executions>
+                            <execution>
+                                <phase>validate</phase>
+                                <goals><goal>
+                                    copy-resources
+                                </goal></goals>
+                                <configuration>
+                                    <outputDirectory>target</outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>
+                                                /luxmed-web/src/main/resources
+                                            </directory>
+                                            <includes>
+                                                **/database.properties
+                                            </includes>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+
+                    </plugin>
                 </plugins>
             </build>
         </profile>

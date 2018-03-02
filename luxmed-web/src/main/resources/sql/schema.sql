@@ -1,9 +1,6 @@
-DROP TABLE notification
-IF EXISTS;
-DROP TABLE subscription
-IF EXISTS;
-DROP TABLE user
-IF EXISTS;
+DROP TABLE notification IF EXISTS;
+DROP TABLE subscription IF EXISTS;
+DROP TABLE user IF EXISTS;
 
 CREATE TABLE user
 (

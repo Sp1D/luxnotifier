@@ -13,7 +13,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan("sp1d.luxnotifier")
-//@Import(ServiceConfiguration.class)
 public class WebConfiguration implements WebMvcConfigurer{
     @Bean
     public ViewResolver internalResourceViewResolver() {
