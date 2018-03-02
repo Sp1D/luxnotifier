@@ -1,6 +1,8 @@
 package sp1d.luxnotifier.web;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,16 +21,24 @@ import java.sql.Statement;
 @Configuration
 @PropertySource("classpath:database.properties")
 public class DataSourceConfiguration {
+    private static final Logger LOG = LoggerFactory.getLogger(DataSourceConfiguration.class);
+
     @Autowired
     private Environment environment;
 
     @Bean(name = "dataSource")
     public DataSource dataSource() {
+        String user = environment.getProperty("db.user");
+        String password = environment.getProperty("db.password");
+        String url = environment.getProperty("db.url");
+        String driver = environment.getProperty("db.driver");
+
+        LOG.info("Trying to connect to {}", url);
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setUsername(environment.getProperty("db.user"));
-        dataSource.setPassword(environment.getProperty("db.password"));
-        dataSource.setUrl(environment.getProperty("db.url"));
-        dataSource.setDriverClassName(environment.getProperty("db.driver"));
+        dataSource.setUsername(user);
+        dataSource.setPassword(password);
+        dataSource.setUrl(url);
+        dataSource.setDriverClassName(driver);
 
         return dataSource;
     }

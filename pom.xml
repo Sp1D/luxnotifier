@@ -42,7 +42,7 @@
                                     </goal>
                                 </goals>
                                 <configuration>
-                                    <outputDirectory>target</outputDirectory>
+                                    <outputDirectory>/opt/webserver/lib</outputDirectory>
                                     <resources>
                                         <resource>
                                             <directory>
