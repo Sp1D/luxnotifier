@@ -14,7 +14,7 @@ import java.util.List;
 @Component
 public class SubscriptionDao {
     private static final String SELECT_SUBSCRIPTION_BY_EMAIL =
-            "SELECT USER_EMAIL, SERVICE_ID, SERVICE_NAME, LANGUAGE_ID, LANGUAGE_NAME, SEARCH_UNTIL_DATE FROM SUBSCRIPTION WHERE USER_EMAIL = ?";
+            "SELECT USER_EMAIL, SERVICE_ID, SERVICE_NAME, LANGUAGE_ID, LANGUAGE_NAME, SEARCH_UNTIL_DATE FROM subscription WHERE USER_EMAIL = ?";
     private static final String USER_EMAIL = "user_email";
     private static final String SERVICE_ID = "service_id";
     private static final String SERVICE_NAME = "service_name";
@@ -53,6 +53,6 @@ public class SubscriptionDao {
     }
 
     public int deleteByUserEmailAndId(String email, int serviceId) {
-        return jdbcTemplate.update("DELETE FROM SUBSCRIPTION WHERE USER_EMAIL = ? AND SERVICE_ID = ?", email, serviceId);
+        return jdbcTemplate.update("DELETE FROM subscription WHERE USER_EMAIL = ? AND SERVICE_ID = ?", email, serviceId);
     }
 }
