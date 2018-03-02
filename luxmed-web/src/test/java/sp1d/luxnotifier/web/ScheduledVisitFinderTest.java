@@ -15,6 +15,7 @@ import sp1d.luxnotifier.entity.User;
 import sp1d.luxnotifier.parser.AvailableVisit;
 import sp1d.luxnotifier.parser.AvailableVisitsParser;
 import sp1d.luxnotifier.parser.AvailableVisitsParserFactory;
+import sp1d.luxnotifier.parser.SimpleParser;
 import sp1d.luxnotifier.request.LoginRequestSender;
 import sp1d.luxnotifier.request.SearchPageRequestSender;
 import sp1d.luxnotifier.request.SearchTimeslotRequestSender;
@@ -51,6 +52,8 @@ public class ScheduledVisitFinderTest {
     private SearchTimeslotRequestSender searchTimeslotRequestSender;
     @Mock
     private AvailableVisitsParserFactory availableVisitsParserFactory;
+    @Mock
+    private SimpleParser simpleParser;
     @InjectMocks
     private ScheduledVisitFinder finder;
 
@@ -59,6 +62,7 @@ public class ScheduledVisitFinderTest {
         when(searchPageRequestSender.send()).thenReturn("");
         when(searchTimeslotRequestSender.send(anyMap())).thenReturn("");
         when(availableVisitsParserFactory.createParser(any())).thenReturn(AvailableVisitsParser.anAvailableVisitsParser(""));
+        when(simpleParser.parseVerificationToken(anyString())).thenReturn("token");
     }
 
     @Test

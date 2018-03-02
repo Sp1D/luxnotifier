@@ -45,6 +45,8 @@ public class ScheduledVisitFinder {
     private SearchTimeslotRequestSender timeslotRequest;
     @Autowired
     private AvailableVisitsParserFactory availableVisitsParserFactory;
+    @Autowired
+    private SimpleParser simpleParser;
 
     @Scheduled(cron = "0 55 * * * *")
     public void find() {
@@ -117,7 +119,7 @@ public class ScheduledVisitFinder {
     }
 
     private String parseVerificationToken() {
-        return SimpleParser.parseVerificationToken(searchRequest.send());
+        return simpleParser.parseVerificationToken(searchRequest.send());
     }
 
 }
