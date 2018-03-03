@@ -4,10 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
-import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 import sp1d.luxnotifier.entity.User;
 
@@ -17,26 +16,24 @@ import java.util.Optional;
 @Component
 public class UserDao {
     private static final Logger LOG = LoggerFactory.getLogger(UserDao.class);
-    private JdbcTemplate jdbcTemplate;
-    private SimpleJdbcInsert simpleJdbcInsert;
+    private NamedParameterJdbcTemplate jdbcTemplate;
 
-    public UserDao(JdbcTemplate jdbcTemplate) {
+    public UserDao(NamedParameterJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate).withTableName("users");
     }
 
     public int save(User user) {
         LOG.debug("Saving user {}", user);
-        BeanPropertySqlParameterSource parameterSource = new BeanPropertySqlParameterSource(user);
-        return simpleJdbcInsert.execute(parameterSource);
+        return jdbcTemplate.update("INSERT INTO users (email, password) VALUES (:email, :password)", new BeanPropertySqlParameterSource(user));
     }
 
     public Optional<User> findByEmail(String email) {
         LOG.debug("Finding user {}", email);
         User user = null;
-        RowMapper<User> userRowMapper = new BeanPropertyRowMapper<>(User.class);
         try {
-            user = jdbcTemplate.queryForObject("SELECT EMAIL, PASSWORD FROM users WHERE EMAIL = ?", userRowMapper, email);
+            user = jdbcTemplate.queryForObject("SELECT EMAIL, PASSWORD FROM users WHERE EMAIL = :email",
+                    new MapSqlParameterSource("email", email),
+                    new BeanPropertyRowMapper<>(User.class));
         } catch (EmptyResultDataAccessException e) {
             LOG.debug("No such user with email {}", email);
         }

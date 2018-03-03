@@ -1,8 +1,7 @@
 package sp1d.luxnotifier.dao;
 
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 import sp1d.luxnotifier.entity.Subscription;
 
@@ -14,19 +13,17 @@ import java.util.List;
 @Component
 public class SubscriptionDao {
     private static final String SELECT_SUBSCRIPTION_BY_EMAIL =
-            "SELECT USER_EMAIL, SERVICE_ID, SERVICE_NAME, LANGUAGE_ID, LANGUAGE_NAME, SEARCH_UNTIL_DATE FROM subscription WHERE USER_EMAIL = ?";
+            "SELECT USER_EMAIL, SERVICE_ID, SERVICE_NAME, LANGUAGE_ID, LANGUAGE_NAME, SEARCH_UNTIL_DATE FROM subscription WHERE USER_EMAIL = :email";
     private static final String USER_EMAIL = "user_email";
     private static final String SERVICE_ID = "service_id";
     private static final String SERVICE_NAME = "service_name";
     private static final String LANGUAGE_ID = "language_id";
     private static final String SEARCH_UNTIL_DATE = "search_until_date";
     private static final String LANGUAGE_NAME = "language_name";
-    final private SimpleJdbcInsert insert;
-    final private JdbcTemplate jdbcTemplate;
+    final private NamedParameterJdbcTemplate jdbcTemplate;
 
-    public SubscriptionDao(JdbcTemplate jdbcTemplate) {
+    public SubscriptionDao(NamedParameterJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        insert = new SimpleJdbcInsert(jdbcTemplate).withTableName("subscription");
     }
 
     public void save(Subscription subscription) {
@@ -37,11 +34,12 @@ public class SubscriptionDao {
         parameters.addValue(LANGUAGE_ID, subscription.getLanguageId());
         parameters.addValue(LANGUAGE_NAME, subscription.getLanguageName());
         parameters.addValue(SEARCH_UNTIL_DATE, LocalDateTime.of(subscription.getSearchUntilDate(), LocalTime.MIDNIGHT), Types.DATE);
-        insert.execute(parameters);
+        jdbcTemplate.update("INSERT INTO subscription (user_email, service_id, service_name, language_id, language_name, search_until_date) " +
+                "VALUES (:user_email, :service_id, :service_name, :language_id, :language_name, :search_until_date)", parameters);
     }
 
     public List<Subscription> findByUserEmail(String email) {
-        return jdbcTemplate.query(SELECT_SUBSCRIPTION_BY_EMAIL, new Object[]{email},
+        return jdbcTemplate.query(SELECT_SUBSCRIPTION_BY_EMAIL, new MapSqlParameterSource("email", email),
                 (rs, rowNum) -> Subscription.aSubscription()
                         .withUserEmail(rs.getString(USER_EMAIL))
                         .withServiceId(rs.getString(SERVICE_ID))
@@ -53,6 +51,9 @@ public class SubscriptionDao {
     }
 
     public int deleteByUserEmailAndId(String email, int serviceId) {
-        return jdbcTemplate.update("DELETE FROM subscription WHERE USER_EMAIL = ? AND SERVICE_ID = ?", email, serviceId);
+        MapSqlParameterSource parameters = new MapSqlParameterSource();
+        parameters.addValue("email", email);
+        parameters.addValue("serviceId", serviceId);
+        return jdbcTemplate.update("DELETE FROM subscription WHERE USER_EMAIL = :email AND SERVICE_ID = :serviceId", parameters);
     }
 }

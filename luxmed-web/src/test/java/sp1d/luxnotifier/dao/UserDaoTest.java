@@ -2,7 +2,7 @@ package sp1d.luxnotifier.dao;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import sp1d.luxnotifier.entity.User;
 
@@ -22,7 +22,7 @@ public class UserDaoTest {
         DataSource dataSource = new EmbeddedDatabaseBuilder()
                 .addScripts("sql/schema.sql", "testData.sql")
                 .build();
-        userDao = new UserDao(new JdbcTemplate(dataSource));
+        userDao = new UserDao(new NamedParameterJdbcTemplate(dataSource));
     }
 
     @Test
