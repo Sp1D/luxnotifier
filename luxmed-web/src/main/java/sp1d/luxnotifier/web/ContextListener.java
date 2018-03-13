@@ -4,6 +4,7 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletContextEvent;
@@ -23,9 +24,12 @@ public class ContextListener implements ServletContextListener {
     @Autowired(required = false)
     private DataSource dataSource;
 
+    @Autowired(required = false)
+    private NamedParameterJdbcTemplate jdbcTemplate;
+
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-
+        LOG.info("Context is initialized");
     }
 
     @Override
@@ -35,6 +39,7 @@ public class ContextListener implements ServletContextListener {
             return;
         }
         try {
+            jdbcTemplate.execute("SHUTDOWN", null);
             ((BasicDataSource)dataSource).close();
             ClassLoader cl = Thread.currentThread().getContextClassLoader();
             Enumeration<Driver> drivers = DriverManager.getDrivers();
