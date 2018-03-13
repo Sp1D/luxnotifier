@@ -7,13 +7,13 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import sp1d.luxnotifier.entity.User;
 
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Repository
 public class UserDao {
     private static final Logger LOG = LoggerFactory.getLogger(UserDao.class);
     private NamedParameterJdbcTemplate jdbcTemplate;

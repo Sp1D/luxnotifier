@@ -1,5 +1,6 @@
 package sp1d.luxnotifier.dao;
 
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -11,37 +12,34 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static sp1d.luxnotifier.parser.AvailableVisit.anAvailableVisit;
-
-public class NotificationDaoTest {
-    public static final String USER_EMAIL = "test@test.com";
-    private NotificationDao dao;
+public class NotifiedVisitsDaoTest {
+    private static final String USER_EMAIL = "test@test.com";
+    private NotifiedVisitsDao dao;
 
     @Before
     public void setUp() throws Exception {
         DataSource dataSource = new EmbeddedDatabaseBuilder()
                 .addScripts("sql/schema.sql", "testData.sql")
                 .build();
-        dao = new NotificationDao(new NamedParameterJdbcTemplate(dataSource));
+        dao = new NotifiedVisitsDao(new NamedParameterJdbcTemplate(dataSource));
     }
 
     @Test
     public void savesAndLoadsNotifiedVisitList() {
         dao.saveNotifiedVisits(USER_EMAIL, notifications());
         List<AvailableVisit> loadedVisits = dao.loadNotifiedVisits(USER_EMAIL);
-        assertThat(loadedVisits).hasSameElementsAs(notifications());
+        Assertions.assertThat(loadedVisits).hasSameElementsAs(notifications());
     }
 
     private List<AvailableVisit> notifications() {
         return Arrays.asList(
-                anAvailableVisit()
+                AvailableVisit.anAvailableVisit()
                         .withClinic("clinic")
                         .withDateTime(LocalDateTime.of(2018, 2, 14, 7, 40))
                         .withDoctor("doctor")
                         .withService("service")
                         .build(),
-                anAvailableVisit()
+                AvailableVisit.anAvailableVisit()
                         .withClinic("clinic1")
                         .withDateTime(LocalDateTime.of(2018, 2, 15, 9, 50))
                         .withDoctor("doctor1")

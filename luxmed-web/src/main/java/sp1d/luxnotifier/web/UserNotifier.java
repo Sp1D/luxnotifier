@@ -27,14 +27,17 @@ public class UserNotifier {
         if (availableVisits == null || availableVisits.isEmpty()) {
             return;
         }
+        LOG.info("Sending email to {}", subscription.getUserEmail());
+        mailSender.send(prepareMessage(subscription, availableVisits));
+    }
+
+    private SimpleMailMessage prepareMessage(Subscription subscription, List<AvailableVisit> availableVisits) {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(subscription.getUserEmail());
         msg.setFrom("luxmed.notifier@gmail.com");
         formatSubject(msg, availableVisits);
         formatBody(msg, availableVisits);
-
-        mailSender.send(msg);
-        LOG.info("Notifying email is sent to {}", msg.getTo()[0]);
+        return msg;
     }
 
     private void formatSubject(SimpleMailMessage msg, List<AvailableVisit> availableVisits) {

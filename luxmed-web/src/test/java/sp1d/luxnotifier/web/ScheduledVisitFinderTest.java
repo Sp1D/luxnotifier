@@ -7,7 +7,7 @@ import org.mockito.InOrder;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import sp1d.luxnotifier.dao.NotificationDao;
+import sp1d.luxnotifier.dao.NotifiedVisitsDao;
 import sp1d.luxnotifier.dao.SubscriptionDao;
 import sp1d.luxnotifier.dao.UserDao;
 import sp1d.luxnotifier.entity.Subscription;
@@ -43,7 +43,7 @@ public class ScheduledVisitFinderTest {
     @Mock
     private SubscriptionDao subscriptionDao;
     @Mock
-    private NotificationDao notificationDao;
+    private NotifiedVisitsDao notifiedVisitsDao;
     @Mock
     private LoginRequestSender loginRequestSender;
     @Mock
@@ -105,9 +105,9 @@ public class ScheduledVisitFinderTest {
 
         finder.find();
 
-        InOrder inOrder = inOrder(notifier, notificationDao);
+        InOrder inOrder = inOrder(notifier, notifiedVisitsDao);
         inOrder.verify(notifier).notifyUser(any(), any());
-        inOrder.verify(notificationDao).saveNotifiedVisits(eq(user.getEmail()), eq(availableVisits));
+        inOrder.verify(notifiedVisitsDao).saveNotifiedVisits(eq(user.getEmail()), eq(availableVisits));
     }
 
     @Test
@@ -127,7 +127,7 @@ public class ScheduledVisitFinderTest {
                 .withDateTime(LocalDateTime.MIN)
                 .build());
         givenAvailableVisits(availableVisits);
-        when(notificationDao.loadNotifiedVisits(any())).thenReturn(Collections.singletonList(
+        when(notifiedVisitsDao.loadNotifiedVisits(any())).thenReturn(Collections.singletonList(
                 anAvailableVisit()
                         .withService("Service")
                         .withDoctor("Doctor")

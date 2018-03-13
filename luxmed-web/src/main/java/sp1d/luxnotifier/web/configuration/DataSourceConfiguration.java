@@ -1,14 +1,13 @@
-package sp1d.luxnotifier.web;
+package sp1d.luxnotifier.web.configuration;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
@@ -18,12 +17,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 @Configuration
-@PropertySource("classpath:database.properties")
 public class DataSourceConfiguration {
     private static final Logger LOG = LoggerFactory.getLogger(DataSourceConfiguration.class);
 
-    @Autowired
-    private Environment environment;
+    @Bean
+    public NamedParameterJdbcTemplate namedParameterJdbcTemplate() {
+        return new NamedParameterJdbcTemplate(dataSource());
+    }
 
     @Bean(name = "dataSource")
     public DataSource dataSource() {
@@ -49,9 +49,17 @@ public class DataSourceConfiguration {
         }
 
         if (existingTables == 0) {
+            LOG.info("Initializing DB schema");
             ResourceDatabasePopulator dbPopulator = new ResourceDatabasePopulator(new ClassPathResource("sql/schema.sql"));
             dbPopulator.setIgnoreFailedDrops(true);
             DatabasePopulatorUtils.execute(dbPopulator, dataSource);
         }
+    }
+
+    @Bean
+    public DataSourceTransactionManager transactionManager() {
+        DataSourceTransactionManager manager = new DataSourceTransactionManager();
+        manager.setDataSource(dataSource());
+        return manager;
     }
 }

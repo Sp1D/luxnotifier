@@ -13,6 +13,7 @@
     <modules>
         <module>luxmed-web</module>
         <module>luxmed-driver</module>
+        <module>luxmed-database</module>
     </modules>
 
     <profiles>

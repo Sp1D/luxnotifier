@@ -2,7 +2,7 @@ package sp1d.luxnotifier.dao;
 
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import sp1d.luxnotifier.entity.Subscription;
 
 import java.sql.Types;
@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-@Component
+@Repository
 public class SubscriptionDao {
     private static final String SELECT_SUBSCRIPTION_BY_EMAIL =
             "SELECT USER_EMAIL, SERVICE_ID, SERVICE_NAME, LANGUAGE_ID, LANGUAGE_NAME, SEARCH_UNTIL_DATE FROM subscription WHERE USER_EMAIL = :email";

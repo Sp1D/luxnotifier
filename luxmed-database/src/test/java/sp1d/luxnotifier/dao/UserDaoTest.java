@@ -1,5 +1,6 @@
 package sp1d.luxnotifier.dao;
 
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -38,7 +39,7 @@ public class UserDaoTest {
     @Test
     public void findsAllUsers() {
         List<User> users = userDao.findAll();
-        assertThat(users).hasSameElementsAs(allUsers());
+        Assertions.assertThat(users).hasSameElementsAs(allUsers());
     }
 
     private List<User> allUsers() {

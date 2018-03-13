@@ -5,17 +5,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import sp1d.luxnotifier.parser.AvailableVisit;
 
 import java.util.List;
 
-@Component
-public class NotificationDao {
-    private final static Logger LOG = LoggerFactory.getLogger(NotificationDao.class);
+@Repository
+public class NotifiedVisitsDao {
+    private final static Logger LOG = LoggerFactory.getLogger(NotifiedVisitsDao.class);
     private NamedParameterJdbcTemplate jdbcTemplate;
 
-    public NotificationDao(NamedParameterJdbcTemplate jdbcTemplate) {
+    public NotifiedVisitsDao(NamedParameterJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

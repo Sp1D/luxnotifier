@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
-import sp1d.luxnotifier.dao.NotificationDao;
+import sp1d.luxnotifier.dao.NotifiedVisitsDao;
 import sp1d.luxnotifier.dao.SubscriptionDao;
 import sp1d.luxnotifier.dao.UserDao;
 import sp1d.luxnotifier.entity.Subscription;
@@ -34,7 +34,7 @@ public class ScheduledVisitFinder {
     @Autowired
     private SubscriptionDao subscriptionDao;
     @Autowired
-    private NotificationDao notificationDao;
+    private NotifiedVisitsDao notifiedVisitsDao;
     @Autowired
     private UserNotifier notifier;
     @Autowired
@@ -48,7 +48,7 @@ public class ScheduledVisitFinder {
     @Autowired
     private SimpleParser simpleParser;
 
-    @Scheduled(cron = "0 55 * * * *")
+    @Scheduled(cron = "0 * * * * *")
     public void find() {
         LOG.info("Scheduled visit search is STARTED");
         for (User user : userDao.findAll()) {
@@ -68,14 +68,14 @@ public class ScheduledVisitFinder {
                 List<AvailableVisit> availableVisits = loadAndParseAvailableVisits(subscription, verificationToken);
                 if (availableVisits.size() > 0) {
                     LOG.info("Visit is possible", subscription.getServiceName());
-                    List<AvailableVisit> notifiedVisits = notificationDao.loadNotifiedVisits(user.getEmail());
+                    List<AvailableVisit> notifiedVisits = notifiedVisitsDao.loadNotifiedVisits(user.getEmail());
                     availableVisits.removeAll(notifiedVisits);
                     if (availableVisits.size() == 0) {
                         LOG.info("User was already notified");
                         continue;
                     }
                     notifier.notifyUser(subscription, availableVisits);
-                    notificationDao.saveNotifiedVisits(user.getEmail(), availableVisits);
+                    notifiedVisitsDao.saveNotifiedVisits(user.getEmail(), availableVisits);
                 }
             }
         }
