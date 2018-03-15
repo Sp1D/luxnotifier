@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class AvailableVisitsParser {
@@ -34,7 +35,7 @@ public class AvailableVisitsParser {
 
     public List<AvailableVisit> parse() {
         if (parsedVisits == null) {
-            parsedVisits = parsePlease();
+            parsedVisits = Collections.unmodifiableList(parsePlease());
         }
         return parsedVisits;
     }

@@ -4,6 +4,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,7 +41,7 @@ public class SearchPageParser {
             String optionName = optionElement.text().trim();
             optionsMap.put(optionId, optionName);
         }
-        return optionsMap;
+        return Collections.unmodifiableMap(optionsMap);
     }
 
 }
