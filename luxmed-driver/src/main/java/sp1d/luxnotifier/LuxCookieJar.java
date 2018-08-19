@@ -14,6 +14,7 @@ public class LuxCookieJar implements CookieJar {
 
     @Override
     public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
+        deleteExpiredCookies();
         for (Cookie cookie : cookies) {
             Map<String, Cookie> domainCookies = cookieMap.get(cookie.domain());
             if (domainCookies == null) {
@@ -22,6 +23,18 @@ public class LuxCookieJar implements CookieJar {
             LOG.trace("Saving cookie {}", cookie);
             domainCookies.put(cookie.name(), cookie);
             cookieMap.put(cookie.domain(), domainCookies);
+        }
+    }
+
+    private void deleteExpiredCookies() {
+        for (Map<String, Cookie> domainCookies : cookieMap.values()) {
+            Iterator<Cookie> cookieIterator = domainCookies.values().iterator();
+            while (cookieIterator.hasNext()) {
+                if (notExpired(cookieIterator.next())) {
+                    continue;
+                }
+                cookieIterator.remove();
+            }
         }
     }
 

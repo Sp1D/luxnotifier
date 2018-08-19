@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class IndexController {
 
     @Autowired
-    private SearchPageRequestSender searchPage;
+    private SearchPageRequestSender searchPageRequest;
     @Autowired
     private SubscriptionDao subscriptionDao;
     @Autowired
@@ -32,7 +32,7 @@ public class IndexController {
     @GetMapping("/")
     public ModelAndView subscriptionsPage(ModelAndView mav) {
         if (searchPageParser == null) {
-            searchPageParser = new SearchPageParser(searchPage.send());
+            searchPageParser = new SearchPageParser(searchPageRequest.send());
         }
         mav.addObject(new Subscription());
         mav.addObject("services", sortMapValuesByAlphabet(searchPageParser.parseServices()));

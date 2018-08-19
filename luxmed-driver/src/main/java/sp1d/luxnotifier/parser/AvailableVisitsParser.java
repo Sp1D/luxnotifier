@@ -21,7 +21,6 @@ public class AvailableVisitsParser {
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
     private final Document doc;
-    private List<AvailableVisit> parsedVisits;
 
     private AvailableVisitsParser(Document doc) {
         this.doc = doc;
@@ -34,10 +33,7 @@ public class AvailableVisitsParser {
     }
 
     public List<AvailableVisit> parse() {
-        if (parsedVisits == null) {
-            parsedVisits = Collections.unmodifiableList(parsePlease());
-        }
-        return parsedVisits;
+        return parsePlease();
     }
 
     private List<AvailableVisit> parsePlease() {

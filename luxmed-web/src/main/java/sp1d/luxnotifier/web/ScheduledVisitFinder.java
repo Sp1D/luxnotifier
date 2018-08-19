@@ -48,7 +48,7 @@ public class ScheduledVisitFinder {
     @Autowired
     private SimpleParser simpleParser;
 
-    @Scheduled(cron = "0 50 * * * *")
+    @Scheduled(cron = "0 */15 * * * *")
     public void find() {
         LOG.info("Scheduled visit search is STARTED");
         for (User user : userDao.findAll()) {
