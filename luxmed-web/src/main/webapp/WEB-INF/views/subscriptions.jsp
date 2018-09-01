@@ -8,14 +8,10 @@
     <title>Luxnotifier login page</title>
     <script type="text/javascript" src="<c:url value='/static/jquery-3.3.1.js'/>"></script>
     <script>
-        var contextPath = '<%=application.getContextPath()%>';
         function deleteSubscription(id) {
             $.ajax({
-                url: contextPath + '/subscription/' + id,
+                url: '${pageContext.request.contextPath}/subscription/' + id,
                 type: 'DELETE',
-                beforeSend: function(request) {
-                  request.setRequestHeader('${_csrf.headerName}', '${_csrf.token}');
-                },
                 success: function(result) {
                     window.location.reload();
                 }
@@ -24,6 +20,7 @@
     </script>
 </head>
 <body>
+<a href="${pageContext.request.contextPath}/logout">Logout</a>
 <h1>Subscribe for service</h1>
 <sf:form action="subscription" modelAttribute="subscription">
     <sf:label path="serviceId">Select service:</sf:label><sf:select path="serviceId" items="${services}"/><br/>
